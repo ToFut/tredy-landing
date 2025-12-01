@@ -299,73 +299,157 @@
     }
 
     .visual-demo {
-        max-width: 1400px;
-        margin: 140px auto;
+        max-width: 1200px;
+        margin: 120px auto;
         padding: 0 48px;
     }
 
     .demo-window {
         background: #ffffff;
-        border-radius: 8px;
-        padding: 0;
-        border: 1px solid rgba(55, 53, 47, 0.16);
+        border-radius: 12px;
+        padding: 60px;
+        border: 1px solid rgba(55, 53, 47, 0.09);
         box-shadow: rgba(15, 15, 15, 0.03) 0px 0px 0px 1px, rgba(15, 15, 15, 0.05) 0px 3px 6px, rgba(15, 15, 15, 0.1) 0px 9px 24px;
         animation: fadeIn 0.8s ease-out 0.3s backwards;
         position: relative;
-        overflow: hidden;
-        min-height: 700px;
-    }
-    
-    .demo-window::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 48px;
-        background: rgba(55, 53, 47, 0.02);
-        border-bottom: 1px solid rgba(55, 53, 47, 0.09);
-        z-index: 10;
-    }
-    
-    .demo-window::after {
-        content: '●●●';
-        position: absolute;
-        top: 16px;
-        left: 16px;
-        font-size: 8px;
-        color: rgba(55, 53, 47, 0.3);
-        letter-spacing: 2px;
-        z-index: 11;
+        overflow: visible;
     }
 
     .demo-content {
-        padding: 60px;
-        margin-top: 48px;
-        position: relative;
-        height: 700px;
-        background: linear-gradient(135deg, rgba(55, 53, 47, 0.01) 0%, rgba(55, 53, 47, 0.02) 100%);
-    }
-
-    .network-graph {
-        width: 100%;
-        height: 100%;
         position: relative;
     }
     
-    .network-layer {
+    .flow-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 40px;
+        flex-wrap: wrap;
+        max-width: 1000px;
+        margin: 0 auto;
+    }
+    
+    .flow-step {
+        flex: 1;
+        min-width: 200px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+    }
+    
+    .flow-step:not(:last-child)::after {
+        content: '→';
+        position: absolute;
+        right: -30px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 24px;
+        color: rgba(55, 53, 47, 0.2);
+        font-weight: 300;
+        z-index: 1;
+    }
+    
+    .flow-icon {
+        width: 80px;
+        height: 80px;
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 32px;
+        margin-bottom: 20px;
+        background: rgba(55, 53, 47, 0.04);
+        border: 2px solid rgba(55, 53, 47, 0.08);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+    }
+    
+    .flow-icon::before {
+        content: '';
         position: absolute;
         width: 100%;
         height: 100%;
+        border-radius: 16px;
+        background: rgba(55, 53, 47, 0.06);
+        opacity: 0;
+        transition: opacity 0.3s ease;
     }
     
-    .layer-label {
-        position: absolute;
-        font-size: 11px;
+    .flow-step:hover .flow-icon {
+        transform: translateY(-4px);
+        border-color: rgba(55, 53, 47, 0.2);
+        box-shadow: 0 8px 24px rgba(55, 53, 47, 0.1);
+    }
+    
+    .flow-step:hover .flow-icon::before {
+        opacity: 1;
+    }
+    
+    .flow-step.active .flow-icon {
+        background: rgba(55, 53, 47, 0.08);
+        border-color: rgba(55, 53, 47, 0.2);
+        animation: pulseIcon 2s ease-in-out infinite;
+    }
+    
+    @keyframes pulseIcon {
+        0%, 100% {
+            transform: scale(1);
+        }
+        50% {
+            transform: scale(1.05);
+        }
+    }
+    
+    .flow-title {
+        font-size: 16px;
         font-weight: 600;
-        color: rgba(55, 53, 47, 0.4);
-        text-transform: uppercase;
-        letter-spacing: 1px;
+        color: #37352f;
+        margin-bottom: 8px;
+        text-align: center;
+        letter-spacing: -0.01em;
+    }
+    
+    .flow-description {
+        font-size: 13px;
+        color: rgba(55, 53, 47, 0.6);
+        text-align: center;
+        line-height: 1.5;
+    }
+    
+    .flow-connection {
+        position: absolute;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, rgba(55, 53, 47, 0.1), transparent);
+        top: 40px;
+        z-index: 0;
+    }
+    
+    .flow-dot {
+        position: absolute;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: rgba(55, 53, 47, 0.4);
+        top: 37px;
+        animation: flowDot 3s linear infinite;
+    }
+    
+    @keyframes flowDot {
+        0% {
+            left: 0;
+            opacity: 0;
+        }
+        10% {
+            opacity: 1;
+        }
+        90% {
+            opacity: 1;
+        }
+        100% {
+            left: 100%;
+            opacity: 0;
+        }
     }
 
     .network-node {
@@ -946,14 +1030,12 @@
         .section { padding: 80px 24px; }
         .agentic-section { padding: 80px 24px; }
         .visual-demo { margin: 80px auto; }
-        .demo-content { padding: 30px; height: 600px; }
-        .demo-window { min-height: 600px; }
-        .network-node { transform: scale(0.75); }
-        .network-node.rectangular { min-width: 70px; padding: 6px 8px; }
-        .node-label { font-size: 8px; bottom: -24px; max-width: 80px; }
-        .node-title { font-size: 8px; }
-        .node-icon { font-size: 14px; }
-        .layer-label { font-size: 9px; }
+        .demo-window { padding: 40px 24px; }
+        .flow-container { flex-direction: column; gap: 40px; }
+        .flow-step::after { display: none; }
+        .flow-icon { width: 60px; height: 60px; font-size: 24px; }
+        .flow-title { font-size: 15px; }
+        .flow-description { font-size: 12px; }
         .nav-links { display: none; }
         .cta-group { flex-direction: column; width: 100%; gap: 10px; }
         .cta-primary, .cta-secondary { width: 100%; justify-content: center; padding: 14px 24px; }
@@ -994,240 +1076,30 @@
 <div class="visual-demo">
     <div class="demo-window">
         <div class="demo-content">
-            <!-- Layer Labels -->
-            <div class="layer-label" style="left: 20px; top: 10px;">Regulatory Sources</div>
-            <div class="layer-label" style="left: 20px; top: 140px;">Policy Management</div>
-            <div class="layer-label" style="left: 20px; top: 280px;">Enterprise Systems</div>
-            <div class="layer-label" style="left: 20px; top: 420px;">Audit & Monitoring</div>
-            <div class="layer-label" style="left: 20px; top: 560px;">Evidence & Response</div>
-            
-            <svg class="network-graph" viewBox="0 0 1200 650" preserveAspectRatio="xMidYMid meet">
-                <!-- Layer 1: Regulatory Sources to Compliance Guard -->
-                <path class="network-connection connection-line purple dashed" d="M 200 60 L 550 120" />
-                <path class="network-connection connection-line purple dashed" d="M 300 60 L 550 120" />
-                <path class="network-connection connection-line purple dashed" d="M 400 60 L 550 120" />
-                <path class="network-connection connection-line purple dashed" d="M 500 60 L 550 120" />
-                <path class="network-connection connection-line purple dashed" d="M 600 60 L 550 120" />
-                <path class="network-connection connection-line purple dashed" d="M 700 60 L 550 120" />
-                <path class="network-connection connection-line purple dashed" d="M 800 60 L 550 120" />
-                <path class="network-connection connection-line purple dashed" d="M 900 60 L 550 120" />
-                <path class="network-connection connection-line purple dashed" d="M 1000 60 L 550 120" />
+            <div class="flow-container">
+                <div class="flow-step active">
+                    <div class="flow-icon">📋</div>
+                    <h3 class="flow-title">Regulations</h3>
+                    <p class="flow-description">Track NYDFS, DORA, GDPR, SOC 2, and more</p>
+                </div>
                 
-                <!-- Layer 2: Compliance Guard to Policy Management -->
-                <path class="network-connection connection-line blue solid" d="M 550 120 L 200 180" />
-                <path class="network-connection connection-line blue solid" d="M 550 120 L 350 180" />
-                <path class="network-connection connection-line blue solid" d="M 550 120 L 500 180" />
-                <path class="network-connection connection-line blue solid" d="M 550 120 L 650 180" />
-                <path class="network-connection connection-line blue solid" d="M 550 120 L 800 180" />
-                <path class="network-connection connection-line blue solid" d="M 550 120 L 950 180" />
+                <div class="flow-step active">
+                    <div class="flow-icon">⚙️</div>
+                    <h3 class="flow-title">Policies</h3>
+                    <p class="flow-description">Enforce compliance rules automatically</p>
+                </div>
                 
-                <!-- Layer 3: Policy Management to Enterprise Systems -->
-                <path class="network-connection connection-line green solid" d="M 200 180 L 150 320" />
-                <path class="network-connection connection-line green solid" d="M 350 180 L 300 320" />
-                <path class="network-connection connection-line green solid" d="M 500 180 L 450 320" />
-                <path class="network-connection connection-line green solid" d="M 650 180 L 600 320" />
-                <path class="network-connection connection-line green solid" d="M 800 180 L 750 320" />
-                <path class="network-connection connection-line green solid" d="M 950 180 L 900 320" />
-                <path class="network-connection connection-line green solid" d="M 500 180 L 550 320" />
-                <path class="network-connection connection-line green solid" d="M 650 180 L 700 320" />
+                <div class="flow-step active">
+                    <div class="flow-icon">🏢</div>
+                    <h3 class="flow-title">Systems</h3>
+                    <p class="flow-description">Monitor claims, underwriting, CRM, and more</p>
+                </div>
                 
-                <!-- Layer 4: Enterprise Systems to Audit Tools -->
-                <path class="network-connection connection-line blue solid" d="M 150 320 L 200 460" />
-                <path class="network-connection connection-line blue solid" d="M 300 320 L 350 460" />
-                <path class="network-connection connection-line blue solid" d="M 450 320 L 500 460" />
-                <path class="network-connection connection-line blue solid" d="M 600 320 L 650 460" />
-                <path class="network-connection connection-line blue solid" d="M 750 320 L 800 460" />
-                <path class="network-connection connection-line blue solid" d="M 900 320 L 950 460" />
-                
-                <!-- Layer 5: Audit Tools to Evidence/Response -->
-                <path class="network-connection connection-line red dashed" d="M 200 460 L 150 600" />
-                <path class="network-connection connection-line red dashed" d="M 350 460 L 400 600" />
-                <path class="network-connection connection-line red dashed" d="M 500 460 L 550 600" />
-                <path class="network-connection connection-line red dashed" d="M 650 460 L 700 600" />
-                <path class="network-connection connection-line red dashed" d="M 800 460 L 850 600" />
-                <path class="network-connection connection-line red dashed" d="M 950 460 L 1000 600" />
-            </svg>
-            
-            <!-- Layer 1: Regulatory Sources -->
-            <div class="network-node node-purple active" style="left: 16%; top: 8%;">
-                <span class="node-icon">🏛️</span>
-                <span class="node-title">NYDFS</span>
-                <span class="node-label">NYDFS</span>
-        </div>
-            <div class="network-node node-purple active" style="left: 24%; top: 8%;">
-                <span class="node-icon">🇪🇺</span>
-                <span class="node-title">DORA</span>
-                <span class="node-label">DORA</span>
-        </div>
-            <div class="network-node node-purple active" style="left: 32%; top: 8%;">
-                <span class="node-icon">🔒</span>
-                <span class="node-title">SOC 2</span>
-                <span class="node-label">SOC 2</span>
-        </div>
-            <div class="network-node node-purple active" style="left: 40%; top: 8%;">
-                <span class="node-icon">🌍</span>
-                <span class="node-title">GDPR</span>
-                <span class="node-label">GDPR</span>
-        </div>
-            <div class="network-node node-purple active" style="left: 48%; top: 8%;">
-                <span class="node-icon">📋</span>
-                <span class="node-title">ISO</span>
-                <span class="node-label">ISO 27001</span>
-            </div>
-            <div class="network-node node-purple active" style="left: 56%; top: 8%;">
-                <span class="node-icon">🏥</span>
-                <span class="node-title">HIPAA</span>
-                <span class="node-label">HIPAA</span>
-            </div>
-            <div class="network-node node-purple active" style="left: 64%; top: 8%;">
-                <span class="node-icon">💼</span>
-                <span class="node-title">PCI-DSS</span>
-                <span class="node-label">PCI-DSS</span>
-            </div>
-            <div class="network-node node-purple active" style="left: 72%; top: 8%;">
-                <span class="node-icon">⚖️</span>
-                <span class="node-title">CCPA</span>
-                <span class="node-label">CCPA</span>
-            </div>
-            <div class="network-node node-purple active" style="left: 80%; top: 8%;">
-                <span class="node-icon">🌱</span>
-                <span class="node-title">ESG</span>
-                <span class="node-label">ESG</span>
-            </div>
-            
-            <!-- Central Hub: Compliance Guard -->
-            <div class="network-node node-orange active" style="left: 45%; top: 18%; transform: translateX(-50%); width: 100px; height: 100px;">
-                <span class="node-icon" style="font-size: 32px;">🛡️</span>
-                <span class="node-title" style="font-size: 12px;">Compliance Guard</span>
-                <span class="node-label" style="font-size: 11px; font-weight: 700;">Control Plane</span>
-            </div>
-            
-            <!-- Layer 2: Policy Management -->
-            <div class="network-node node-blue active rectangular" style="left: 16%; top: 27%;">
-                <span class="node-icon">📜</span>
-                <span class="node-title">Policy Admin</span>
-                <span class="node-label">Policy Admin</span>
-            </div>
-            <div class="network-node node-blue active rectangular" style="left: 28%; top: 27%;">
-                <span class="node-icon">📐</span>
-                <span class="node-title">Policy Engine</span>
-                <span class="node-label">Policy Engine</span>
-            </div>
-            <div class="network-node node-blue active rectangular" style="left: 40%; top: 27%;">
-                <span class="node-icon">🔗</span>
-                <span class="node-title">Policy Graph</span>
-                <span class="node-label">Policy Graph</span>
-            </div>
-            <div class="network-node node-blue active rectangular" style="left: 52%; top: 27%;">
-                <span class="node-icon">⚙️</span>
-                <span class="node-title">Policy Runtime</span>
-                <span class="node-label">Policy Runtime</span>
-            </div>
-            <div class="network-node node-blue active rectangular" style="left: 64%; top: 27%;">
-                <span class="node-icon">🔄</span>
-                <span class="node-title">Remediation</span>
-                <span class="node-label">Remediation</span>
-            </div>
-            <div class="network-node node-blue active rectangular" style="left: 76%; top: 27%;">
-                <span class="node-icon">📊</span>
-                <span class="node-title">Compliance DB</span>
-                <span class="node-label">Compliance DB</span>
-            </div>
-            
-            <!-- Layer 3: Enterprise Systems (Insurance) -->
-            <div class="network-node node-green active rectangular" style="left: 12%; top: 48%;">
-                <span class="node-icon">💼</span>
-                <span class="node-title">Claims</span>
-                <span class="node-label">Claims System</span>
-            </div>
-            <div class="network-node node-green active rectangular" style="left: 24%; top: 48%;">
-                <span class="node-icon">📝</span>
-                <span class="node-title">Underwriting</span>
-                <span class="node-label">Underwriting</span>
-            </div>
-            <div class="network-node node-green active rectangular" style="left: 36%; top: 48%;">
-                <span class="node-icon">📋</span>
-                <span class="node-title">Policy Admin</span>
-                <span class="node-label">Policy Admin</span>
-            </div>
-            <div class="network-node node-green active rectangular" style="left: 48%; top: 48%;">
-                <span class="node-icon">👥</span>
-                <span class="node-title">CRM</span>
-                <span class="node-label">CRM</span>
-            </div>
-            <div class="network-node node-green active rectangular" style="left: 60%; top: 48%;">
-                <span class="node-icon">💰</span>
-                <span class="node-title">Billing</span>
-                <span class="node-label">Billing</span>
-            </div>
-            <div class="network-node node-green active rectangular" style="left: 72%; top: 48%;">
-                <span class="node-icon">📈</span>
-                <span class="node-title">Analytics</span>
-                <span class="node-label">Analytics</span>
-            </div>
-            <div class="network-node node-green active rectangular" style="left: 84%; top: 48%;">
-                <span class="node-icon">🔐</span>
-                <span class="node-title">IAM</span>
-                <span class="node-label">IAM</span>
-            </div>
-            
-            <!-- Layer 4: Audit & Monitoring Tools -->
-            <div class="network-node node-blue active rectangular" style="left: 16%; top: 68%;">
-                <span class="node-icon">📡</span>
-                <span class="node-title">SIEM</span>
-                <span class="node-label">SIEM</span>
-            </div>
-            <div class="network-node node-blue active rectangular" style="left: 28%; top: 68%;">
-                <span class="node-icon">📊</span>
-                <span class="node-title">Logging</span>
-                <span class="node-label">Logging</span>
-            </div>
-            <div class="network-node node-blue active rectangular" style="left: 40%; top: 68%;">
-                <span class="node-icon">🔍</span>
-                <span class="node-title">Monitoring</span>
-                <span class="node-label">Monitoring</span>
-            </div>
-            <div class="network-node node-blue active rectangular" style="left: 52%; top: 68%;">
-                <span class="node-icon">📝</span>
-                <span class="node-title">Audit Trail</span>
-                <span class="node-label">Audit Trail</span>
-            </div>
-            <div class="network-node node-blue active rectangular" style="left: 64%; top: 68%;">
-                <span class="node-icon">⚡</span>
-                <span class="node-title">Alerts</span>
-                <span class="node-label">Alerts</span>
-            </div>
-            <div class="network-node node-blue active rectangular" style="left: 76%; top: 68%;">
-                <span class="node-icon">🔐</span>
-                <span class="node-title">Access Log</span>
-                <span class="node-label">Access Log</span>
-            </div>
-            
-            <!-- Layer 5: Evidence & Response -->
-            <div class="network-node node-red active rectangular" style="left: 12%; top: 88%;">
-                <span class="node-icon">📄</span>
-                <span class="node-title">Evidence</span>
-                <span class="node-label">Evidence Package</span>
-            </div>
-            <div class="network-node node-red active rectangular" style="left: 32%; top: 88%;">
-                <span class="node-icon">📋</span>
-                <span class="node-title">Audit Report</span>
-                <span class="node-label">Audit Report</span>
-            </div>
-            <div class="network-node node-red active rectangular" style="left: 52%; top: 88%;">
-                <span class="node-icon">✉️</span>
-                <span class="node-title">Response</span>
-                <span class="node-label">Regulatory Response</span>
-            </div>
-            <div class="network-node node-red active rectangular" style="left: 72%; top: 88%;">
-                <span class="node-icon">📊</span>
-                <span class="node-title">Dashboard</span>
-                <span class="node-label">Compliance Dashboard</span>
-            </div>
-            <div class="network-node node-red active rectangular" style="left: 84%; top: 88%;">
-                <span class="node-icon">✅</span>
-                <span class="node-title">Certification</span>
-                <span class="node-label">Certification</span>
+                <div class="flow-step active">
+                    <div class="flow-icon">📊</div>
+                    <h3 class="flow-title">Evidence</h3>
+                    <p class="flow-description">Generate audit-ready reports automatically</p>
+                </div>
             </div>
         </div>
     </div>
@@ -1408,150 +1280,14 @@
         });
     });
     
-    // Animated network graph with data flows
-    function createDataFlow(startX, startY, endX, endY, color, delay = 0) {
-        const demoContent = document.querySelector('.demo-content');
-        if (!demoContent) return;
-        
-        const flow = document.createElement('div');
-        flow.className = `data-flow ${color}`;
-        
-        const dx = endX - startX;
-        const dy = endY - startY;
-        const distance = Math.sqrt(dx * dx + dy * dy);
-        const angle = Math.atan2(dy, dx) * 180 / Math.PI;
-        
-        flow.style.left = startX + 'px';
-        flow.style.top = startY + 'px';
-        flow.style.setProperty('--distance', distance + 'px');
-        flow.style.setProperty('--angle', angle + 'deg');
-        flow.style.animationDelay = delay + 's';
-        
-        demoContent.appendChild(flow);
-        
-        // Remove and recreate for continuous flow
-        setTimeout(() => {
-            if (flow.parentNode) {
-                flow.remove();
-            }
-            createDataFlow(startX, startY, endX, endY, color, delay);
-        }, 2000);
-    }
-    
-    // Add CSS animation for data flow
-    const style = document.createElement('style');
-    style.textContent = `
-        @keyframes flowMove {
-            0% {
-                transform: translate(0, 0) rotate(var(--angle));
-                opacity: 1;
-            }
-            100% {
-                transform: translate(var(--distance), 0) rotate(var(--angle));
-                opacity: 0;
-            }
-        }
-        .data-flow {
-            animation: flowMove 2s linear infinite;
-        }
-    `;
-    document.head.appendChild(style);
-    
-    // Initialize data flows when page loads - Enterprise Insurance Flow
-    function initNetworkAnimation() {
-        const demoContent = document.querySelector('.demo-content');
-        if (!demoContent) {
-            setTimeout(initNetworkAnimation, 100);
-            return;
-        }
-        
-        // Calculate positions relative to demo-content (using percentage-based positioning)
-        const rect = demoContent.getBoundingClientRect();
-        const centerX = rect.width * 0.45; // Compliance Guard center
-        const centerY = rect.height * 0.18;
-        
-        // Layer 1: Regulatory Sources → Compliance Guard
-        const regSources = [
-            { x: rect.width * 0.16, y: rect.height * 0.08 },
-            { x: rect.width * 0.24, y: rect.height * 0.08 },
-            { x: rect.width * 0.32, y: rect.height * 0.08 },
-            { x: rect.width * 0.40, y: rect.height * 0.08 },
-            { x: rect.width * 0.48, y: rect.height * 0.08 },
-        ];
-        
-        // Layer 2: Compliance Guard → Policy Management
-        const policyNodes = [
-            { x: rect.width * 0.16, y: rect.height * 0.27 },
-            { x: rect.width * 0.28, y: rect.height * 0.27 },
-            { x: rect.width * 0.40, y: rect.height * 0.27 },
-            { x: rect.width * 0.52, y: rect.height * 0.27 },
-        ];
-        
-        // Layer 3: Policy Management → Enterprise Systems
-        const enterpriseNodes = [
-            { x: rect.width * 0.12, y: rect.height * 0.48 },
-            { x: rect.width * 0.24, y: rect.height * 0.48 },
-            { x: rect.width * 0.36, y: rect.height * 0.48 },
-            { x: rect.width * 0.48, y: rect.height * 0.48 },
-        ];
-        
-        // Layer 4: Enterprise Systems → Audit Tools
-        const auditNodes = [
-            { x: rect.width * 0.16, y: rect.height * 0.68 },
-            { x: rect.width * 0.28, y: rect.height * 0.68 },
-            { x: rect.width * 0.40, y: rect.height * 0.68 },
-            { x: rect.width * 0.52, y: rect.height * 0.68 },
-        ];
-        
-        // Layer 5: Audit Tools → Evidence/Response
-        const evidenceNodes = [
-            { x: rect.width * 0.12, y: rect.height * 0.88 },
-            { x: rect.width * 0.32, y: rect.height * 0.88 },
-            { x: rect.width * 0.52, y: rect.height * 0.88 },
-        ];
-        
-        setTimeout(() => {
-            // Regulatory → Compliance Guard
-            regSources.forEach((source, i) => {
-                createDataFlow(source.x, source.y, centerX, centerY, 'purple', i * 0.2);
-            });
-            
-            // Compliance Guard → Policy Management
-            policyNodes.forEach((node, i) => {
-                createDataFlow(centerX, centerY, node.x, node.y, 'blue', 1.0 + i * 0.2);
-            });
-            
-            // Policy Management → Enterprise Systems
-            policyNodes.forEach((policy, i) => {
-                if (enterpriseNodes[i]) {
-                    createDataFlow(policy.x, policy.y, enterpriseNodes[i].x, enterpriseNodes[i].y, 'green', 2.0 + i * 0.2);
-                }
-            });
-            
-            // Enterprise Systems → Audit Tools
-            enterpriseNodes.forEach((enterprise, i) => {
-                if (auditNodes[i]) {
-                    createDataFlow(enterprise.x, enterprise.y, auditNodes[i].x, auditNodes[i].y, 'blue', 3.0 + i * 0.2);
-                }
-            });
-            
-            // Audit Tools → Evidence/Response
-            auditNodes.forEach((audit, i) => {
-                if (evidenceNodes[i]) {
-                    createDataFlow(audit.x, audit.y, evidenceNodes[i].x, evidenceNodes[i].y, 'red', 4.0 + i * 0.2);
-                }
-            });
-        }, 500);
-    }
-    
-    window.addEventListener('load', initNetworkAnimation);
-    
-    // Add random pulsing to nodes
-    const nodes = document.querySelectorAll('.network-node');
-    nodes.forEach((node, index) => {
-        setTimeout(() => {
-            node.classList.add('active');
-        }, index * 100);
+    // Simple flow animation - activate steps sequentially
+    window.addEventListener('load', function() {
+        const steps = document.querySelectorAll('.flow-step');
+        steps.forEach((step, index) => {
+            setTimeout(() => {
+                step.classList.add('active');
+            }, index * 300);
+        });
     });
 </script>
 
