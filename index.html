@@ -50,12 +50,12 @@
     
     body {
         font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-        line-height: 1.7;
-        color: #37352f;
+        line-height: 1.6;
+        color: #2e2e2e;
         background: #ffffff;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
-        letter-spacing: -0.01em;
+        letter-spacing: -0.011em;
     }
     
     /* Focus styles for accessibility */
@@ -111,10 +111,10 @@
     }
 
     .logo {
-        font-size: 16px;
-        font-weight: 600;
-        color: #37352f;
-        letter-spacing: -0.01em;
+        font-size: 17px;
+        font-weight: 700;
+        color: #1a1a1a;
+        letter-spacing: -0.02em;
     }
 
     .nav-links {
@@ -163,7 +163,7 @@
     }
 
     .hero {
-        padding: 160px 48px 140px;
+        padding: 180px 48px 160px;
         max-width: 900px;
         margin: 0 auto;
         animation: fadeInUp 0.8s ease-out;
@@ -172,14 +172,34 @@
     
     .hero h1 {
         text-align: left;
+        margin-bottom: 28px;
     }
     
     .hero-subtitle {
         text-align: left;
+        margin-bottom: 48px;
+        font-size: 21px;
+        line-height: 1.7;
     }
     
     .hero .cta-group {
         justify-content: flex-start;
+        margin-top: 8px;
+    }
+    
+    .hero-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 8px 16px;
+        background: linear-gradient(135deg, rgba(55, 53, 47, 0.04) 0%, rgba(55, 53, 47, 0.06) 100%);
+        border: 1px solid rgba(55, 53, 47, 0.1);
+        border-radius: 24px;
+        font-size: 13px;
+        color: #4a4a4a;
+        margin-bottom: 32px;
+        font-weight: 500;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
     }
     
     @keyframes fadeInUp {
@@ -203,20 +223,20 @@
     }
 
     h1 {
-        font-size: 60px;
-        font-weight: 700;
+        font-size: 64px;
+        font-weight: 800;
         margin-bottom: 24px;
-        line-height: 1.15;
+        line-height: 1.1;
         letter-spacing: -0.04em;
-        color: #37352f;
+        color: #1a1a1a;
     }
 
     .hero-subtitle {
-        font-size: 20px;
-        color: rgba(55, 53, 47, 0.6);
+        font-size: 21px;
+        color: #6b6b6b;
         margin-bottom: 48px;
-        line-height: 1.65;
-        max-width: 700px;
+        line-height: 1.6;
+        max-width: 720px;
         font-weight: 400;
     }
 
@@ -306,13 +326,24 @@
 
     .demo-window {
         background: #ffffff;
-        border-radius: 12px;
-        padding: 60px;
-        border: 1px solid rgba(55, 53, 47, 0.09);
-        box-shadow: rgba(15, 15, 15, 0.03) 0px 0px 0px 1px, rgba(15, 15, 15, 0.05) 0px 3px 6px, rgba(15, 15, 15, 0.1) 0px 9px 24px;
+        border-radius: 16px;
+        padding: 64px;
+        border: 1px solid rgba(0, 0, 0, 0.06);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 8px 24px rgba(0, 0, 0, 0.06), 0 16px 48px rgba(0, 0, 0, 0.04);
         animation: fadeIn 0.8s ease-out 0.3s backwards;
         position: relative;
         overflow: visible;
+    }
+    
+    .demo-window::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.08), transparent);
+        border-radius: 16px 16px 0 0;
     }
 
     .demo-content {
@@ -351,18 +382,19 @@
     }
     
     .flow-icon {
-        width: 80px;
-        height: 80px;
-        border-radius: 16px;
+        width: 88px;
+        height: 88px;
+        border-radius: 20px;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 32px;
-        margin-bottom: 20px;
-        background: rgba(55, 53, 47, 0.04);
-        border: 2px solid rgba(55, 53, 47, 0.08);
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        font-size: 36px;
+        margin-bottom: 24px;
+        background: linear-gradient(135deg, rgba(55, 53, 47, 0.03) 0%, rgba(55, 53, 47, 0.05) 100%);
+        border: 1.5px solid rgba(55, 53, 47, 0.08);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         position: relative;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
     }
     
     .flow-icon::before {
@@ -370,16 +402,16 @@
         position: absolute;
         width: 100%;
         height: 100%;
-        border-radius: 16px;
-        background: rgba(55, 53, 47, 0.06);
+        border-radius: 20px;
+        background: linear-gradient(135deg, rgba(55, 53, 47, 0.08) 0%, rgba(55, 53, 47, 0.12) 100%);
         opacity: 0;
-        transition: opacity 0.3s ease;
+        transition: opacity 0.4s ease;
     }
     
     .flow-step:hover .flow-icon {
-        transform: translateY(-4px);
-        border-color: rgba(55, 53, 47, 0.2);
-        box-shadow: 0 8px 24px rgba(55, 53, 47, 0.1);
+        transform: translateY(-6px) scale(1.02);
+        border-color: rgba(55, 53, 47, 0.16);
+        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(0, 0, 0, 0.04);
     }
     
     .flow-step:hover .flow-icon::before {
@@ -402,19 +434,20 @@
     }
     
     .flow-title {
-        font-size: 16px;
-        font-weight: 600;
-        color: #37352f;
-        margin-bottom: 8px;
+        font-size: 18px;
+        font-weight: 700;
+        color: #1a1a1a;
+        margin-bottom: 10px;
         text-align: center;
-        letter-spacing: -0.01em;
+        letter-spacing: -0.02em;
     }
     
     .flow-description {
-        font-size: 13px;
-        color: rgba(55, 53, 47, 0.6);
+        font-size: 14px;
+        color: #6b6b6b;
         text-align: center;
-        line-height: 1.5;
+        line-height: 1.6;
+        font-weight: 400;
     }
     
     .flow-connection {
@@ -678,48 +711,70 @@
 
     .section-small {
         text-align: center;
-        padding: 72px 48px;
-        background: rgba(55, 53, 47, 0.015);
-        border-top: 1px solid rgba(55, 53, 47, 0.09);
-        border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+        padding: 88px 48px;
+        background: linear-gradient(180deg, rgba(55, 53, 47, 0.015) 0%, rgba(55, 53, 47, 0.01) 100%);
+        border-top: 1px solid rgba(0, 0, 0, 0.06);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.06);
     }
     
     .section-small .section-label {
-        margin-bottom: 12px;
+        margin-bottom: 20px;
     }
     
     .section-small div:last-child {
-        font-size: 15px;
-        letter-spacing: 0.3px;
-        color: rgba(55, 53, 47, 0.5);
-        font-weight: 400;
+        font-size: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+    
+    .section-small .industry-badge {
+        padding: 10px 18px;
+        background: rgba(255, 255, 255, 0.8);
+        border: 1px solid rgba(0, 0, 0, 0.08);
+        border-radius: 8px;
+        font-size: 14px;
+        color: #4a4a4a;
+        font-weight: 500;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+        transition: all 0.2s ease;
+    }
+    
+    .section-small .industry-badge:hover {
+        background: #ffffff;
+        border-color: rgba(0, 0, 0, 0.12);
+        transform: translateY(-1px);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
     }
 
     .section-label {
-        font-size: 12px;
-        color: rgba(55, 53, 47, 0.45);
+        font-size: 13px;
+        color: #9b9b9b;
         text-transform: uppercase;
-        letter-spacing: 1px;
+        letter-spacing: 1.2px;
         font-weight: 600;
         margin-bottom: 20px;
         display: inline-block;
     }
 
     h2 {
-        font-size: 40px;
-        font-weight: 700;
+        font-size: 44px;
+        font-weight: 800;
         margin-bottom: 24px;
-        letter-spacing: -0.03em;
-        line-height: 1.25;
-        color: #37352f;
+        letter-spacing: -0.04em;
+        line-height: 1.2;
+        color: #1a1a1a;
     }
 
     .section-description {
-        font-size: 18px;
-        color: rgba(55, 53, 47, 0.6);
-        line-height: 1.7;
-        max-width: 700px;
+        font-size: 19px;
+        color: #6b6b6b;
+        line-height: 1.65;
+        max-width: 720px;
         margin-bottom: 0;
+        font-weight: 400;
     }
 
     .features-grid {
@@ -730,13 +785,14 @@
     }
 
     .feature-card {
-        padding: 32px;
+        padding: 40px;
         background: #ffffff;
-        border-radius: 4px;
-        border: 1px solid rgba(55, 53, 47, 0.09);
-        transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        border-radius: 12px;
+        border: 1px solid rgba(0, 0, 0, 0.06);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         animation: fadeInUp 0.6s ease-out backwards;
         position: relative;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 4px 12px rgba(0, 0, 0, 0.02);
     }
     
     .feature-card::before {
@@ -745,19 +801,24 @@
         top: 0;
         left: 0;
         right: 0;
-        height: 2px;
+        height: 3px;
         background: transparent;
-        transition: background 0.25s ease;
+        border-radius: 12px 12px 0 0;
+        transition: background 0.4s ease;
     }
 
     .feature-card:hover {
-        border-color: rgba(55, 53, 47, 0.18);
-        box-shadow: rgba(15, 15, 15, 0.03) 0px 0px 0px 1px, rgba(15, 15, 15, 0.05) 0px 3px 6px, rgba(15, 15, 15, 0.1) 0px 9px 24px;
-        transform: translateY(-2px);
+        border-color: rgba(0, 0, 0, 0.1);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06), 0 12px 32px rgba(0, 0, 0, 0.04);
+        transform: translateY(-6px);
     }
     
     .feature-card:hover::before {
-        background: rgba(55, 53, 47, 0.15);
+        background: linear-gradient(90deg, rgba(55, 53, 47, 0.15), rgba(55, 53, 47, 0.1));
+    }
+    
+    .feature-card:hover .feature-icon {
+        transform: scale(1.08) rotate(2deg);
     }
     
     .feature-card:nth-child(1) { animation-delay: 0.1s; }
@@ -768,34 +829,36 @@
     .feature-card:nth-child(6) { animation-delay: 0.6s; }
 
     .feature-icon {
-        font-size: 28px;
-        margin-bottom: 20px;
+        font-size: 32px;
+        margin-bottom: 24px;
         display: block;
-        opacity: 0.85;
+        opacity: 0.9;
         line-height: 1;
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     .feature-title {
-        font-size: 17px;
-        font-weight: 600;
-        margin-bottom: 12px;
-        color: #37352f;
-        letter-spacing: -0.015em;
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 14px;
+        color: #1a1a1a;
+        letter-spacing: -0.02em;
         line-height: 1.4;
     }
 
     .feature-description {
-        color: rgba(55, 53, 47, 0.6);
+        color: #6b6b6b;
         line-height: 1.65;
         font-size: 15px;
+        font-weight: 400;
     }
 
     .agentic-section {
-        background: rgba(55, 53, 47, 0.02);
-        color: #37352f;
-        padding: 100px 48px;
-        border-top: 1px solid rgba(55, 53, 47, 0.09);
-        border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+        background: linear-gradient(180deg, rgba(55, 53, 47, 0.02) 0%, rgba(55, 53, 47, 0.01) 100%);
+        color: #1a1a1a;
+        padding: 120px 48px;
+        border-top: 1px solid rgba(0, 0, 0, 0.06);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.06);
     }
     
     .agentic-section > div {
@@ -803,15 +866,15 @@
     }
 
     .agentic-section h2 {
-        color: #37352f;
+        color: #1a1a1a;
     }
 
     .agentic-section .section-description {
-        color: rgba(55, 53, 47, 0.65);
+        color: #6b6b6b;
     }
 
     .agentic-section .section-label {
-        color: rgba(55, 53, 47, 0.5);
+        color: #9b9b9b;
     }
 
     .agentic-grid {
@@ -822,12 +885,13 @@
     }
 
     .agentic-card {
-        padding: 36px;
+        padding: 44px;
         background: #ffffff;
-        border-radius: 4px;
-        border: 1px solid rgba(55, 53, 47, 0.09);
-        transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        border-radius: 12px;
+        border: 1px solid rgba(0, 0, 0, 0.06);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         position: relative;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 4px 12px rgba(0, 0, 0, 0.02);
     }
     
     .agentic-card::before {
@@ -836,19 +900,20 @@
         top: 0;
         left: 0;
         right: 0;
-        height: 2px;
+        height: 3px;
         background: transparent;
-        transition: background 0.25s ease;
+        border-radius: 12px 12px 0 0;
+        transition: background 0.4s ease;
     }
 
     .agentic-card:hover {
-        border-color: rgba(55, 53, 47, 0.18);
-        box-shadow: rgba(15, 15, 15, 0.03) 0px 0px 0px 1px, rgba(15, 15, 15, 0.05) 0px 3px 6px, rgba(15, 15, 15, 0.1) 0px 9px 24px;
-        transform: translateY(-2px);
+        border-color: rgba(0, 0, 0, 0.1);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06), 0 12px 32px rgba(0, 0, 0, 0.04);
+        transform: translateY(-6px);
     }
     
     .agentic-card:hover::before {
-        background: rgba(55, 53, 47, 0.15);
+        background: linear-gradient(90deg, rgba(55, 53, 47, 0.15), rgba(55, 53, 47, 0.1));
     }
 
     .agentic-number {
@@ -861,18 +926,19 @@
     }
 
     .agentic-title {
-        font-size: 19px;
-        font-weight: 600;
-        margin-bottom: 14px;
-        color: #37352f;
-        letter-spacing: -0.015em;
+        font-size: 20px;
+        font-weight: 700;
+        margin-bottom: 16px;
+        color: #1a1a1a;
+        letter-spacing: -0.02em;
         line-height: 1.4;
     }
 
     .agentic-text {
-        color: rgba(55, 53, 47, 0.6);
+        color: #6b6b6b;
         line-height: 1.65;
         font-size: 15px;
+        font-weight: 400;
     }
 
     .tech-grid {
@@ -883,12 +949,13 @@
     }
 
     .tech-item {
-        padding: 32px;
+        padding: 40px;
         background: #ffffff;
-        border-radius: 4px;
-        border: 1px solid rgba(55, 53, 47, 0.09);
-        transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        border-radius: 12px;
+        border: 1px solid rgba(0, 0, 0, 0.06);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         position: relative;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 4px 12px rgba(0, 0, 0, 0.02);
     }
     
     .tech-item::before {
@@ -897,42 +964,49 @@
         top: 0;
         left: 0;
         right: 0;
-        height: 2px;
+        height: 3px;
         background: transparent;
-        transition: background 0.25s ease;
+        border-radius: 12px 12px 0 0;
+        transition: background 0.4s ease;
     }
 
     .tech-item:hover {
-        border-color: rgba(55, 53, 47, 0.18);
-        box-shadow: rgba(15, 15, 15, 0.03) 0px 0px 0px 1px, rgba(15, 15, 15, 0.05) 0px 3px 6px, rgba(15, 15, 15, 0.1) 0px 9px 24px;
-        transform: translateY(-2px);
+        border-color: rgba(0, 0, 0, 0.1);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06), 0 12px 32px rgba(0, 0, 0, 0.04);
+        transform: translateY(-6px);
     }
     
     .tech-item:hover::before {
-        background: rgba(55, 53, 47, 0.15);
+        background: linear-gradient(90deg, rgba(55, 53, 47, 0.15), rgba(55, 53, 47, 0.1));
+    }
+    
+    .tech-item:hover .tech-icon {
+        transform: scale(1.08) rotate(2deg);
     }
 
     .tech-icon {
-        font-size: 28px;
-        margin-bottom: 20px;
+        font-size: 32px;
+        margin-bottom: 24px;
         display: block;
-        opacity: 0.85;
+        opacity: 0.9;
         line-height: 1;
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     .tech-title {
-        font-size: 17px;
-        font-weight: 600;
-        margin-bottom: 12px;
-        color: #37352f;
-        letter-spacing: -0.015em;
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 14px;
+        color: #1a1a1a;
+        letter-spacing: -0.02em;
         line-height: 1.4;
     }
 
     .tech-text {
-        color: rgba(55, 53, 47, 0.6);
+        color: #6b6b6b;
         line-height: 1.65;
         font-size: 15px;
+        font-weight: 400;
     }
 
     .frameworks-section {
@@ -954,25 +1028,26 @@
     }
 
     .framework-badge {
-        padding: 10px 20px;
-        background: rgba(55, 53, 47, 0.04);
-        border-radius: 6px;
-        border: 1.5px solid rgba(55, 53, 47, 0.09);
+        padding: 12px 22px;
+        background: rgba(255, 255, 255, 0.8);
+        border-radius: 8px;
+        border: 1px solid rgba(0, 0, 0, 0.08);
         font-weight: 500;
         font-size: 14px;
-        color: rgba(55, 53, 47, 0.75);
-        transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        color: #4a4a4a;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         cursor: pointer;
         display: inline-flex;
         align-items: center;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
     }
 
     .framework-badge:hover {
-        background: rgba(55, 53, 47, 0.08);
-        border-color: rgba(55, 53, 47, 0.18);
-        color: rgba(55, 53, 47, 0.9);
+        background: #ffffff;
+        border-color: rgba(0, 0, 0, 0.12);
+        color: #1a1a1a;
         transform: translateY(-2px);
-        box-shadow: 0 2px 8px rgba(55, 53, 47, 0.08);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
     }
     
     .framework-badge:active {
@@ -980,23 +1055,110 @@
     }
 
     .final-cta {
-        padding: 140px 48px;
+        padding: 160px 48px;
         text-align: center;
-        max-width: 700px;
+        max-width: 800px;
         margin: 0 auto;
+        background: linear-gradient(180deg, rgba(55, 53, 47, 0.02) 0%, rgba(55, 53, 47, 0.01) 100%);
+        border-radius: 16px;
+        border: 1px solid rgba(0, 0, 0, 0.06);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 8px 24px rgba(0, 0, 0, 0.03);
     }
 
     .final-cta h2 {
-        margin-bottom: 24px;
+        margin-bottom: 28px;
     }
 
     .final-cta .hero-subtitle {
-        margin: 0 auto 48px;
+        margin: 0 auto 52px;
         text-align: center;
+        font-size: 19px;
     }
     
     .final-cta .cta-group {
         justify-content: center;
+        margin-top: 40px;
+    }
+    
+    .waitlist-form {
+        max-width: 600px;
+        margin: 0 auto 40px;
+        text-align: left;
+    }
+    
+    .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        margin-bottom: 16px;
+    }
+    
+    .waitlist-form input,
+    .waitlist-form textarea {
+        width: 100%;
+        padding: 14px 16px;
+        border: 1.5px solid rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        font-size: 15px;
+        font-family: inherit;
+        color: #1a1a1a;
+        background: #ffffff;
+        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+    }
+    
+    .waitlist-form input:focus,
+    .waitlist-form textarea:focus {
+        outline: none;
+        border-color: rgba(55, 53, 47, 0.3);
+        box-shadow: 0 0 0 3px rgba(55, 53, 47, 0.08), 0 2px 4px rgba(0, 0, 0, 0.06);
+    }
+    
+    .waitlist-form input::placeholder,
+    .waitlist-form textarea::placeholder {
+        color: #9b9b9b;
+    }
+    
+    .waitlist-form textarea {
+        min-height: 100px;
+        resize: vertical;
+        margin-bottom: 16px;
+        font-family: inherit;
+        line-height: 1.5;
+    }
+    
+    .waitlist-form button {
+        width: 100%;
+        margin-bottom: 12px;
+    }
+    
+    .waitlist-form small {
+        display: block;
+        text-align: center;
+        font-size: 13px;
+        color: #9b9b9b;
+        margin-top: 8px;
+    }
+    
+    .form-feedback {
+        margin-top: 16px;
+        padding: 12px 16px;
+        border-radius: 8px;
+        font-size: 14px;
+        font-weight: 500;
+        text-align: center;
+        background: rgba(55, 53, 47, 0.04);
+    }
+    
+    .scroll-reveal {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+    
+    .scroll-reveal.revealed {
+        opacity: 1;
+        transform: translateY(0);
     }
 
     @media (max-width: 1024px) {
@@ -1023,10 +1185,11 @@
         
         h1 { font-size: 40px; line-height: 1.2; }
         h2 { font-size: 28px; line-height: 1.3; }
-        .hero { padding: 120px 24px 80px; }
+        .hero { padding: 140px 24px 100px; }
         .hero h1 { text-align: center; }
-        .hero-subtitle { text-align: center; }
+        .hero-subtitle { text-align: center; font-size: 18px; }
         .hero .cta-group { justify-content: center; }
+        .hero-badge { font-size: 12px; padding: 5px 12px; }
         .section { padding: 80px 24px; }
         .agentic-section { padding: 80px 24px; }
         .visual-demo { margin: 80px auto; }
@@ -1036,6 +1199,9 @@
         .flow-icon { width: 60px; height: 60px; font-size: 24px; }
         .flow-title { font-size: 15px; }
         .flow-description { font-size: 12px; }
+        .hero-badge { font-size: 12px; padding: 5px 12px; }
+        .form-row { grid-template-columns: 1fr; }
+        .waitlist-form { margin-bottom: 32px; }
         .nav-links { display: none; }
         .cta-group { flex-direction: column; width: 100%; gap: 10px; }
         .cta-primary, .cta-secondary { width: 100%; justify-content: center; padding: 14px 24px; }
@@ -1058,6 +1224,7 @@
                 <a href="#product" class="nav-link">Product</a>
                 <a href="#solutions" class="nav-link">Solutions</a>
                 <a href="#docs" class="nav-link">Docs</a>
+                <a href="#waitlist" class="nav-link">Waitlist</a>
                 <a href="#contact" class="nav-cta">Get Started</a>
             </div>
         </div>
@@ -1065,11 +1232,13 @@
 
 <main id="main-content">
 <section class="hero">
+    <div class="hero-badge">🛡️ Enterprise-Grade Compliance Platform</div>
     <h1>Compliance intelligence<br>for the AI era</h1>
     <p class="hero-subtitle">Self-hosted compliance memory that tracks regulations, enforces policies, and generates audit-ready evidence in real-time.</p>
     <div class="cta-group">
         <a href="#contact" class="cta-primary">Request demo</a>
         <a href="#learn" class="cta-secondary">Learn more</a>
+        <a href="#waitlist" class="cta-secondary">Join waitlist</a>
     </div>
 </section>
 
@@ -1081,19 +1250,19 @@
                     <div class="flow-icon">📋</div>
                     <h3 class="flow-title">Regulations</h3>
                     <p class="flow-description">Track NYDFS, DORA, GDPR, SOC 2, and more</p>
-                </div>
+        </div>
                 
                 <div class="flow-step active">
                     <div class="flow-icon">⚙️</div>
                     <h3 class="flow-title">Policies</h3>
                     <p class="flow-description">Enforce compliance rules automatically</p>
-                </div>
+        </div>
                 
                 <div class="flow-step active">
                     <div class="flow-icon">🏢</div>
                     <h3 class="flow-title">Systems</h3>
                     <p class="flow-description">Monitor claims, underwriting, CRM, and more</p>
-                </div>
+        </div>
                 
                 <div class="flow-step active">
                     <div class="flow-icon">📊</div>
@@ -1107,7 +1276,12 @@
 
 <section class="section-small">
     <div class="section-label">Trusted by regulated enterprises</div>
-    <div>Insurance • Finance • Manufacturing</div>
+    <div>
+        <span class="industry-badge">Insurance</span>
+        <span class="industry-badge">Finance</span>
+        <span class="industry-badge">Manufacturing</span>
+        <span class="industry-badge">Healthcare</span>
+    </div>
 </section>
 
 <section class="section" id="product">
@@ -1118,37 +1292,37 @@
     </div>
 
     <div class="features-grid">
-        <div class="feature-card">
+        <div class="feature-card scroll-reveal">
             <span class="feature-icon">⚡</span>
             <h3 class="feature-title">Compliance knowledge graph</h3>
             <p class="feature-description">Central vector memory linking regulations, policies, controls, and evidence. Query your entire compliance landscape in natural language.</p>
         </div>
 
-        <div class="feature-card">
+        <div class="feature-card scroll-reveal">
             <span class="feature-icon">🔐</span>
             <h3 class="feature-title">Policy-as-code runtime</h3>
             <p class="feature-description">Every AI action governed by auditable rules. Multi-tenant isolation, field-level access control, and PII redaction built in.</p>
         </div>
 
-        <div class="feature-card">
+        <div class="feature-card scroll-reveal">
             <span class="feature-icon">📊</span>
             <h3 class="feature-title">Instant audit trails</h3>
             <p class="feature-description">Signed decision logs for every model call and agent action. Complete traceability from regulation to execution.</p>
         </div>
 
-        <div class="feature-card">
+        <div class="feature-card scroll-reveal">
             <span class="feature-icon">🤖</span>
             <h3 class="feature-title">AI-assisted evidence</h3>
             <p class="feature-description">Generate regulator responses in minutes. AI searches your compliance graph and assembles evidence packages automatically.</p>
         </div>
 
-        <div class="feature-card">
+        <div class="feature-card scroll-reveal">
             <span class="feature-icon">🔗</span>
             <h3 class="feature-title">Enterprise integration</h3>
             <p class="feature-description">Connect to policy admin, claims systems, ERP, CRM. Event-driven architecture with typed contracts and schema protection.</p>
         </div>
 
-        <div class="feature-card">
+        <div class="feature-card scroll-reveal">
             <span class="feature-icon">🛡️</span>
             <h3 class="feature-title">Self-hosted security</h3>
             <p class="feature-description">Complete data sovereignty. Deploy on-premises or in your private cloud with full control over data residency.</p>
@@ -1243,8 +1417,21 @@
 </section>
 
 <section class="final-cta" id="contact">
+    <div id="waitlist"></div>
     <h2>Ready to scale AI<br>with confidence?</h2>
     <p class="hero-subtitle">Join forward-thinking enterprises building compliant, autonomous AI workflows.</p>
+    <form class="waitlist-form" id="waitlist-form" method="POST">
+        <div class="form-row">
+            <input type="text" name="name" placeholder="Full name" aria-label="Full name" required>
+            <input type="email" name="email" placeholder="Work email" aria-label="Work email" required>
+        </div>
+        <input type="text" name="company" placeholder="Company" aria-label="Company">
+        <textarea name="use_case" placeholder="Use case / what you want to try" aria-label="Use case"></textarea>
+        <input type="hidden" name="_subject" value="Waitlist request">
+        <button type="submit" class="cta-primary">Join waitlist</button>
+        <small>We’ll confirm by email. No mail app needed.</small>
+        <div class="form-feedback" id="waitlist-feedback" role="status" aria-live="polite"></div>
+    </form>
     <div class="cta-group">
         <a href="#contact" class="cta-primary">Schedule a demo</a>
         <a href="#docs" class="cta-secondary">Read documentation</a>
@@ -1289,6 +1476,87 @@
             }, index * 300);
         });
     });
+    
+    // Scroll reveal animation
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('revealed');
+            }
+        });
+    }, observerOptions);
+    
+    document.querySelectorAll('.scroll-reveal').forEach(el => {
+        observer.observe(el);
+    });
+    
+    // Also observe sections for fade-in
+    document.querySelectorAll('.section, .agentic-section, .final-cta').forEach(el => {
+        el.classList.add('scroll-reveal');
+        observer.observe(el);
+    });
+
+    // Handle waitlist submissions
+    const waitlistForm = document.getElementById('waitlist-form');
+    if (waitlistForm) {
+        const feedback = document.getElementById('waitlist-feedback');
+        
+        waitlistForm.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const submitButton = waitlistForm.querySelector('button[type="submit"]');
+            const originalText = submitButton.textContent;
+            
+            submitButton.disabled = true;
+            submitButton.textContent = 'Sending...';
+            if (feedback) {
+                feedback.textContent = '';
+                feedback.style.display = 'none';
+            }
+
+            try {
+                // Get form data
+                const formData = new FormData(waitlistForm);
+                
+                // Add subject line
+                formData.append('_subject', 'Waitlist Request - Compliance Guard');
+                
+                // Send to Formspree
+                const response = await fetch('https://formspree.io/f/meoykqan', {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json'
+                    },
+                    body: formData
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to submit');
+                }
+
+                waitlistForm.reset();
+                if (feedback) {
+                    feedback.style.display = 'block';
+                    feedback.style.color = '#0f9d58';
+                    feedback.textContent = 'Thanks! You\'re on the waitlist.';
+                }
+            } catch (error) {
+                console.error('Form submission error:', error);
+                if (feedback) {
+                    feedback.style.display = 'block';
+                    feedback.style.color = '#d93025';
+                    feedback.textContent = 'Something went wrong. Please try again or contact us directly.';
+                }
+            } finally {
+                submitButton.disabled = false;
+                submitButton.textContent = originalText;
+            }
+        });
+    }
 </script>
 
 </body>
