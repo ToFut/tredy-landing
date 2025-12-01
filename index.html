@@ -6,25 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- Primary Meta Tags -->
-    <title>Tredy - Compliance Intelligence for AI</title>
-    <meta name="title" content="Tredy - Compliance Intelligence for AI">
+    <title>Compliance Guard - Compliance Intelligence for AI</title>
+    <meta name="title" content="Compliance Guard - Compliance Intelligence for AI">
     <meta name="description" content="Self-hosted compliance memory that tracks regulations, enforces policies, and generates audit-ready evidence in real-time for AI agents.">
     <meta name="keywords" content="AI compliance, regulatory compliance, audit trails, AI governance, compliance intelligence, self-hosted compliance">
-    <meta name="author" content="Tredy">
+    <meta name="author" content="Compliance Guard">
     <meta name="robots" content="index, follow">
     <meta name="language" content="English">
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://tredy.ai/">
-    <meta property="og:title" content="Tredy - Compliance Intelligence for AI">
+    <meta property="og:title" content="Compliance Guard - Compliance Intelligence for AI">
     <meta property="og:description" content="Self-hosted compliance memory that tracks regulations, enforces policies, and generates audit-ready evidence in real-time for AI agents.">
     <meta property="og:image" content="https://tredy.ai/og-image.jpg">
     
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://tredy.ai/">
-    <meta property="twitter:title" content="Tredy - Compliance Intelligence for AI">
+    <meta property="twitter:title" content="Compliance Guard - Compliance Intelligence for AI">
     <meta property="twitter:description" content="Self-hosted compliance memory that tracks regulations, enforces policies, and generates audit-ready evidence in real-time for AI agents.">
     <meta property="twitter:image" content="https://tredy.ai/og-image.jpg">
     
@@ -128,36 +128,58 @@
         text-decoration: none;
         font-size: 14px;
         font-weight: 400;
-        transition: color 0.2s ease;
-        padding: 4px 8px;
-        border-radius: 3px;
+        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        padding: 6px 10px;
+        border-radius: 4px;
+        position: relative;
     }
 
     .nav-link:hover {
         color: rgba(55, 53, 47, 0.9);
         background: rgba(55, 53, 47, 0.06);
     }
+    
+    .nav-link:active {
+        background: rgba(55, 53, 47, 0.08);
+    }
 
     .nav-cta {
-        padding: 6px 14px;
+        padding: 8px 16px;
         background: #37352f;
         color: white;
         text-decoration: none;
-        border-radius: 3px;
+        border-radius: 6px;
         font-size: 14px;
         font-weight: 500;
-        transition: all 0.2s ease;
+        transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        display: inline-flex;
+        align-items: center;
     }
 
     .nav-cta:hover {
         background: #2e2d29;
+        transform: translateY(-1px);
+        box-shadow: 0 2px 8px rgba(55, 53, 47, 0.15);
     }
 
     .hero {
-        padding: 140px 48px 120px;
+        padding: 160px 48px 140px;
         max-width: 900px;
         margin: 0 auto;
         animation: fadeInUp 0.8s ease-out;
+        text-align: center;
+    }
+    
+    .hero h1 {
+        text-align: left;
+    }
+    
+    .hero-subtitle {
+        text-align: left;
+    }
+    
+    .hero .cta-group {
+        justify-content: flex-start;
     }
     
     @keyframes fadeInUp {
@@ -200,62 +222,98 @@
 
     .cta-group {
         display: flex;
-        gap: 10px;
+        gap: 12px;
         align-items: center;
         flex-wrap: wrap;
+        margin-top: 8px;
     }
 
     .cta-primary {
-        padding: 10px 20px;
+        padding: 12px 24px;
         background: #37352f;
         color: white;
         text-decoration: none;
-        border-radius: 3px;
+        border-radius: 6px;
         font-weight: 500;
         font-size: 15px;
-        transition: all 0.2s ease;
+        transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
         display: inline-flex;
         align-items: center;
+        justify-content: center;
+        border: none;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .cta-primary::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+        transition: left 0.5s ease;
     }
 
     .cta-primary:hover {
         background: #2e2d29;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(55, 53, 47, 0.15);
+    }
+    
+    .cta-primary:hover::before {
+        left: 100%;
+    }
+    
+    .cta-primary:active {
+        transform: translateY(0);
     }
 
     .cta-secondary {
-        padding: 10px 20px;
-        color: rgba(55, 53, 47, 0.8);
+        padding: 12px 24px;
+        color: rgba(55, 53, 47, 0.85);
         text-decoration: none;
-        font-weight: 400;
+        font-weight: 500;
         font-size: 15px;
-        transition: all 0.2s ease;
+        transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
         display: inline-flex;
         align-items: center;
-        border: 1px solid rgba(55, 53, 47, 0.16);
-        border-radius: 3px;
+        justify-content: center;
+        border: 1.5px solid rgba(55, 53, 47, 0.16);
+        border-radius: 6px;
         background: white;
+        cursor: pointer;
     }
 
     .cta-secondary:hover {
-        background: rgba(55, 53, 47, 0.06);
+        background: rgba(55, 53, 47, 0.04);
         border-color: rgba(55, 53, 47, 0.24);
+        color: rgba(55, 53, 47, 0.95);
+        transform: translateY(-1px);
+    }
+    
+    .cta-secondary:active {
+        transform: translateY(0);
     }
 
     .visual-demo {
-        max-width: 1000px;
-        margin: 120px auto;
+        max-width: 1400px;
+        margin: 140px auto;
         padding: 0 48px;
     }
 
     .demo-window {
         background: #ffffff;
-        border-radius: 4px;
-        padding: 32px;
+        border-radius: 8px;
+        padding: 0;
         border: 1px solid rgba(55, 53, 47, 0.16);
         box-shadow: rgba(15, 15, 15, 0.03) 0px 0px 0px 1px, rgba(15, 15, 15, 0.05) 0px 3px 6px, rgba(15, 15, 15, 0.1) 0px 9px 24px;
         animation: fadeIn 0.8s ease-out 0.3s backwards;
         position: relative;
         overflow: hidden;
+        min-height: 700px;
     }
     
     .demo-window::before {
@@ -264,107 +322,358 @@
         top: 0;
         left: 0;
         right: 0;
-        height: 40px;
-        background: rgba(55, 53, 47, 0.03);
+        height: 48px;
+        background: rgba(55, 53, 47, 0.02);
         border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+        z-index: 10;
+    }
+    
+    .demo-window::after {
+        content: '●●●';
+        position: absolute;
+        top: 16px;
+        left: 16px;
+        font-size: 8px;
+        color: rgba(55, 53, 47, 0.3);
+        letter-spacing: 2px;
+        z-index: 11;
     }
 
-    .demo-row {
+    .demo-content {
+        padding: 60px;
+        margin-top: 48px;
+        position: relative;
+        height: 700px;
+        background: linear-gradient(135deg, rgba(55, 53, 47, 0.01) 0%, rgba(55, 53, 47, 0.02) 100%);
+    }
+
+    .network-graph {
+        width: 100%;
+        height: 100%;
+        position: relative;
+    }
+    
+    .network-layer {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+    }
+    
+    .layer-label {
+        position: absolute;
+        font-size: 11px;
+        font-weight: 600;
+        color: rgba(55, 53, 47, 0.4);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .network-node {
+        position: absolute;
+        border-radius: 50%;
         display: flex;
-        gap: 10px;
-        margin-bottom: 10px;
-        margin-top: 20px;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-size: 11px;
+        font-weight: 600;
+        color: white;
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        z-index: 5;
+        text-align: center;
+        padding: 4px;
     }
     
-    .demo-row:first-of-type {
-        margin-top: 50px;
+    .network-node.rectangular {
+        border-radius: 8px;
+        padding: 8px 12px;
+        min-width: 90px;
     }
 
-    .demo-block {
-        height: 12px;
-        background: rgba(55, 53, 47, 0.08);
-        border-radius: 2px;
-        transition: all 0.3s ease;
-    }
-    
-    .demo-block:hover {
-        background: rgba(55, 53, 47, 0.12);
+    .network-node::before {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        opacity: 0;
+        animation: pulse 2s ease-in-out infinite;
     }
 
-    .demo-block.w1 { flex: 1; }
-    .demo-block.w2 { flex: 2; }
-    .demo-block.w3 { flex: 3; }
-    .demo-block.primary {
-        background: rgba(55, 53, 47, 0.7);
+    .network-node:hover {
+        transform: scale(1.15);
+        z-index: 10;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .node-orange {
+        background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+        width: 80px;
+        height: 80px;
+    }
+
+    .node-purple {
+        background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+        width: 60px;
+        height: 60px;
+    }
+
+    .node-blue {
+        background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+        width: 70px;
+        height: 50px;
+        border-radius: 8px;
+    }
+
+    .node-green {
+        background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        width: 55px;
+        height: 55px;
+    }
+
+    .node-red {
+        background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+        width: 50px;
+        height: 50px;
+        clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+        border-radius: 0;
+    }
+
+    .network-connection {
+        position: absolute;
+        pointer-events: none;
+        z-index: 1;
+    }
+
+    .connection-line {
+        stroke-width: 2;
+        fill: none;
+        opacity: 0.3;
+    }
+
+    .connection-line.solid {
+        stroke-dasharray: none;
+    }
+
+    .connection-line.dashed {
+        stroke-dasharray: 5, 5;
+    }
+
+    .connection-line.purple { stroke: #8b5cf6; }
+    .connection-line.blue { stroke: #3b82f6; }
+    .connection-line.green { stroke: #10b981; }
+    .connection-line.red { stroke: #ef4444; }
+
+    .data-flow {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 3;
+        transform: translate(-50%, -50%);
+    }
+
+    .data-flow.purple { 
+        background: #8b5cf6; 
+        box-shadow: 0 0 12px #8b5cf6, 0 0 20px rgba(139, 92, 246, 0.5);
+    }
+    .data-flow.blue { 
+        background: #3b82f6; 
+        box-shadow: 0 0 12px #3b82f6, 0 0 20px rgba(59, 130, 246, 0.5);
+    }
+    .data-flow.green { 
+        background: #10b981; 
+        box-shadow: 0 0 12px #10b981, 0 0 20px rgba(16, 185, 129, 0.5);
+    }
+    .data-flow.red { 
+        background: #ef4444; 
+        box-shadow: 0 0 12px #ef4444, 0 0 20px rgba(239, 68, 68, 0.5);
+    }
+
+    @keyframes pulse {
+        0%, 100% {
+            transform: scale(1);
+            opacity: 0.5;
+        }
+        50% {
+            transform: scale(1.5);
+            opacity: 0;
+        }
+    }
+
+    @keyframes flowAlongPath {
+        0% {
+            offset-distance: 0%;
+            opacity: 1;
+        }
+        50% {
+            opacity: 1;
+        }
+        100% {
+            offset-distance: 100%;
+            opacity: 0;
+        }
+    }
+
+    @keyframes nodePulse {
+        0%, 100% {
+            transform: scale(1);
+        }
+        50% {
+            transform: scale(1.1);
+        }
+    }
+
+    .network-node.active {
+        animation: nodePulse 2s ease-in-out infinite;
+    }
+
+    .node-label {
+        position: absolute;
+        bottom: -28px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 10px;
+        color: rgba(55, 53, 47, 0.75);
+        white-space: nowrap;
+        font-weight: 600;
+        pointer-events: none;
+        text-align: center;
+        max-width: 120px;
+        line-height: 1.3;
     }
     
-    .demo-block.primary:hover {
-        background: rgba(55, 53, 47, 0.85);
+    .network-node.rectangular .node-label {
+        bottom: -32px;
+        max-width: 100px;
+    }
+
+    .node-icon {
+        font-size: 18px;
+        z-index: 2;
+        margin-bottom: 2px;
+    }
+    
+    .node-title {
+        font-size: 9px;
+        line-height: 1.2;
+        margin-top: 2px;
+        text-align: center;
     }
 
     .section {
-        padding: 100px 48px;
+        padding: 120px 48px;
         max-width: 1000px;
         margin: 0 auto;
+        position: relative;
+    }
+    
+    .section:first-of-type {
+        padding-top: 100px;
+    }
+    
+    .section-header {
+        margin-bottom: 0;
+    }
+    
+    .section-header .section-label {
+        display: block;
+        margin-bottom: 16px;
+    }
+    
+    .section-header h2 {
+        margin-bottom: 20px;
+    }
+    
+    .section-header .section-description {
+        margin-bottom: 0;
     }
 
     .section-small {
         text-align: center;
-        padding: 60px 48px;
-        background: rgba(55, 53, 47, 0.02);
+        padding: 72px 48px;
+        background: rgba(55, 53, 47, 0.015);
         border-top: 1px solid rgba(55, 53, 47, 0.09);
         border-bottom: 1px solid rgba(55, 53, 47, 0.09);
     }
     
+    .section-small .section-label {
+        margin-bottom: 12px;
+    }
+    
     .section-small div:last-child {
         font-size: 15px;
-        letter-spacing: 0.2px;
+        letter-spacing: 0.3px;
+        color: rgba(55, 53, 47, 0.5);
+        font-weight: 400;
     }
 
     .section-label {
-        font-size: 11px;
-        color: rgba(55, 53, 47, 0.5);
+        font-size: 12px;
+        color: rgba(55, 53, 47, 0.45);
         text-transform: uppercase;
-        letter-spacing: 0.8px;
+        letter-spacing: 1px;
         font-weight: 600;
-        margin-bottom: 16px;
+        margin-bottom: 20px;
+        display: inline-block;
     }
 
     h2 {
-        font-size: 36px;
+        font-size: 40px;
         font-weight: 700;
-        margin-bottom: 20px;
-        letter-spacing: -0.02em;
-        line-height: 1.3;
+        margin-bottom: 24px;
+        letter-spacing: -0.03em;
+        line-height: 1.25;
         color: #37352f;
     }
 
     .section-description {
-        font-size: 17px;
-        color: rgba(55, 53, 47, 0.65);
+        font-size: 18px;
+        color: rgba(55, 53, 47, 0.6);
         line-height: 1.7;
-        max-width: 650px;
+        max-width: 700px;
+        margin-bottom: 0;
     }
 
     .features-grid {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        gap: 20px;
-        margin-top: 60px;
+        gap: 24px;
+        margin-top: 80px;
     }
 
     .feature-card {
-        padding: 28px;
+        padding: 32px;
         background: #ffffff;
-        border-radius: 3px;
+        border-radius: 4px;
         border: 1px solid rgba(55, 53, 47, 0.09);
-        transition: all 0.2s ease;
+        transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
         animation: fadeInUp 0.6s ease-out backwards;
+        position: relative;
+    }
+    
+    .feature-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: transparent;
+        transition: background 0.25s ease;
     }
 
     .feature-card:hover {
-        border-color: rgba(55, 53, 47, 0.2);
+        border-color: rgba(55, 53, 47, 0.18);
         box-shadow: rgba(15, 15, 15, 0.03) 0px 0px 0px 1px, rgba(15, 15, 15, 0.05) 0px 3px 6px, rgba(15, 15, 15, 0.1) 0px 9px 24px;
+        transform: translateY(-2px);
+    }
+    
+    .feature-card:hover::before {
+        background: rgba(55, 53, 47, 0.15);
     }
     
     .feature-card:nth-child(1) { animation-delay: 0.1s; }
@@ -375,24 +684,26 @@
     .feature-card:nth-child(6) { animation-delay: 0.6s; }
 
     .feature-icon {
-        font-size: 24px;
-        margin-bottom: 16px;
+        font-size: 28px;
+        margin-bottom: 20px;
         display: block;
-        opacity: 0.8;
+        opacity: 0.85;
+        line-height: 1;
     }
 
     .feature-title {
-        font-size: 16px;
+        font-size: 17px;
         font-weight: 600;
-        margin-bottom: 10px;
+        margin-bottom: 12px;
         color: #37352f;
-        letter-spacing: -0.01em;
+        letter-spacing: -0.015em;
+        line-height: 1.4;
     }
 
     .feature-description {
-        color: rgba(55, 53, 47, 0.65);
-        line-height: 1.6;
-        font-size: 14px;
+        color: rgba(55, 53, 47, 0.6);
+        line-height: 1.65;
+        font-size: 15px;
     }
 
     .agentic-section {
@@ -422,88 +733,126 @@
     .agentic-grid {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
-        margin-top: 60px;
+        gap: 24px;
+        margin-top: 80px;
     }
 
     .agentic-card {
-        padding: 32px;
+        padding: 36px;
         background: #ffffff;
-        border-radius: 3px;
+        border-radius: 4px;
         border: 1px solid rgba(55, 53, 47, 0.09);
-        transition: all 0.2s ease;
+        transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+    }
+    
+    .agentic-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: transparent;
+        transition: background 0.25s ease;
     }
 
     .agentic-card:hover {
-        border-color: rgba(55, 53, 47, 0.2);
+        border-color: rgba(55, 53, 47, 0.18);
         box-shadow: rgba(15, 15, 15, 0.03) 0px 0px 0px 1px, rgba(15, 15, 15, 0.05) 0px 3px 6px, rgba(15, 15, 15, 0.1) 0px 9px 24px;
+        transform: translateY(-2px);
+    }
+    
+    .agentic-card:hover::before {
+        background: rgba(55, 53, 47, 0.15);
     }
 
     .agentic-number {
-        font-size: 12px;
-        color: rgba(55, 53, 47, 0.5);
-        margin-bottom: 16px;
+        font-size: 13px;
+        color: rgba(55, 53, 47, 0.45);
+        margin-bottom: 20px;
         font-weight: 600;
-        letter-spacing: 0.5px;
+        letter-spacing: 0.8px;
+        text-transform: uppercase;
     }
 
     .agentic-title {
-        font-size: 18px;
+        font-size: 19px;
         font-weight: 600;
-        margin-bottom: 12px;
+        margin-bottom: 14px;
         color: #37352f;
-        letter-spacing: -0.01em;
+        letter-spacing: -0.015em;
+        line-height: 1.4;
     }
 
     .agentic-text {
-        color: rgba(55, 53, 47, 0.65);
-        line-height: 1.6;
-        font-size: 14px;
+        color: rgba(55, 53, 47, 0.6);
+        line-height: 1.65;
+        font-size: 15px;
     }
 
     .tech-grid {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
-        margin-top: 60px;
+        gap: 24px;
+        margin-top: 80px;
     }
 
     .tech-item {
-        padding: 28px;
+        padding: 32px;
         background: #ffffff;
-        border-radius: 3px;
+        border-radius: 4px;
         border: 1px solid rgba(55, 53, 47, 0.09);
-        transition: all 0.2s ease;
+        transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+    }
+    
+    .tech-item::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: transparent;
+        transition: background 0.25s ease;
     }
 
     .tech-item:hover {
-        border-color: rgba(55, 53, 47, 0.2);
+        border-color: rgba(55, 53, 47, 0.18);
         box-shadow: rgba(15, 15, 15, 0.03) 0px 0px 0px 1px, rgba(15, 15, 15, 0.05) 0px 3px 6px, rgba(15, 15, 15, 0.1) 0px 9px 24px;
+        transform: translateY(-2px);
+    }
+    
+    .tech-item:hover::before {
+        background: rgba(55, 53, 47, 0.15);
     }
 
     .tech-icon {
-        font-size: 24px;
-        margin-bottom: 16px;
+        font-size: 28px;
+        margin-bottom: 20px;
         display: block;
-        opacity: 0.8;
+        opacity: 0.85;
+        line-height: 1;
     }
 
     .tech-title {
-        font-size: 16px;
+        font-size: 17px;
         font-weight: 600;
-        margin-bottom: 10px;
+        margin-bottom: 12px;
         color: #37352f;
-        letter-spacing: -0.01em;
+        letter-spacing: -0.015em;
+        line-height: 1.4;
     }
 
     .tech-text {
-        color: rgba(55, 53, 47, 0.65);
-        line-height: 1.6;
-        font-size: 14px;
+        color: rgba(55, 53, 47, 0.6);
+        line-height: 1.65;
+        font-size: 15px;
     }
 
     .frameworks-section {
-        padding: 100px 48px;
+        padding: 120px 48px;
         text-align: center;
         background: #ffffff;
         border-top: 1px solid rgba(55, 53, 47, 0.09);
@@ -516,45 +865,62 @@
         display: flex;
         justify-content: center;
         gap: 10px;
-        margin-top: 40px;
+        margin-top: 56px;
         flex-wrap: wrap;
     }
 
     .framework-badge {
-        padding: 8px 16px;
-        background: rgba(55, 53, 47, 0.06);
-        border-radius: 3px;
-        border: 1px solid rgba(55, 53, 47, 0.09);
+        padding: 10px 20px;
+        background: rgba(55, 53, 47, 0.04);
+        border-radius: 6px;
+        border: 1.5px solid rgba(55, 53, 47, 0.09);
         font-weight: 500;
-        font-size: 13px;
-        color: rgba(55, 53, 47, 0.8);
-        transition: all 0.2s ease;
+        font-size: 14px;
+        color: rgba(55, 53, 47, 0.75);
+        transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
     }
 
     .framework-badge:hover {
-        background: rgba(55, 53, 47, 0.09);
-        border-color: rgba(55, 53, 47, 0.16);
+        background: rgba(55, 53, 47, 0.08);
+        border-color: rgba(55, 53, 47, 0.18);
+        color: rgba(55, 53, 47, 0.9);
+        transform: translateY(-2px);
+        box-shadow: 0 2px 8px rgba(55, 53, 47, 0.08);
+    }
+    
+    .framework-badge:active {
+        transform: translateY(0);
     }
 
     .final-cta {
-        padding: 120px 48px;
+        padding: 140px 48px;
         text-align: center;
         max-width: 700px;
         margin: 0 auto;
     }
 
     .final-cta h2 {
-        margin-bottom: 20px;
+        margin-bottom: 24px;
     }
 
     .final-cta .hero-subtitle {
-        margin: 0 auto 40px;
+        margin: 0 auto 48px;
+        text-align: center;
+    }
+    
+    .final-cta .cta-group {
+        justify-content: center;
     }
 
     @media (max-width: 1024px) {
         h1 { font-size: 48px; }
-        h2 { font-size: 32px; }
-        .features-grid { grid-template-columns: 1fr; }
+        h2 { font-size: 34px; }
+        .hero { padding: 140px 48px 100px; }
+        .section { padding: 100px 48px; }
+        .features-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
         .agentic-grid { grid-template-columns: 1fr; }
         .tech-grid { grid-template-columns: 1fr; }
     }
@@ -571,18 +937,33 @@
             padding-right: 24px;
         }
         
-        h1 { font-size: 40px; }
-        h2 { font-size: 28px; }
+        h1 { font-size: 40px; line-height: 1.2; }
+        h2 { font-size: 28px; line-height: 1.3; }
         .hero { padding: 120px 24px 80px; }
+        .hero h1 { text-align: center; }
+        .hero-subtitle { text-align: center; }
+        .hero .cta-group { justify-content: center; }
         .section { padding: 80px 24px; }
         .agentic-section { padding: 80px 24px; }
         .visual-demo { margin: 80px auto; }
+        .demo-content { padding: 30px; height: 600px; }
+        .demo-window { min-height: 600px; }
+        .network-node { transform: scale(0.75); }
+        .network-node.rectangular { min-width: 70px; padding: 6px 8px; }
+        .node-label { font-size: 8px; bottom: -24px; max-width: 80px; }
+        .node-title { font-size: 8px; }
+        .node-icon { font-size: 14px; }
+        .layer-label { font-size: 9px; }
         .nav-links { display: none; }
-        .cta-group { flex-direction: column; width: 100%; }
-        .cta-primary, .cta-secondary { width: 100%; justify-content: center; }
-        .features-grid { gap: 16px; }
-        .agentic-grid { gap: 16px; }
-        .tech-grid { gap: 16px; }
+        .cta-group { flex-direction: column; width: 100%; gap: 10px; }
+        .cta-primary, .cta-secondary { width: 100%; justify-content: center; padding: 14px 24px; }
+        .features-grid { gap: 20px; margin-top: 60px; }
+        .agentic-grid { gap: 20px; margin-top: 60px; }
+        .tech-grid { gap: 20px; margin-top: 60px; }
+        .frameworks-grid { gap: 8px; margin-top: 40px; }
+        .framework-badge { font-size: 13px; padding: 8px 16px; }
+        .section-header { text-align: center; }
+        .section-header .section-description { margin: 0 auto; }
     }
 </style>
 </head>
@@ -590,7 +971,7 @@
     <a href="#main-content" class="skip-link">Skip to main content</a>
     <nav class="nav">
         <div class="nav-container">
-            <div class="logo">Tredy</div>
+            <div class="logo">Compliance Guard</div>
             <div class="nav-links">
                 <a href="#product" class="nav-link">Product</a>
                 <a href="#solutions" class="nav-link">Solutions</a>
@@ -612,34 +993,257 @@
 
 <div class="visual-demo">
     <div class="demo-window">
-        <div class="demo-row">
-            <div class="demo-block w2"></div>
-            <div class="demo-block w1"></div>
+        <div class="demo-content">
+            <!-- Layer Labels -->
+            <div class="layer-label" style="left: 20px; top: 10px;">Regulatory Sources</div>
+            <div class="layer-label" style="left: 20px; top: 140px;">Policy Management</div>
+            <div class="layer-label" style="left: 20px; top: 280px;">Enterprise Systems</div>
+            <div class="layer-label" style="left: 20px; top: 420px;">Audit & Monitoring</div>
+            <div class="layer-label" style="left: 20px; top: 560px;">Evidence & Response</div>
+            
+            <svg class="network-graph" viewBox="0 0 1200 650" preserveAspectRatio="xMidYMid meet">
+                <!-- Layer 1: Regulatory Sources to Compliance Guard -->
+                <path class="network-connection connection-line purple dashed" d="M 200 60 L 550 120" />
+                <path class="network-connection connection-line purple dashed" d="M 300 60 L 550 120" />
+                <path class="network-connection connection-line purple dashed" d="M 400 60 L 550 120" />
+                <path class="network-connection connection-line purple dashed" d="M 500 60 L 550 120" />
+                <path class="network-connection connection-line purple dashed" d="M 600 60 L 550 120" />
+                <path class="network-connection connection-line purple dashed" d="M 700 60 L 550 120" />
+                <path class="network-connection connection-line purple dashed" d="M 800 60 L 550 120" />
+                <path class="network-connection connection-line purple dashed" d="M 900 60 L 550 120" />
+                <path class="network-connection connection-line purple dashed" d="M 1000 60 L 550 120" />
+                
+                <!-- Layer 2: Compliance Guard to Policy Management -->
+                <path class="network-connection connection-line blue solid" d="M 550 120 L 200 180" />
+                <path class="network-connection connection-line blue solid" d="M 550 120 L 350 180" />
+                <path class="network-connection connection-line blue solid" d="M 550 120 L 500 180" />
+                <path class="network-connection connection-line blue solid" d="M 550 120 L 650 180" />
+                <path class="network-connection connection-line blue solid" d="M 550 120 L 800 180" />
+                <path class="network-connection connection-line blue solid" d="M 550 120 L 950 180" />
+                
+                <!-- Layer 3: Policy Management to Enterprise Systems -->
+                <path class="network-connection connection-line green solid" d="M 200 180 L 150 320" />
+                <path class="network-connection connection-line green solid" d="M 350 180 L 300 320" />
+                <path class="network-connection connection-line green solid" d="M 500 180 L 450 320" />
+                <path class="network-connection connection-line green solid" d="M 650 180 L 600 320" />
+                <path class="network-connection connection-line green solid" d="M 800 180 L 750 320" />
+                <path class="network-connection connection-line green solid" d="M 950 180 L 900 320" />
+                <path class="network-connection connection-line green solid" d="M 500 180 L 550 320" />
+                <path class="network-connection connection-line green solid" d="M 650 180 L 700 320" />
+                
+                <!-- Layer 4: Enterprise Systems to Audit Tools -->
+                <path class="network-connection connection-line blue solid" d="M 150 320 L 200 460" />
+                <path class="network-connection connection-line blue solid" d="M 300 320 L 350 460" />
+                <path class="network-connection connection-line blue solid" d="M 450 320 L 500 460" />
+                <path class="network-connection connection-line blue solid" d="M 600 320 L 650 460" />
+                <path class="network-connection connection-line blue solid" d="M 750 320 L 800 460" />
+                <path class="network-connection connection-line blue solid" d="M 900 320 L 950 460" />
+                
+                <!-- Layer 5: Audit Tools to Evidence/Response -->
+                <path class="network-connection connection-line red dashed" d="M 200 460 L 150 600" />
+                <path class="network-connection connection-line red dashed" d="M 350 460 L 400 600" />
+                <path class="network-connection connection-line red dashed" d="M 500 460 L 550 600" />
+                <path class="network-connection connection-line red dashed" d="M 650 460 L 700 600" />
+                <path class="network-connection connection-line red dashed" d="M 800 460 L 850 600" />
+                <path class="network-connection connection-line red dashed" d="M 950 460 L 1000 600" />
+            </svg>
+            
+            <!-- Layer 1: Regulatory Sources -->
+            <div class="network-node node-purple active" style="left: 16%; top: 8%;">
+                <span class="node-icon">🏛️</span>
+                <span class="node-title">NYDFS</span>
+                <span class="node-label">NYDFS</span>
         </div>
-        <div class="demo-row">
-            <div class="demo-block w1"></div>
-            <div class="demo-block w3"></div>
+            <div class="network-node node-purple active" style="left: 24%; top: 8%;">
+                <span class="node-icon">🇪🇺</span>
+                <span class="node-title">DORA</span>
+                <span class="node-label">DORA</span>
         </div>
-        <div class="demo-row">
-            <div class="demo-block w3 primary"></div>
-            <div class="demo-block w1"></div>
+            <div class="network-node node-purple active" style="left: 32%; top: 8%;">
+                <span class="node-icon">🔒</span>
+                <span class="node-title">SOC 2</span>
+                <span class="node-label">SOC 2</span>
         </div>
-        <div class="demo-row">
-            <div class="demo-block w2"></div>
-            <div class="demo-block w2"></div>
+            <div class="network-node node-purple active" style="left: 40%; top: 8%;">
+                <span class="node-icon">🌍</span>
+                <span class="node-title">GDPR</span>
+                <span class="node-label">GDPR</span>
+        </div>
+            <div class="network-node node-purple active" style="left: 48%; top: 8%;">
+                <span class="node-icon">📋</span>
+                <span class="node-title">ISO</span>
+                <span class="node-label">ISO 27001</span>
+            </div>
+            <div class="network-node node-purple active" style="left: 56%; top: 8%;">
+                <span class="node-icon">🏥</span>
+                <span class="node-title">HIPAA</span>
+                <span class="node-label">HIPAA</span>
+            </div>
+            <div class="network-node node-purple active" style="left: 64%; top: 8%;">
+                <span class="node-icon">💼</span>
+                <span class="node-title">PCI-DSS</span>
+                <span class="node-label">PCI-DSS</span>
+            </div>
+            <div class="network-node node-purple active" style="left: 72%; top: 8%;">
+                <span class="node-icon">⚖️</span>
+                <span class="node-title">CCPA</span>
+                <span class="node-label">CCPA</span>
+            </div>
+            <div class="network-node node-purple active" style="left: 80%; top: 8%;">
+                <span class="node-icon">🌱</span>
+                <span class="node-title">ESG</span>
+                <span class="node-label">ESG</span>
+            </div>
+            
+            <!-- Central Hub: Compliance Guard -->
+            <div class="network-node node-orange active" style="left: 45%; top: 18%; transform: translateX(-50%); width: 100px; height: 100px;">
+                <span class="node-icon" style="font-size: 32px;">🛡️</span>
+                <span class="node-title" style="font-size: 12px;">Compliance Guard</span>
+                <span class="node-label" style="font-size: 11px; font-weight: 700;">Control Plane</span>
+            </div>
+            
+            <!-- Layer 2: Policy Management -->
+            <div class="network-node node-blue active rectangular" style="left: 16%; top: 27%;">
+                <span class="node-icon">📜</span>
+                <span class="node-title">Policy Admin</span>
+                <span class="node-label">Policy Admin</span>
+            </div>
+            <div class="network-node node-blue active rectangular" style="left: 28%; top: 27%;">
+                <span class="node-icon">📐</span>
+                <span class="node-title">Policy Engine</span>
+                <span class="node-label">Policy Engine</span>
+            </div>
+            <div class="network-node node-blue active rectangular" style="left: 40%; top: 27%;">
+                <span class="node-icon">🔗</span>
+                <span class="node-title">Policy Graph</span>
+                <span class="node-label">Policy Graph</span>
+            </div>
+            <div class="network-node node-blue active rectangular" style="left: 52%; top: 27%;">
+                <span class="node-icon">⚙️</span>
+                <span class="node-title">Policy Runtime</span>
+                <span class="node-label">Policy Runtime</span>
+            </div>
+            <div class="network-node node-blue active rectangular" style="left: 64%; top: 27%;">
+                <span class="node-icon">🔄</span>
+                <span class="node-title">Remediation</span>
+                <span class="node-label">Remediation</span>
+            </div>
+            <div class="network-node node-blue active rectangular" style="left: 76%; top: 27%;">
+                <span class="node-icon">📊</span>
+                <span class="node-title">Compliance DB</span>
+                <span class="node-label">Compliance DB</span>
+            </div>
+            
+            <!-- Layer 3: Enterprise Systems (Insurance) -->
+            <div class="network-node node-green active rectangular" style="left: 12%; top: 48%;">
+                <span class="node-icon">💼</span>
+                <span class="node-title">Claims</span>
+                <span class="node-label">Claims System</span>
+            </div>
+            <div class="network-node node-green active rectangular" style="left: 24%; top: 48%;">
+                <span class="node-icon">📝</span>
+                <span class="node-title">Underwriting</span>
+                <span class="node-label">Underwriting</span>
+            </div>
+            <div class="network-node node-green active rectangular" style="left: 36%; top: 48%;">
+                <span class="node-icon">📋</span>
+                <span class="node-title">Policy Admin</span>
+                <span class="node-label">Policy Admin</span>
+            </div>
+            <div class="network-node node-green active rectangular" style="left: 48%; top: 48%;">
+                <span class="node-icon">👥</span>
+                <span class="node-title">CRM</span>
+                <span class="node-label">CRM</span>
+            </div>
+            <div class="network-node node-green active rectangular" style="left: 60%; top: 48%;">
+                <span class="node-icon">💰</span>
+                <span class="node-title">Billing</span>
+                <span class="node-label">Billing</span>
+            </div>
+            <div class="network-node node-green active rectangular" style="left: 72%; top: 48%;">
+                <span class="node-icon">📈</span>
+                <span class="node-title">Analytics</span>
+                <span class="node-label">Analytics</span>
+            </div>
+            <div class="network-node node-green active rectangular" style="left: 84%; top: 48%;">
+                <span class="node-icon">🔐</span>
+                <span class="node-title">IAM</span>
+                <span class="node-label">IAM</span>
+            </div>
+            
+            <!-- Layer 4: Audit & Monitoring Tools -->
+            <div class="network-node node-blue active rectangular" style="left: 16%; top: 68%;">
+                <span class="node-icon">📡</span>
+                <span class="node-title">SIEM</span>
+                <span class="node-label">SIEM</span>
+            </div>
+            <div class="network-node node-blue active rectangular" style="left: 28%; top: 68%;">
+                <span class="node-icon">📊</span>
+                <span class="node-title">Logging</span>
+                <span class="node-label">Logging</span>
+            </div>
+            <div class="network-node node-blue active rectangular" style="left: 40%; top: 68%;">
+                <span class="node-icon">🔍</span>
+                <span class="node-title">Monitoring</span>
+                <span class="node-label">Monitoring</span>
+            </div>
+            <div class="network-node node-blue active rectangular" style="left: 52%; top: 68%;">
+                <span class="node-icon">📝</span>
+                <span class="node-title">Audit Trail</span>
+                <span class="node-label">Audit Trail</span>
+            </div>
+            <div class="network-node node-blue active rectangular" style="left: 64%; top: 68%;">
+                <span class="node-icon">⚡</span>
+                <span class="node-title">Alerts</span>
+                <span class="node-label">Alerts</span>
+            </div>
+            <div class="network-node node-blue active rectangular" style="left: 76%; top: 68%;">
+                <span class="node-icon">🔐</span>
+                <span class="node-title">Access Log</span>
+                <span class="node-label">Access Log</span>
+            </div>
+            
+            <!-- Layer 5: Evidence & Response -->
+            <div class="network-node node-red active rectangular" style="left: 12%; top: 88%;">
+                <span class="node-icon">📄</span>
+                <span class="node-title">Evidence</span>
+                <span class="node-label">Evidence Package</span>
+            </div>
+            <div class="network-node node-red active rectangular" style="left: 32%; top: 88%;">
+                <span class="node-icon">📋</span>
+                <span class="node-title">Audit Report</span>
+                <span class="node-label">Audit Report</span>
+            </div>
+            <div class="network-node node-red active rectangular" style="left: 52%; top: 88%;">
+                <span class="node-icon">✉️</span>
+                <span class="node-title">Response</span>
+                <span class="node-label">Regulatory Response</span>
+            </div>
+            <div class="network-node node-red active rectangular" style="left: 72%; top: 88%;">
+                <span class="node-icon">📊</span>
+                <span class="node-title">Dashboard</span>
+                <span class="node-label">Compliance Dashboard</span>
+            </div>
+            <div class="network-node node-red active rectangular" style="left: 84%; top: 88%;">
+                <span class="node-icon">✅</span>
+                <span class="node-title">Certification</span>
+                <span class="node-label">Certification</span>
+            </div>
         </div>
     </div>
 </div>
 
 <section class="section-small">
     <div class="section-label">Trusted by regulated enterprises</div>
-    <div style="color: rgba(55, 53, 47, 0.4); font-size: 14px;">Insurance • Finance • Manufacturing</div>
+    <div>Insurance • Finance • Manufacturing</div>
 </section>
 
-<section class="section">
+<section class="section" id="product">
+    <div class="section-header">
     <div class="section-label">The problem</div>
     <h2>AI agents need governance.<br>Regulators need proof.</h2>
     <p class="section-description">Your AI capabilities are racing ahead. Your compliance infrastructure is stuck in spreadsheets and quarterly reviews.</p>
+    </div>
 
     <div class="features-grid">
         <div class="feature-card">
@@ -680,11 +1284,13 @@
     </div>
 </section>
 
-<section class="agentic-section">
+<section class="agentic-section" id="solutions">
     <div>
+        <div class="section-header">
         <div class="section-label">Built for agents</div>
         <h2>Autonomous workflows<br>with human oversight</h2>
-        <p class="section-description">Tredy acts as the control plane between AI agents, enterprise systems, and business context—ensuring every decision is traceable and every action is governed.</p>
+        <p class="section-description">Compliance Guard acts as the control plane between AI agents, enterprise systems, and business context—ensuring every decision is traceable and every action is governed.</p>
+        </div>
 
         <div class="agentic-grid">
             <div class="agentic-card">
@@ -708,16 +1314,18 @@
             <div class="agentic-card">
                 <div class="agentic-number">04</div>
                 <h3 class="agentic-title">Cross-agent intelligence</h3>
-                <p class="agentic-text">Privacy-preserving meta-learning across clients and industries. Your compliance graph gets smarter as more regulated workflows run through Tredy.</p>
+                <p class="agentic-text">Privacy-preserving meta-learning across clients and industries. Your compliance graph gets smarter as more regulated workflows run through Compliance Guard.</p>
             </div>
         </div>
     </div>
 </section>
 
 <section class="section">
+    <div class="section-header">
     <div class="section-label">Enterprise ready</div>
     <h2>Production-ready<br>from day one</h2>
     <p class="section-description">Built on modern, modular architecture designed for security, scalability, and extensibility.</p>
+    </div>
 
     <div class="tech-grid">
         <div class="tech-item">
@@ -747,8 +1355,10 @@
 </section>
 
 <section class="frameworks-section">
+    <div class="section-header">
     <div class="section-label">Regulatory frameworks</div>
     <h2>Export compliance evidence<br>for any framework</h2>
+    </div>
 
     <div class="frameworks-grid">
         <div class="framework-badge">NYDFS</div>
@@ -760,7 +1370,7 @@
     </div>
 </section>
 
-<section class="final-cta">
+<section class="final-cta" id="contact">
     <h2>Ready to scale AI<br>with confidence?</h2>
     <p class="hero-subtitle">Join forward-thinking enterprises building compliant, autonomous AI workflows.</p>
     <div class="cta-group">
@@ -796,6 +1406,152 @@
                 }
             }
         });
+    });
+    
+    // Animated network graph with data flows
+    function createDataFlow(startX, startY, endX, endY, color, delay = 0) {
+        const demoContent = document.querySelector('.demo-content');
+        if (!demoContent) return;
+        
+        const flow = document.createElement('div');
+        flow.className = `data-flow ${color}`;
+        
+        const dx = endX - startX;
+        const dy = endY - startY;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        const angle = Math.atan2(dy, dx) * 180 / Math.PI;
+        
+        flow.style.left = startX + 'px';
+        flow.style.top = startY + 'px';
+        flow.style.setProperty('--distance', distance + 'px');
+        flow.style.setProperty('--angle', angle + 'deg');
+        flow.style.animationDelay = delay + 's';
+        
+        demoContent.appendChild(flow);
+        
+        // Remove and recreate for continuous flow
+        setTimeout(() => {
+            if (flow.parentNode) {
+                flow.remove();
+            }
+            createDataFlow(startX, startY, endX, endY, color, delay);
+        }, 2000);
+    }
+    
+    // Add CSS animation for data flow
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes flowMove {
+            0% {
+                transform: translate(0, 0) rotate(var(--angle));
+                opacity: 1;
+            }
+            100% {
+                transform: translate(var(--distance), 0) rotate(var(--angle));
+                opacity: 0;
+            }
+        }
+        .data-flow {
+            animation: flowMove 2s linear infinite;
+        }
+    `;
+    document.head.appendChild(style);
+    
+    // Initialize data flows when page loads - Enterprise Insurance Flow
+    function initNetworkAnimation() {
+        const demoContent = document.querySelector('.demo-content');
+        if (!demoContent) {
+            setTimeout(initNetworkAnimation, 100);
+            return;
+        }
+        
+        // Calculate positions relative to demo-content (using percentage-based positioning)
+        const rect = demoContent.getBoundingClientRect();
+        const centerX = rect.width * 0.45; // Compliance Guard center
+        const centerY = rect.height * 0.18;
+        
+        // Layer 1: Regulatory Sources → Compliance Guard
+        const regSources = [
+            { x: rect.width * 0.16, y: rect.height * 0.08 },
+            { x: rect.width * 0.24, y: rect.height * 0.08 },
+            { x: rect.width * 0.32, y: rect.height * 0.08 },
+            { x: rect.width * 0.40, y: rect.height * 0.08 },
+            { x: rect.width * 0.48, y: rect.height * 0.08 },
+        ];
+        
+        // Layer 2: Compliance Guard → Policy Management
+        const policyNodes = [
+            { x: rect.width * 0.16, y: rect.height * 0.27 },
+            { x: rect.width * 0.28, y: rect.height * 0.27 },
+            { x: rect.width * 0.40, y: rect.height * 0.27 },
+            { x: rect.width * 0.52, y: rect.height * 0.27 },
+        ];
+        
+        // Layer 3: Policy Management → Enterprise Systems
+        const enterpriseNodes = [
+            { x: rect.width * 0.12, y: rect.height * 0.48 },
+            { x: rect.width * 0.24, y: rect.height * 0.48 },
+            { x: rect.width * 0.36, y: rect.height * 0.48 },
+            { x: rect.width * 0.48, y: rect.height * 0.48 },
+        ];
+        
+        // Layer 4: Enterprise Systems → Audit Tools
+        const auditNodes = [
+            { x: rect.width * 0.16, y: rect.height * 0.68 },
+            { x: rect.width * 0.28, y: rect.height * 0.68 },
+            { x: rect.width * 0.40, y: rect.height * 0.68 },
+            { x: rect.width * 0.52, y: rect.height * 0.68 },
+        ];
+        
+        // Layer 5: Audit Tools → Evidence/Response
+        const evidenceNodes = [
+            { x: rect.width * 0.12, y: rect.height * 0.88 },
+            { x: rect.width * 0.32, y: rect.height * 0.88 },
+            { x: rect.width * 0.52, y: rect.height * 0.88 },
+        ];
+        
+        setTimeout(() => {
+            // Regulatory → Compliance Guard
+            regSources.forEach((source, i) => {
+                createDataFlow(source.x, source.y, centerX, centerY, 'purple', i * 0.2);
+            });
+            
+            // Compliance Guard → Policy Management
+            policyNodes.forEach((node, i) => {
+                createDataFlow(centerX, centerY, node.x, node.y, 'blue', 1.0 + i * 0.2);
+            });
+            
+            // Policy Management → Enterprise Systems
+            policyNodes.forEach((policy, i) => {
+                if (enterpriseNodes[i]) {
+                    createDataFlow(policy.x, policy.y, enterpriseNodes[i].x, enterpriseNodes[i].y, 'green', 2.0 + i * 0.2);
+                }
+            });
+            
+            // Enterprise Systems → Audit Tools
+            enterpriseNodes.forEach((enterprise, i) => {
+                if (auditNodes[i]) {
+                    createDataFlow(enterprise.x, enterprise.y, auditNodes[i].x, auditNodes[i].y, 'blue', 3.0 + i * 0.2);
+                }
+            });
+            
+            // Audit Tools → Evidence/Response
+            auditNodes.forEach((audit, i) => {
+                if (evidenceNodes[i]) {
+                    createDataFlow(audit.x, audit.y, evidenceNodes[i].x, evidenceNodes[i].y, 'red', 4.0 + i * 0.2);
+                }
+            });
+        }, 500);
+    }
+    
+    window.addEventListener('load', initNetworkAnimation);
+    
+    // Add random pulsing to nodes
+    const nodes = document.querySelectorAll('.network-node');
+    nodes.forEach((node, index) => {
+        setTimeout(() => {
+            node.classList.add('active');
+        }, index * 100);
     });
 </script>
 
