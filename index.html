@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Primary Meta Tags -->
+    <title>Tredy - Compliance Intelligence for AI</title>
+    <meta name="title" content="Tredy - Compliance Intelligence for AI">
+    <meta name="description" content="Self-hosted compliance memory that tracks regulations, enforces policies, and generates audit-ready evidence in real-time for AI agents.">
+    <meta name="keywords" content="AI compliance, regulatory compliance, audit trails, AI governance, compliance intelligence, self-hosted compliance">
+    <meta name="author" content="Tredy">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="English">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://tredy.ai/">
+    <meta property="og:title" content="Tredy - Compliance Intelligence for AI">
+    <meta property="og:description" content="Self-hosted compliance memory that tracks regulations, enforces policies, and generates audit-ready evidence in real-time for AI agents.">
+    <meta property="og:image" content="https://tredy.ai/og-image.jpg">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://tredy.ai/">
+    <meta property="twitter:title" content="Tredy - Compliance Intelligence for AI">
+    <meta property="twitter:description" content="Self-hosted compliance memory that tracks regulations, enforces policies, and generates audit-ready evidence in real-time for AI agents.">
+    <meta property="twitter:image" content="https://tredy.ai/og-image.jpg">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🛡️%3C/text%3E%3C/svg%3E">
+    
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#0066ff">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        line-height: 1.6;
+        color: #1a1a1a;
+        background: #fafafa;
+        -webkit-font-smoothing: antialiased;
+    }
+
+    .nav {
+        padding: 16px 0;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background: rgba(250, 250, 250, 0.95);
+        backdrop-filter: saturate(180%) blur(20px);
+        z-index: 1000;
+        border-bottom: 1px solid #e0e0e0;
+    }
+
+    .nav-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 48px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .logo {
+        font-size: 18px;
+        font-weight: 700;
+        background: linear-gradient(135deg, #0066ff 0%, #00d4ff 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .nav-links {
+        display: flex;
+        gap: 32px;
+        align-items: center;
+    }
+
+    .nav-link {
+        color: #4a4a4a;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 500;
+        transition: color 0.15s;
+    }
+
+    .nav-link:hover {
+        color: #0066ff;
+    }
+
+    .nav-cta {
+        padding: 10px 20px;
+        background: #0066ff;
+        color: white;
+        text-decoration: none;
+        border-radius: 8px;
+        font-size: 14px;
+        font-weight: 600;
+        transition: all 0.15s;
+        box-shadow: 0 2px 8px rgba(0, 102, 255, 0.2);
+    }
+
+    .nav-cta:hover {
+        background: #0052cc;
+        box-shadow: 0 4px 12px rgba(0, 102, 255, 0.3);
+        transform: translateY(-1px);
+    }
+
+    .hero {
+        padding: 160px 48px 80px;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    h1 {
+        font-size: 64px;
+        font-weight: 700;
+        margin-bottom: 16px;
+        line-height: 1.15;
+        letter-spacing: -0.03em;
+        color: #1a1a1a;
+    }
+
+    .hero-subtitle {
+        font-size: 20px;
+        color: #5a5a5a;
+        margin-bottom: 32px;
+        line-height: 1.6;
+        max-width: 650px;
+        font-weight: 400;
+    }
+
+    .cta-group {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+    }
+
+    .cta-primary {
+        padding: 14px 28px;
+        background: linear-gradient(135deg, #0066ff 0%, #0052cc 100%);
+        color: white;
+        text-decoration: none;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 15px;
+        transition: all 0.2s;
+        display: inline-flex;
+        align-items: center;
+        box-shadow: 0 4px 14px rgba(0, 102, 255, 0.25);
+    }
+
+    .cta-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(0, 102, 255, 0.35);
+    }
+
+    .cta-secondary {
+        padding: 14px 28px;
+        color: #1a1a1a;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 15px;
+        transition: all 0.2s;
+        display: inline-flex;
+        align-items: center;
+        border: 2px solid #e0e0e0;
+        border-radius: 8px;
+        background: white;
+    }
+
+    .cta-secondary:hover {
+        border-color: #0066ff;
+        background: #f5f9ff;
+    }
+
+    .visual-demo {
+        max-width: 1200px;
+        margin: 80px auto;
+        padding: 0 48px;
+    }
+
+    .demo-window {
+        background: #ffffff;
+        border-radius: 12px;
+        padding: 48px;
+        border: 1px solid #e0e0e0;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    }
+
+    .demo-row {
+        display: flex;
+        gap: 12px;
+        margin-bottom: 12px;
+    }
+
+    .demo-block {
+        height: 10px;
+        background: #e8e8e8;
+        border-radius: 4px;
+    }
+
+    .demo-block.w1 { flex: 1; }
+    .demo-block.w2 { flex: 2; }
+    .demo-block.w3 { flex: 3; }
+    .demo-block.primary {
+        background: linear-gradient(135deg, #0066ff 0%, #00d4ff 100%);
+        box-shadow: 0 2px 8px rgba(0, 102, 255, 0.3);
+    }
+
+    .section {
+        padding: 80px 48px;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .section-small {
+        text-align: center;
+        padding: 48px;
+        background: white;
+        border-top: 1px solid #e0e0e0;
+        border-bottom: 1px solid #e0e0e0;
+    }
+
+    .section-label {
+        font-size: 12px;
+        color: #0066ff;
+        text-transform: uppercase;
+        letter-spacing: 1.2px;
+        font-weight: 700;
+        margin-bottom: 12px;
+    }
+
+    h2 {
+        font-size: 40px;
+        font-weight: 700;
+        margin-bottom: 16px;
+        letter-spacing: -0.02em;
+        line-height: 1.2;
+        color: #1a1a1a;
+    }
+
+    .section-description {
+        font-size: 18px;
+        color: #5a5a5a;
+        line-height: 1.6;
+        max-width: 600px;
+    }
+
+    .features-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+        margin-top: 48px;
+    }
+
+    .feature-card {
+        padding: 32px;
+        background: #ffffff;
+        border-radius: 10px;
+        border: 2px solid #e8e8e8;
+        transition: all 0.2s;
+    }
+
+    .feature-card:hover {
+        border-color: #0066ff;
+        box-shadow: 0 8px 24px rgba(0, 102, 255, 0.12);
+        transform: translateY(-4px);
+    }
+
+    .feature-icon {
+        font-size: 28px;
+        margin-bottom: 16px;
+        display: block;
+    }
+
+    .feature-title {
+        font-size: 17px;
+        font-weight: 600;
+        margin-bottom: 8px;
+        color: #1a1a1a;
+    }
+
+    .feature-description {
+        color: #5a5a5a;
+        line-height: 1.6;
+        font-size: 14px;
+    }
+
+    .agentic-section {
+        background: linear-gradient(135deg, #0f1419 0%, #1a1f2e 100%);
+        color: #ffffff;
+        padding: 80px 48px;
+    }
+
+    .agentic-section h2 {
+        color: #ffffff;
+    }
+
+    .agentic-section .section-description {
+        color: #b0b8c1;
+    }
+
+    .agentic-section .section-label {
+        color: #00d4ff;
+    }
+
+    .agentic-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+        margin-top: 48px;
+    }
+
+    .agentic-card {
+        padding: 36px;
+        background: rgba(0, 212, 255, 0.06);
+        border-radius: 10px;
+        border: 1px solid rgba(0, 212, 255, 0.2);
+        transition: all 0.2s;
+    }
+
+    .agentic-card:hover {
+        background: rgba(0, 212, 255, 0.1);
+        border-color: rgba(0, 212, 255, 0.3);
+    }
+
+    .agentic-number {
+        font-size: 13px;
+        color: #00d4ff;
+        margin-bottom: 16px;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+    }
+
+    .agentic-title {
+        font-size: 19px;
+        font-weight: 600;
+        margin-bottom: 12px;
+        color: #ffffff;
+    }
+
+    .agentic-text {
+        color: #b0b8c1;
+        line-height: 1.6;
+        font-size: 14px;
+    }
+
+    .tech-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+        margin-top: 48px;
+    }
+
+    .tech-item {
+        padding: 32px;
+        background: #ffffff;
+        border-radius: 10px;
+        border: 2px solid #e8e8e8;
+        transition: all 0.2s;
+    }
+
+    .tech-item:hover {
+        border-color: #d0d0d0;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+    }
+
+    .tech-icon {
+        font-size: 28px;
+        margin-bottom: 16px;
+        display: block;
+    }
+
+    .tech-title {
+        font-size: 17px;
+        font-weight: 600;
+        margin-bottom: 8px;
+        color: #1a1a1a;
+    }
+
+    .tech-text {
+        color: #5a5a5a;
+        line-height: 1.6;
+        font-size: 14px;
+    }
+
+    .frameworks-section {
+        padding: 48px;
+        text-align: center;
+        background: white;
+        border-top: 1px solid #e0e0e0;
+        border-bottom: 1px solid #e0e0e0;
+    }
+
+    .frameworks-grid {
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+        margin-top: 32px;
+        flex-wrap: wrap;
+    }
+
+    .framework-badge {
+        padding: 10px 20px;
+        background: #f5f9ff;
+        border-radius: 8px;
+        border: 2px solid #cce0ff;
+        font-weight: 600;
+        font-size: 14px;
+        color: #0066ff;
+        transition: all 0.2s;
+    }
+
+    .framework-badge:hover {
+        background: #e6f2ff;
+        border-color: #99c7ff;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 102, 255, 0.15);
+    }
+
+    .final-cta {
+        padding: 80px 48px;
+        text-align: center;
+    }
+
+    .final-cta h2 {
+        margin-bottom: 16px;
+    }
+
+    .final-cta .hero-subtitle {
+        margin: 0 auto 32px;
+    }
+
+    @media (max-width: 1024px) {
+        h1 { font-size: 48px; }
+        h2 { font-size: 32px; }
+        .features-grid { grid-template-columns: 1fr; }
+        .agentic-grid { grid-template-columns: 1fr; }
+        .tech-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 768px) {
+        .nav-container,
+        .hero,
+        .visual-demo,
+        .section,
+        .agentic-section,
+        .final-cta {
+            padding-left: 24px;
+            padding-right: 24px;
+        }
+        
+        h1 { font-size: 36px; }
+        .nav-links { display: none; }
+        .cta-group { flex-direction: column; width: 100%; }
+        .cta-primary, .cta-secondary { width: 100%; justify-content: center; }
+    }
+</style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav-container">
+            <div class="logo">Tredy</div>
+            <div class="nav-links">
+                <a href="#product" class="nav-link">Product</a>
+                <a href="#solutions" class="nav-link">Solutions</a>
+                <a href="#docs" class="nav-link">Docs</a>
+                <a href="#contact" class="nav-cta">Get Started</a>
+            </div>
+        </div>
+    </nav>
+
+<section class="hero">
+    <h1>Compliance intelligence<br>for the AI era</h1>
+    <p class="hero-subtitle">Self-hosted compliance memory that tracks regulations, enforces policies, and generates audit-ready evidence in real-time.</p>
+    <div class="cta-group">
+        <a href="#contact" class="cta-primary">Request demo</a>
+        <a href="#learn" class="cta-secondary">Learn more</a>
+    </div>
+</section>
+
+<div class="visual-demo">
+    <div class="demo-window">
+        <div class="demo-row">
+            <div class="demo-block w2"></div>
+            <div class="demo-block w1"></div>
+        </div>
+        <div class="demo-row">
+            <div class="demo-block w1"></div>
+            <div class="demo-block w3"></div>
+        </div>
+        <div class="demo-row">
+            <div class="demo-block w3 primary"></div>
+            <div class="demo-block w1"></div>
+        </div>
+        <div class="demo-row">
+            <div class="demo-block w2"></div>
+            <div class="demo-block w2"></div>
+        </div>
+    </div>
+</div>
+
+<section class="section-small">
+    <div class="section-label">Trusted by regulated enterprises</div>
+    <div style="color: rgba(55, 53, 47, 0.4); font-size: 14px;">Insurance • Finance • Manufacturing</div>
+</section>
+
+<section class="section">
+    <div class="section-label">The problem</div>
+    <h2>AI agents need governance.<br>Regulators need proof.</h2>
+    <p class="section-description">Your AI capabilities are racing ahead. Your compliance infrastructure is stuck in spreadsheets and quarterly reviews.</p>
+
+    <div class="features-grid">
+        <div class="feature-card">
+            <span class="feature-icon">⚡</span>
+            <h3 class="feature-title">Compliance knowledge graph</h3>
+            <p class="feature-description">Central vector memory linking regulations, policies, controls, and evidence. Query your entire compliance landscape in natural language.</p>
+        </div>
+
+        <div class="feature-card">
+            <span class="feature-icon">🔐</span>
+            <h3 class="feature-title">Policy-as-code runtime</h3>
+            <p class="feature-description">Every AI action governed by auditable rules. Multi-tenant isolation, field-level access control, and PII redaction built in.</p>
+        </div>
+
+        <div class="feature-card">
+            <span class="feature-icon">📊</span>
+            <h3 class="feature-title">Instant audit trails</h3>
+            <p class="feature-description">Signed decision logs for every model call and agent action. Complete traceability from regulation to execution.</p>
+        </div>
+
+        <div class="feature-card">
+            <span class="feature-icon">🤖</span>
+            <h3 class="feature-title">AI-assisted evidence</h3>
+            <p class="feature-description">Generate regulator responses in minutes. AI searches your compliance graph and assembles evidence packages automatically.</p>
+        </div>
+
+        <div class="feature-card">
+            <span class="feature-icon">🔗</span>
+            <h3 class="feature-title">Enterprise integration</h3>
+            <p class="feature-description">Connect to policy admin, claims systems, ERP, CRM. Event-driven architecture with typed contracts and schema protection.</p>
+        </div>
+
+        <div class="feature-card">
+            <span class="feature-icon">🛡️</span>
+            <h3 class="feature-title">Self-hosted security</h3>
+            <p class="feature-description">Complete data sovereignty. Deploy on-premises or in your private cloud with full control over data residency.</p>
+        </div>
+    </div>
+</section>
+
+<section class="agentic-section">
+    <div style="max-width: 1200px; margin: 0 auto;">
+        <div class="section-label">Built for agents</div>
+        <h2>Autonomous workflows<br>with human oversight</h2>
+        <p class="section-description">Tredy acts as the control plane between AI agents, enterprise systems, and business context—ensuring every decision is traceable and every action is governed.</p>
+
+        <div class="agentic-grid">
+            <div class="agentic-card">
+                <div class="agentic-number">01</div>
+                <h3 class="agentic-title">Agent orchestration layer</h3>
+                <p class="agentic-text">Run multi-step AI workflows with human-in-the-loop approvals, branching logic, and rollback capabilities. Support for MCP tools, RPA bots, and any agent framework.</p>
+            </div>
+
+            <div class="agentic-card">
+                <div class="agentic-number">02</div>
+                <h3 class="agentic-title">Policy-driven routing</h3>
+                <p class="agentic-text">Automatically route requests to the right model based on compliance requirements, data sensitivity, and cost parameters. No manual configuration.</p>
+            </div>
+
+            <div class="agentic-card">
+                <div class="agentic-number">03</div>
+                <h3 class="agentic-title">Real-time decision logging</h3>
+                <p class="agentic-text">Every agent action captured with full context: which model, what data accessed, which policy evaluated, what decision was made. Immutable audit trail.</p>
+            </div>
+
+            <div class="agentic-card">
+                <div class="agentic-number">04</div>
+                <h3 class="agentic-title">Cross-agent intelligence</h3>
+                <p class="agentic-text">Privacy-preserving meta-learning across clients and industries. Your compliance graph gets smarter as more regulated workflows run through Tredy.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="section-label">Enterprise ready</div>
+    <h2>Production-ready<br>from day one</h2>
+    <p class="section-description">Built on modern, modular architecture designed for security, scalability, and extensibility.</p>
+
+    <div class="tech-grid">
+        <div class="tech-item">
+            <span class="tech-icon">🏗️</span>
+            <h3 class="tech-title">Multi-tenant by default</h3>
+            <p class="tech-text">Workspace isolation, RBAC, row-level security, and jurisdiction-aware data retention. Every tenant has dedicated compute and storage boundaries.</p>
+        </div>
+
+        <div class="tech-item">
+            <span class="tech-icon">🔄</span>
+            <h3 class="tech-title">Event-driven architecture</h3>
+            <p class="tech-text">Async queues, webhook processing, schema drift protection, retries, and dead-letter handling. Built for reliability at scale.</p>
+        </div>
+
+        <div class="tech-item">
+            <span class="tech-icon">🧠</span>
+            <h3 class="tech-title">Multi-model runtime</h3>
+            <p class="tech-text">OpenAI, Anthropic, Gemini, local LLMs—swappable without refactoring. Policy-driven routing per tenant and use case.</p>
+        </div>
+
+        <div class="tech-item">
+            <span class="tech-icon">📡</span>
+            <h3 class="tech-title">Complete observability</h3>
+            <p class="tech-text">End-to-end tracing, signed hashes, data egress events, anomaly detection, and SIEM/SOC integrations. Full visibility into every operation.</p>
+        </div>
+    </div>
+</section>
+
+<section class="frameworks-section">
+    <div class="section-label">Regulatory frameworks</div>
+    <h2>Export compliance evidence<br>for any framework</h2>
+
+    <div class="frameworks-grid">
+        <div class="framework-badge">NYDFS</div>
+        <div class="framework-badge">DORA</div>
+        <div class="framework-badge">SOC 2</div>
+        <div class="framework-badge">GDPR</div>
+        <div class="framework-badge">ISO 27001</div>
+        <div class="framework-badge">HIPAA</div>
+    </div>
+</section>
+
+<section class="final-cta">
+    <h2>Ready to scale AI<br>with confidence?</h2>
+    <p class="hero-subtitle">Join forward-thinking enterprises building compliant, autonomous AI workflows.</p>
+    <div class="cta-group">
+        <a href="#contact" class="cta-primary">Schedule a demo</a>
+        <a href="#docs" class="cta-secondary">Read documentation</a>
+    </div>
+</section>
+
+</body>
+</html>
