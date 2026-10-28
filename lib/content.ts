@@ -266,25 +266,29 @@ export const reasons = [
 
 export const homeFaqs = [
   {
-    question: "How long does it take?",
-    answer: "A first version is live in days. You tell us the business, we connect it, and you hear it before it goes on your line.",
-  },
-  {
     question: "What does it cost?",
     answer:
-      "A voice receptionist starts at $1,800. An assistant starts at $1,200. Custom tools are scoped on the free plan call. There is no charge for that call.",
+      "A voice receptionist starts at $1,800. An assistant starts at $1,200. Custom tools and training are scoped on the free 15 minute call. There is no charge for that call.",
   },
   {
-    question: "What do I need to start?",
-    answer: "Your business name, what you want handled, and an email or phone number. We use the number and tools you already have.",
+    question: "How fast can it go live?",
+    answer: "A first version is live in days. You hear it before it answers real customers.",
   },
   {
-    question: "Does it sound robotic?",
-    answer: "No. You hear a live sample in the demo, and you approve what it is allowed to say before it answers real customers.",
+    question: "Will it sound robotic?",
+    answer: "You hear a live sample on this site, and you approve what it is allowed to say before it answers your line.",
   },
   {
-    question: "Can I keep my number?",
-    answer: "Yes. Customers keep calling the number they already know. The AI answers on that line.",
+    question: "What if it cannot answer?",
+    answer: "It follows rules you set. When a call needs a person, it takes a message or hands the call over.",
+  },
+  {
+    question: "Which phone system does it need?",
+    answer: "It uses the number customers already call. You do not have to change phone systems to start.",
+  },
+  {
+    question: "Can I stop?",
+    answer: "Yes. The first call is free, and you decide after you hear the plan. You are not locked in.",
   },
 ];
 

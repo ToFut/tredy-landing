@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { DeferredTry } from "@/components/demo/DeferredTry";
 import { DemoLoop } from "@/components/demo/DemoLoop";
-import { CaseStudies, FinalCta, HomeHero, HowWeWork, ModelStrip, OfferingCards } from "@/components/home/Marketing";
+import { FinalCta, HomeHero, HowWeWork, ModelStrip, OfferingCards, PriceTeaser, Trust } from "@/components/home/Marketing";
+import { Reveal } from "@/components/home/Reveal";
 import { JsonLd } from "@/components/JsonLd";
 import { Actions } from "@/components/ui/Actions";
 import { homeFaqs, site } from "@/lib/content";
@@ -17,10 +18,11 @@ export default function Page() {
   return (
     <>
       <JsonLd data={homeJsonLd()} />
+      <Reveal />
       <HomeHero />
       <ModelStrip />
-      <OfferingCards />
       <HowWeWork />
+      <OfferingCards />
       <section className="band" id="demo">
         <div className="wrap">
           <p className="eyebrow">Live demo</p>
@@ -34,7 +36,8 @@ export default function Page() {
           <Actions demoHref="#try" />
         </div>
       </section>
-      <CaseStudies />
+      <Trust />
+      <PriceTeaser />
       <section id="faq" className="band">
         <div className="wrap">
           <h2 className="type-h2">Questions</h2>

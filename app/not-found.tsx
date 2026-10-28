@@ -1,17 +1,19 @@
+import { BookLink } from "@/components/ui/Actions";
 import Link from "next/link";
 
 export default function NotFound() {
   return (
-    <section className="page-lead legal">
+    <section className="band missing">
       <div className="wrap">
         <p className="kicker">404</p>
-        <h1>That page is not here.</h1>
-        <p>The work lives on the homepage: voice agents, assistants, custom projects, and AI enablement.</p>
-        <p>
-          <Link className="btn btn-solid" href="/">
-            Back to Futurix
+        <h1 className="type-h1">That page is not here.</h1>
+        <p className="type-body">Try the homepage, a service, or book a call.</p>
+        <div className="actions">
+          <BookLink location="404" />
+          <Link className="btn btn-secondary" href="/">
+            Back home
           </Link>
-        </p>
+        </div>
       </div>
     </section>
   );

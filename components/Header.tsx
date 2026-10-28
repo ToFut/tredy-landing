@@ -41,12 +41,17 @@ export function Header() {
         <Logo />
         <nav className="desktop-nav" aria-label="Primary">
           <div className="nav-drop">
-            <button type="button" className="nav-drop-btn" aria-haspopup="true">
+            <button
+              type="button"
+              className="nav-drop-btn"
+              aria-haspopup="true"
+              aria-current={offerings.some((item) => pathname === item.href) ? "page" : undefined}
+            >
               Services
             </button>
             <div className="nav-menu">
               {offerings.map((item) => (
-                <Link key={item.href} href={item.href}>
+                <Link key={item.href} href={item.href} aria-current={pathname === item.href ? "page" : undefined}>
                   {item.label}
                 </Link>
               ))}
@@ -74,7 +79,12 @@ export function Header() {
           <nav aria-label="Mobile">
             <p className="kicker">Services</p>
             {offerings.map((item) => (
-              <Link key={item.href} href={item.href} onClick={() => setOpen(false)}>
+              <Link
+                key={item.href}
+                href={item.href}
+                aria-current={pathname === item.href ? "page" : undefined}
+                onClick={() => setOpen(false)}
+              >
                 {item.label}
               </Link>
             ))}

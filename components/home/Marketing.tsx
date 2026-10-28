@@ -1,6 +1,6 @@
 import Link from "next/link";
+import { LiveHeroPhone } from "@/components/home/LiveHeroPhone";
 import { PlatformMarquee } from "@/components/home/PlatformMarquee";
-import { IphoneCall } from "@/components/visuals/Screens";
 import { Actions } from "@/components/ui/Actions";
 
 const offerings = [
@@ -62,12 +62,7 @@ export function HomeHero() {
           <Actions demoHref="/#demo" location="hero" hero />
         </div>
         <div className="span-5 hero-phone">
-          <IphoneCall
-            name="North Roofing"
-            caption="Hi, thanks for calling North Roofing. How can I help you today?"
-            callerLine="Can someone look at a leak this week?"
-            timer="00:12"
-          />
+          <LiveHeroPhone />
         </div>
       </div>
     </section>
@@ -80,7 +75,7 @@ export function ModelStrip() {
 
 export function OfferingCards() {
   return (
-    <section className="band" id="offerings">
+    <section className="band rise" id="offerings">
       <div className="wrap">
         <p className="kicker">Four offerings</p>
         <h2 className="section-title offer-heading">What we set up</h2>
@@ -152,24 +147,89 @@ function OfferArt({ kind }: { kind: string }) {
 
 export function HowWeWork() {
   const steps = [
-    { title: "Tell us your business", line: "Name, what you need, and how to reach you." },
-    { title: "We build and connect it", line: "Your phone, your leads, and the tools you already use." },
-    { title: "It answers and books for you", line: "Customers get a reply. You get the booking and a text." },
+    { title: "A 15 minute call", line: "We look at the calls or leads you miss.", mark: "15 min" },
+    { title: "We build it in days", line: "Your number, your rules, your tools.", mark: "Days" },
+    { title: "It answers and books", line: "Customers get a next step. You get a text.", mark: "Live" },
   ];
   return (
-    <section className="band" id="how">
+    <section className="band rise" id="how">
       <div className="wrap">
         <h2 className="section-title offer-heading">How it works</h2>
         <ol className="work-steps">
           {steps.map((step, index) => (
             <li key={step.title}>
-              <span aria-hidden="true">{index + 1}</span>
-              <h3>{step.title}</h3>
+              <span className="step-visual" aria-hidden="true">
+                {step.mark}
+              </span>
+              <h3>
+                {index + 1}. {step.title}
+              </h3>
               <p>{step.line}</p>
             </li>
           ))}
         </ol>
-        <Actions />
+      </div>
+    </section>
+  );
+}
+
+export function Trust() {
+  return (
+    <section className="band rise" id="work">
+      <div className="wrap">
+        <p className="kicker">Why Futurix</p>
+        <h2 className="section-title offer-heading">Built by engineers.</h2>
+        <p className="type-body">The team comes from software engineering and the Israeli Air Force.</p>
+        <div className="study-grid">
+          <article className="study-card">
+            <h3>Line Properties</h3>
+            <p>A guest booking site on Guesty for a short-term rental company.</p>
+            <a href="https://line-properties.com" rel="noreferrer">
+              line-properties.com &gt;
+            </a>
+            <Link href="/custom-projects">Custom projects &gt;</Link>
+          </article>
+          <article className="study-card">
+            <h3>Peak Exchange</h3>
+            <p>An operations platform for 1031 exchanges, with client, third-party, and admin portals on one transaction.</p>
+            <Link href="/custom-projects">Custom projects &gt;</Link>
+          </article>
+        </div>
+        <article className="privacy-block">
+          <h3>Your data stays yours</h3>
+          <p>
+            We use only what a workflow needs. We do not train public models on your calls or files. You own the setup.
+            Read the <Link href="/privacy">privacy notice</Link>.
+          </p>
+        </article>
+      </div>
+    </section>
+  );
+}
+
+const prices = [
+  { href: "/voice-agents", name: "Voice receptionist", price: "From $1,800", line: "Answers, books, and texts you a summary." },
+  { href: "/ai-assistants", name: "AI assistant", price: "From $1,200", line: "Drafts the follow-up and routes what you should see." },
+  { href: "/custom-projects", name: "Custom work", price: "Custom quote", line: "A tool or training plan, scoped on the call." },
+];
+
+export function PriceTeaser() {
+  return (
+    <section className="band rise" id="pricing">
+      <div className="wrap">
+        <h2 className="section-title offer-heading">Simple starting prices</h2>
+        <div className="price-cards">
+          {prices.map((item) => (
+            <Link key={item.href} href={item.href} className="price-card">
+              <h3>{item.name}</h3>
+              <p className="card-price">{item.price}</p>
+              <p>{item.line}</p>
+              <span>See how it works &gt;</span>
+            </Link>
+          ))}
+        </div>
+        <p className="type-body">Every project starts with a free 15-min call.</p>
+        <Actions location="pricing" />
       </div>
     </section>
   );
@@ -212,8 +272,8 @@ export function FinalCta() {
   return (
     <section className="band cta-band">
       <div className="wrap">
-        <h2 className="type-h2">Ready for a call?</h2>
-        <p className="type-body">15 minutes. We will tell you the first thing to set up.</p>
+        <h2 className="type-h2">Never miss another customer.</h2>
+        <p className="type-body">Book a free 15 minute call. We will tell you the first thing to set up.</p>
         <Actions />
       </div>
     </section>

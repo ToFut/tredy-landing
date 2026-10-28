@@ -16,8 +16,24 @@ export function GET(request: Request) {
           padding: "72px",
         }}
       >
-        <div style={{ fontSize: 28, color: "#6e6e73" }}>Futurix</div>
-        <div style={{ fontSize: 64, lineHeight: 1.05, letterSpacing: -2, maxWidth: 980 }}>{title}</div>
+        <div style={{ display: "flex", alignItems: "center", gap: 16, fontSize: 28 }}>
+          <div
+            style={{
+              width: 48,
+              height: 48,
+              borderRadius: 12,
+              background: "#1d1d1f",
+              color: "#fff",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            F
+          </div>
+          Futurix
+        </div>
+        <div style={{ fontSize: 60, lineHeight: 1.05, letterSpacing: -2, maxWidth: 980 }}>{title}</div>
         <div style={{ fontSize: 24, color: "#0071e3" }}>futurixs.com</div>
       </div>
     ),
