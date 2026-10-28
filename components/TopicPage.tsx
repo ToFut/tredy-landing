@@ -1,5 +1,3 @@
-import { existsSync } from "node:fs";
-import path from "node:path";
 import Image from "next/image";
 import Link from "next/link";
 import { TryItLive } from "@/components/demo/TryItLive";
@@ -169,18 +167,15 @@ export function TopicPage({ page }: { page: TopicPageData }) {
 }
 
 function Founder() {
-  const ready = existsSync(path.join(process.cwd(), "public", "segev-halfon.jpg"));
   return (
     <section className="founder">
-      {ready ? (
-        <Image
-          src="/segev-halfon.jpg"
-          alt="Segev Halfon"
-          width={160}
-          height={160}
-          className="founder-photo"
-        />
-      ) : null}
+      <Image
+        src="/segev-halfon.jpg"
+        alt="Segev Halfon, founder of Futurix"
+        width={160}
+        height={160}
+        className="founder-photo"
+      />
       <p className="kicker">Founder</p>
       <h2>Segev Halfon</h2>
       <p>MSc CS (AI), Technion. Senior software engineer, Israeli Air Force Ofek 324.</p>
