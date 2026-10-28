@@ -2,7 +2,8 @@ import Link from "next/link";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Contact } from "@/components/sections";
 import { JsonLd } from "@/components/JsonLd";
-import { bookCallHref, site } from "@/lib/content";
+import { BookLink } from "@/components/ui/Actions";
+import { site } from "@/lib/content";
 import { articleJsonLd } from "@/lib/seo";
 import type { Post } from "@/lib/types";
 
@@ -56,10 +57,7 @@ export function ArticlePage({ post }: { post: Post }) {
             </div>
           </section>
           <p className="topic-cta">
-            <Link className="btn btn-solid" href={bookCallHref}>
-              Get your free AI plan
-              <span aria-hidden="true"> →</span>
-            </Link>
+            <BookLink location="article" />
           </p>
           <p className="topic-links">
             <Link href="/blog">All notes</Link>

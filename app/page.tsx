@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { TryItLive } from "@/components/demo/TryItLive";
+import { DeferredTry } from "@/components/demo/DeferredTry";
+import { DemoLoop } from "@/components/demo/DemoLoop";
 import { CaseStudies, FinalCta, HomeHero, HowWeWork, ModelStrip, OfferingCards } from "@/components/home/Marketing";
 import { JsonLd } from "@/components/JsonLd";
 import { Actions } from "@/components/ui/Actions";
@@ -25,8 +26,9 @@ export default function Page() {
           <p className="eyebrow">Live demo</p>
           <h2 className="type-h2">Try it: hear an AI answer your phone</h2>
           <p className="type-body">Record 10 seconds, name the business, and hear the call. The voice is deleted after the demo.</p>
+          <DemoLoop />
         </div>
-        <TryItLive anchor="try" heading={false} only={["voice"]} />
+        <DeferredTry anchor="try" heading={false} only={["voice"]} />
         <div className="wrap">
           <Actions demoHref="#try" />
         </div>

@@ -4,6 +4,7 @@ import { TryItLive } from "@/components/demo/TryItLive";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { JsonLd } from "@/components/JsonLd";
 import { Contact } from "@/components/sections";
+import { IndustryStory } from "@/components/industries/IndustryStory";
 import { Actions } from "@/components/ui/Actions";
 import { aboutJsonLd, industryJsonLd, serviceJsonLd } from "@/lib/seo";
 import type { BusinessId } from "@/lib/start";
@@ -62,7 +63,7 @@ export function TopicPage({ page }: { page: TopicPageData }) {
             <Breadcrumbs items={page.crumbs} />
             <h1>{page.h1}</h1>
             <p className="hero-sub">{plainLine(page)}</p>
-            {page.path === "/voice-agents" ? <p className="card-price">From $1,800</p> : null}
+            {page.path === "/voice-agents" || page.kind === "industry" ? <p className="card-price">From $1,800</p> : null}
             {page.path === "/ai-assistants" ? <p className="card-price">From $1,200</p> : null}
             <Actions demoHref={hasDemo ? "#try" : undefined} />
           </div>
@@ -72,6 +73,7 @@ export function TopicPage({ page }: { page: TopicPageData }) {
         {preset ? (
           <TryItLive initialTab="voice" only={["voice", "assistant"]} presetIndustry={preset} />
         ) : null}
+        {page.kind === "industry" ? <IndustryStory path={page.path} /> : null}
         <section className="section">
           <div className="wrap">
             <h2 className="section-title">{page.kind === "industry" ? "Use cases" : "What you get"}</h2>

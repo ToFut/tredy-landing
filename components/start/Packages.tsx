@@ -1,5 +1,5 @@
 import { CalendarCheck, GraduationCap, Inbox, Phone } from "lucide-react";
-import Link from "next/link";
+import { BookLink } from "@/components/ui/Actions";
 import { packages } from "@/lib/start";
 
 const packageIcons = [Phone, CalendarCheck, Inbox, GraduationCap];
@@ -25,9 +25,7 @@ export function Packages() {
                   ))}
                 </ul>
                 <p className="price-note">Pricing on a quick call</p>
-                <Link className="btn btn-solid btn-lg" href="/get-started">
-                  Start setup
-                </Link>
+                <BookLink location="packages" />
               </article>
             );
           })}

@@ -9,7 +9,7 @@ import "./globals.css";
 import "./apple.css";
 import "./screens.css";
 import "./system.css";
-import { BookLink } from "@/components/ui/Actions";
+import { BookLink, BookModal } from "@/components/ui/Actions";
 
 const sans = Geist({
   subsets: ["latin"],
@@ -46,8 +46,12 @@ export const metadata: Metadata = {
     description: site.description,
   },
   robots: { index: true, follow: true },
-  ...(process.env.NEXT_PUBLIC_GSC_VERIFICATION
-    ? { verification: { google: process.env.NEXT_PUBLIC_GSC_VERIFICATION } }
+  ...(process.env.GOOGLE_SITE_VERIFICATION || process.env.NEXT_PUBLIC_GSC_VERIFICATION
+    ? {
+        verification: {
+          google: process.env.GOOGLE_SITE_VERIFICATION || process.env.NEXT_PUBLIC_GSC_VERIFICATION,
+        },
+      }
     : {}),
 };
 
@@ -70,7 +74,8 @@ export default function RootLayout({
         <Header />
         <main id="main">{children}</main>
         <Footer />
-        <BookLink className="sticky-cta btn btn-primary" />
+        <BookLink className="sticky-cta btn btn-primary" location="sticky" />
+        <BookModal />
         <Analytics />
       </body>
     </html>

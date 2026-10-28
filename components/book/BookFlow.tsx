@@ -2,6 +2,7 @@
 
 import { FormEvent, useState } from "react";
 import { planLabel } from "@/lib/content";
+import { track } from "@/lib/track";
 
 const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
 const windows = ["Morning", "Afternoon", "Evening"];
@@ -27,6 +28,7 @@ export function BookFlow() {
       setError(payload.error || "Could not save your request. Try again.");
       return;
     }
+    track("book_submit");
     setStep(3);
   }
 
@@ -40,7 +42,7 @@ export function BookFlow() {
 
   return (
     <form className="book-form" onSubmit={step === 2 ? submit : (event) => event.preventDefault()}>
-      <div className="step-bar" role="progressbar" aria-valuemin={1} aria-valuemax={2} aria-valuenow={step}>
+      <div className="step-bar" role="progressbar" aria-label="Booking progress" aria-valuemin={1} aria-valuemax={2} aria-valuenow={step}>
         <span style={{ width: step === 1 ? "50%" : "100%" }} />
       </div>
       <p className="type-small">Step {step} of 2</p>
@@ -58,7 +60,10 @@ export function BookFlow() {
             className="btn btn-primary"
             type="button"
             disabled={!name.trim() || !contact.trim()}
-            onClick={() => setStep(2)}
+            onClick={() => {
+              track("book_step_1");
+              setStep(2);
+            }}
           >
             Continue
           </button>

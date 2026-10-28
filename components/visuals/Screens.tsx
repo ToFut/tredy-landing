@@ -1,5 +1,3 @@
-"use client";
-
 import { useId, type RefObject } from "react";
 
 function initials(name: string) {

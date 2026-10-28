@@ -10,7 +10,7 @@ export const industryPages: TopicPageData[] = [
     title: "AI Receptionist for Roofing Companies | Futurix",
     description:
       "An AI receptionist for roofing companies that answers storm calls, books inspections, and captures leads when the crew is on a roof. Built by Futurix.",
-    h1: "An AI receptionist for roofing companies",
+    h1: "AI receptionist for roofing companies",
     lede: [
       `${entity}, builds an AI receptionist for roofing companies that answers when the office cannot. Storm calls, inspection requests, and "do you cover my area" questions get a next step instead of a missed ring.`,
       "The agent books or logs the job in the tools the office already uses. A person still takes the calls that need a person.",
@@ -57,6 +57,11 @@ export const industryPages: TopicPageData[] = [
     ],
     faqs: [
       {
+        question: "What does an AI receptionist for a roofing company cost?",
+        answer:
+          "A voice receptionist starts at $1,800. The free 15 minute call is where we scope the first version for your office. There is no charge for that call.",
+      },
+      {
         question: "Can an AI receptionist for roofing companies book inspections?",
         answer:
           "Yes, when you want it to. Futurix connects the agent to the calendar and the rules for which visits can be booked without a person.",
@@ -92,10 +97,10 @@ export const industryPages: TopicPageData[] = [
   {
     path: "/industries/home-services",
     kind: "industry",
-    title: "AI Answering Service for HVAC and Home Services | Futurix",
+    title: "AI Receptionist for Plumbing, HVAC, and Electrical | Futurix",
     description:
       "AI answering for HVAC and home service businesses. Emergency calls, maintenance visits, and lead capture, connected to the dispatch tools you already use.",
-    h1: "An AI answering service for HVAC and home service businesses",
+    h1: "AI receptionist for plumbing, HVAC, and electrical companies",
     lede: [
       `${entity}, builds an AI answering service for HVAC companies and other home service businesses. No-heat, no-cool, and other urgent calls get a real next step when the dispatcher is already on a job.`,
       "The same pattern fits plumbing, electrical, and similar trades: qualify the call, book or dispatch within your rules, and write it into the system the office already trusts.",
@@ -142,6 +147,11 @@ export const industryPages: TopicPageData[] = [
     ],
     faqs: [
       {
+        question: "What does an AI receptionist for plumbing, HVAC, or electrical cost?",
+        answer:
+          "A voice receptionist starts at $1,800. The free 15 minute call is where we scope the first version. There is no charge for that call.",
+      },
+      {
         question: "Is this an AI answering service for HVAC, or a generic call bot?",
         answer:
           "It is built for HVAC and home service calls. The questions, the emergency rules, and the booking windows are yours, not a generic script.",
@@ -177,10 +187,10 @@ export const industryPages: TopicPageData[] = [
   {
     path: "/industries/real-estate",
     kind: "industry",
-    title: "AI Voice Agents and Chatbots for Real Estate | Futurix",
+    title: "AI Receptionist for Real Estate Teams | Futurix",
     description:
       "AI voice agents for real estate and a chatbot for agent and team inquiries. Showing requests, lead capture, and follow-up, connected to your CRM.",
-    h1: "AI voice agents and a chatbot for real estate teams",
+    h1: "AI receptionist for real estate teams",
     lede: [
       `${entity}, builds AI voice agents for real estate teams that answer buyer and seller calls when the agent is in a showing. A chatbot for real estate agents covers the same questions in text, on the site or in the inbox, from listing facts you approve.`,
       "The goal is a captured lead and a booked next step, written into the CRM and calendar you already use.",
@@ -227,6 +237,11 @@ export const industryPages: TopicPageData[] = [
     ],
     faqs: [
       {
+        question: "What does an AI receptionist for a real estate team cost?",
+        answer:
+          "A voice receptionist starts at $1,800. The free 15 minute call is where we scope the first version. There is no charge for that call.",
+      },
+      {
         question: "What is an AI voice agent for real estate?",
         answer:
           "It answers buyer and seller calls, asks the qualifying questions you set, and books or records the next step in your CRM and calendar. Futurix builds that flow for the team.",
@@ -265,7 +280,7 @@ export const industryPages: TopicPageData[] = [
     title: "AI Receptionist for Property Management | Futurix",
     description:
       "An AI receptionist for property management teams. Maintenance requests, leasing calls, and after hours emergencies, logged into the systems you already use.",
-    h1: "An AI receptionist for property management",
+    h1: "AI receptionist for property management companies",
     lede: [
       `${entity}, builds an AI receptionist for property management teams. Residents, owners, and prospects reach a line that can take a maintenance request, answer a leasing question, or flag an emergency.`,
       "The note lands in the work-order or leasing tools you already use. Staff still handle judgments, vendors, and anything the rules mark for a person.",
@@ -310,6 +325,11 @@ export const industryPages: TopicPageData[] = [
       },
     ],
     faqs: [
+      {
+        question: "What does an AI receptionist for a property management company cost?",
+        answer:
+          "A voice receptionist starts at $1,800. The free 15 minute call is where we scope the first version. There is no charge for that call.",
+      },
       {
         question: "What does an AI receptionist for property management answer?",
         answer:

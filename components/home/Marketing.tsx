@@ -59,7 +59,7 @@ export function HomeHero() {
             <li>Books appointments</li>
             <li>Texts you a summary</li>
           </ul>
-          <Actions demoHref="/#demo" />
+          <Actions demoHref="/#demo" location="hero" />
         </div>
         <div className="span-5 hero-phone">
           <IphoneCall

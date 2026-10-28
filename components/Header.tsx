@@ -11,6 +11,10 @@ const offerings = [
   { href: "/ai-assistants", label: "AI Assistants" },
   { href: "/custom-projects", label: "Custom Projects" },
   { href: "/ai-enablement", label: "AI Enablement" },
+  { href: "/industries/roofing", label: "Roofing" },
+  { href: "/industries/home-services", label: "Home services" },
+  { href: "/industries/real-estate", label: "Real estate" },
+  { href: "/industries/property-management", label: "Property management" },
 ];
 
 export function Header() {
@@ -54,7 +58,7 @@ export function Header() {
             About
           </Link>
         </nav>
-        <BookLink className="btn btn-primary header-cta" />
+        <BookLink className="btn btn-primary header-cta" location="nav" />
         <button
           type="button"
           className="nav-toggle"

@@ -3,7 +3,8 @@ import Link from "next/link";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { JsonLd } from "@/components/JsonLd";
 import { Contact } from "@/components/sections";
-import { bookCallHref, site } from "@/lib/content";
+import { BookLink } from "@/components/ui/Actions";
+import { site } from "@/lib/content";
 import { posts } from "@/lib/posts";
 import { breadcrumbOnlyJsonLd, pageMetadata } from "@/lib/seo";
 
@@ -50,10 +51,7 @@ export default function BlogIndexPage() {
             ))}
           </ul>
           <p className="topic-cta">
-            <Link className="btn btn-solid" href={bookCallHref}>
-              Get your free AI plan
-              <span aria-hidden="true"> →</span>
-            </Link>
+            <BookLink location="blog" />
           </p>
         </div>
       </article>

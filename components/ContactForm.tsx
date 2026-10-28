@@ -73,7 +73,7 @@ export function ContactForm() {
         <textarea name="message" rows={5} required />
       </label>
       <button className="btn btn-paper" type="submit">
-        Get your free AI plan
+        Send a note
         <span aria-hidden="true"> →</span>
       </button>
       <p className="form-note">

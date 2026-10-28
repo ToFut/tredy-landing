@@ -1,10 +1,12 @@
 import Link from "next/link";
 import { ContactForm } from "@/components/ContactForm";
+import { BookLink } from "@/components/ui/Actions";
 import { HeroDiagram, OfferingDiagram, WorkArt } from "@/components/Diagrams";
 import { industryPages } from "@/lib/industries";
 import {
   approach,
   bookCallHref,
+  planLabel,
   faqs,
   here,
   offerings,
@@ -39,7 +41,7 @@ export function Hero() {
           </p>
           <div className="hero-actions">
             <Link className="btn btn-solid" href={bookCallHref}>
-              Get your free AI plan
+              {planLabel}
               <span aria-hidden="true"> →</span>
             </Link>
             <Link className="btn btn-ghost" href="#work">
@@ -95,7 +97,7 @@ export function Here() {
         <p>{here.body}</p>
         <p>{here.support}</p>
         <Link className="btn btn-paper" href={bookCallHref}>
-          Get your free AI plan
+          {planLabel}
           <span aria-hidden="true"> →</span>
         </Link>
       </div>
@@ -359,11 +361,12 @@ export function Contact() {
       <div className="wrap contact-grid">
         <div>
           <p className="kicker kicker-gold">Contact</p>
-          <h2>Get your free AI plan</h2>
+          <h2>Book a free 15-min call</h2>
           <p>
             Tell us which offering you have in mind, and what the work is. If a first version
             is worth building, we will say so.
           </p>
+          <BookLink location="contact" />
           <p className="contact-who">
             Segev Halfon leads Futurix.
             <br />

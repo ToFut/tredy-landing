@@ -4,6 +4,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { AppWindow, Inbox, Phone, Sparkles } from "lucide-react";
 import { useRef, useState, type ReactNode } from "react";
 import { BookLink } from "@/components/ui/Actions";
+import { track } from "@/lib/track";
 import { IphoneCall, OpsDashboard, RolloutBoard, TeamThread, WhatsAppThread } from "@/components/visuals/Screens";
 import type { BusinessId } from "@/lib/start";
 import type { CallLine, CallSummary } from "@/lib/demo/templates";
@@ -158,6 +159,7 @@ function VoiceDemo({
   const greet = `Hi, thanks for calling ${label}. How can I help you today?`;
 
   async function record() {
+    track("demo_start");
     setError("");
     let stream: MediaStream;
     try {
@@ -217,6 +219,7 @@ function VoiceDemo({
       if (!response.ok) throw new Error(payload.error || `Voice API failed (${response.status}).`);
       setVoiceId(payload.voiceId);
       setCloned(Boolean(payload.cloned));
+      if (payload.cloned) track("demo_voice_cloned");
       await speakClone(payload.voiceId);
     } catch (reason) {
       setPhase("error");
@@ -271,6 +274,7 @@ function VoiceDemo({
     }
     setLines(script.lines);
     setSummary(script.summary);
+    track("demo_call_played");
     setStep(3);
     await wait(80);
     const callResponse = await fetch("/api/demo/call", {
@@ -400,6 +404,7 @@ function VoiceDemo({
               {callError ? <p className="form-error" role="alert">{callError}</p> : null}
             </>
           ) : null}
+          {phase === "call" ? <p className="status-line">Playing the call for {label}.</p> : null}
           {phase === "summary" && summary ? (
             <BookLink />
           ) : null}
