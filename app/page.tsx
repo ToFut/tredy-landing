@@ -25,11 +25,12 @@ export default function Page() {
         <div className="wrap">
           <p className="eyebrow">Live demo</p>
           <h2 className="type-h2">Try it: hear an AI answer your phone</h2>
-          <p className="type-body">Record 10 seconds, name the business, and hear the call. The voice is deleted after the demo.</p>
-          <DemoLoop />
+          <p className="type-body">Three steps. The voice is deleted after the demo.</p>
         </div>
         <DeferredTry anchor="try" heading={false} only={["voice"]} />
         <div className="wrap">
+          <p className="type-small">A sample of that demo.</p>
+          <DemoLoop />
           <Actions demoHref="#try" />
         </div>
       </section>

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { PlatformMarquee } from "@/components/home/PlatformMarquee";
-import { IphoneCall, OpsDashboard, RolloutBoard, TeamThread } from "@/components/visuals/Screens";
+import { IphoneCall } from "@/components/visuals/Screens";
 import { Actions } from "@/components/ui/Actions";
 
 const offerings = [
@@ -28,7 +28,7 @@ const offerings = [
     title: "Custom Projects",
     line: "Software built for how you work",
     detail: "A portal or tool shaped to the job you already do.",
-    price: "",
+    price: "Custom quote",
     link: "See projects",
   },
   {
@@ -37,7 +37,7 @@ const offerings = [
     title: "AI Enablement",
     line: "Train your team to use AI",
     detail: "A short plan and training so the team actually uses it.",
-    price: "",
+    price: "Custom quote",
     link: "See training",
   },
 ];
@@ -59,7 +59,7 @@ export function HomeHero() {
             <li>Books appointments</li>
             <li>Texts you a summary</li>
           </ul>
-          <Actions demoHref="/#demo" location="hero" />
+          <Actions demoHref="/#demo" location="hero" hero />
         </div>
         <div className="span-5 hero-phone">
           <IphoneCall
@@ -87,15 +87,13 @@ export function OfferingCards() {
         <div className="offer-cards">
           {offerings.map((item) => (
             <Link key={item.href} href={item.href} className="offer-card">
-              <div className="offer-visual" aria-hidden="true">
+              <div className="offer-frame" aria-hidden="true">
                 <OfferArt kind={item.index} />
               </div>
-              <p className="kicker">
-                {item.index} · {item.title}
-              </p>
+              <p className="kicker">{item.index}</p>
               <h3>{item.line}</h3>
               <p>{item.detail}</p>
-              {item.price ? <p className="card-price">{item.price}</p> : null}
+              <p className="card-price">{item.price}</p>
               <span className="see-how">See how it works &gt;</span>
             </Link>
           ))}
@@ -109,45 +107,46 @@ export function OfferingCards() {
 function OfferArt({ kind }: { kind: string }) {
   if (kind === "01") {
     return (
-      <IphoneCall
-        name="North Roofing"
-        caption="Thursday 10:30 or Friday 2:00. Which works?"
-        callerLine="Can someone look at a leak this week?"
-        timer="00:18"
-      />
+      <div className="mini-phone">
+        <b>Incoming call</b>
+        <span>Answered by AI</span>
+      </div>
     );
   }
   if (kind === "02") {
     return (
-      <TeamThread
-        channel="inbox"
-        messages={[
-          { author: "Alex Kim", time: "9:14 AM", text: "The patch from last week is dripping again." },
-          { author: "Futurix assistant", time: "9:14 AM", text: "We can come back Thursday at 10 AM." },
-        ]}
-      />
+      <div className="mini-sms">
+        <p>We can come Thursday at 10. Reply YES to book.</p>
+        <small>SMS 9:14</small>
+      </div>
     );
   }
   if (kind === "03") {
     return (
-      <OpsDashboard
-        title="North Roofing"
-        rows={[
-          { status: "New", job: "Leak on Oak Street", when: "Today" },
-          { status: "Scheduled", job: "Estimate, Thursday", when: "Thu 10:00" },
-        ]}
-      />
+      <table className="mini-board">
+        <tbody>
+          <tr>
+            <td>New</td>
+            <td>Leak on Oak</td>
+          </tr>
+          <tr>
+            <td>Set</td>
+            <td>Thu 10:00</td>
+          </tr>
+          <tr>
+            <td>Done</td>
+            <td>Ridge cap</td>
+          </tr>
+        </tbody>
+      </table>
     );
   }
   return (
-    <RolloutBoard
-      step="First version"
-      items={[
-        { label: "Name the one workflow", state: "Yes" },
-        { label: "A person reviews the result", state: "Yes" },
-        { label: "Rules written down", state: "Open" },
-      ]}
-    />
+    <ul className="mini-check">
+      <li>Name the workflow</li>
+      <li>A person reviews it</li>
+      <li>Rules are written</li>
+    </ul>
   );
 }
 

@@ -1,8 +1,10 @@
-import { TopicPage } from "@/components/TopicPage";
+import { ServiceView } from "@/components/services/ServiceView";
 import { getServicePage } from "@/lib/service-pages";
+import { getServiceView } from "@/lib/service-views";
 import { pageMetadata } from "@/lib/seo";
 
 const page = getServicePage("/voice-agents");
+const spec = getServiceView("/voice-agents")!;
 
 export const metadata = pageMetadata({
   title: page!.title,
@@ -11,5 +13,5 @@ export const metadata = pageMetadata({
 });
 
 export default function VoiceAgentsPage() {
-  return <TopicPage page={page!} />;
+  return <ServiceView spec={spec} />;
 }

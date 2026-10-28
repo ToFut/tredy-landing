@@ -1,8 +1,10 @@
-import { TopicPage } from "@/components/TopicPage";
+import { ServiceView } from "@/components/services/ServiceView";
 import { getServicePage } from "@/lib/service-pages";
+import { getServiceView } from "@/lib/service-views";
 import { pageMetadata } from "@/lib/seo";
 
 const page = getServicePage("/ai-assistants");
+const spec = getServiceView("/ai-assistants")!;
 
 export const metadata = pageMetadata({
   title: page!.title,
@@ -10,6 +12,6 @@ export const metadata = pageMetadata({
   path: page!.path,
 });
 
-export default function AiAssistantsPage() {
-  return <TopicPage page={page!} />;
+export default function AssistantsPage() {
+  return <ServiceView spec={spec} />;
 }

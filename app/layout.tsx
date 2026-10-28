@@ -9,7 +9,7 @@ import "./globals.css";
 import "./apple.css";
 import "./screens.css";
 import "./system.css";
-import { BookLink, BookModal } from "@/components/ui/Actions";
+import { BookModal, StickyBook } from "@/components/ui/Actions";
 
 const sans = Geist({
   subsets: ["latin"],
@@ -74,7 +74,7 @@ export default function RootLayout({
         <Header />
         <main id="main">{children}</main>
         <Footer />
-        <BookLink className="sticky-cta btn btn-primary" location="sticky" />
+        <StickyBook />
         <BookModal />
         <Analytics />
       </body>

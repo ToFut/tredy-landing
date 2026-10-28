@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import { AppWindow, Inbox, Phone, Sparkles } from "lucide-react";
 import { useRef, useState, type ReactNode } from "react";
@@ -140,14 +141,13 @@ function VoiceDemo({
   const [step, setStep] = useState(1);
   const [consent, setConsent] = useState(false);
   const [businessName, setBusinessName] = useState("");
-  const [website, setWebsite] = useState("");
+  const website = "";
   const [industry, setIndustry] = useState<BusinessId>(presetIndustry);
   const [phase, setPhase] = useState<"idle" | "recording" | "cloning" | "error" | "hear" | "call" | "summary">("idle");
   const [left, setLeft] = useState(10);
   const [error, setError] = useState("");
   const [voiceId, setVoiceId] = useState<string | null>(null);
   const [cloned, setCloned] = useState(false);
-  const [greetUrl, setGreetUrl] = useState<string | null>(null);
   const [lines, setLines] = useState<CallLine[]>([]);
   const [summary, setSummary] = useState<CallSummary | null>(null);
   const [shown, setShown] = useState(0);
@@ -227,24 +227,6 @@ function VoiceDemo({
     }
   }
 
-  async function chooseDemoVoice() {
-    setError("");
-    setPhase("cloning");
-    try {
-      const body = new FormData();
-      body.set("fallback", "yes");
-      const response = await fetch("/api/demo/voice", { method: "POST", body });
-      const payload = await response.json();
-      if (!response.ok) throw new Error(payload.error || `Voice API failed (${response.status}).`);
-      setVoiceId(payload.voiceId);
-      setCloned(false);
-      await speakClone(payload.voiceId);
-    } catch (reason) {
-      setPhase("error");
-      setError(reason instanceof Error ? reason.message : "Demo voice failed.");
-    }
-  }
-
   async function speakClone(id: string) {
     const response = await fetch("/api/demo/tts", {
       method: "POST",
@@ -253,12 +235,12 @@ function VoiceDemo({
     });
     const payload = await response.json();
     if (!response.ok) throw new Error(payload.error || `Speech failed (${response.status}).`);
-    setGreetUrl(payload.audio);
     setPhase("hear");
+    setStep(3);
     await playWithWave(payload.audio, waveRef.current);
   }
 
-  async function buildCall() {
+  async function buildCall(id = voiceId, wasCloned = cloned) {
     setCallError("");
     setPhase("call");
     setShown(0);
@@ -280,7 +262,7 @@ function VoiceDemo({
     const callResponse = await fetch("/api/demo/call", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ voiceId, cloned, industry, lines: script.lines }),
+      body: JSON.stringify({ voiceId: id, cloned: wasCloned, industry, lines: script.lines }),
     });
     const call = await callResponse.json();
     if (!callResponse.ok) {
@@ -300,6 +282,27 @@ function VoiceDemo({
     setPhase("summary");
   }
 
+  async function skipSample() {
+    setError("");
+    setCallError("");
+    setStep(3);
+    setPhase("cloning");
+    try {
+      const body = new FormData();
+      body.set("fallback", "yes");
+      const response = await fetch("/api/demo/voice", { method: "POST", body });
+      const payload = await response.json();
+      if (!response.ok) throw new Error(payload.error || `Voice API failed (${response.status}).`);
+      setVoiceId(payload.voiceId);
+      setCloned(false);
+      await buildCall(payload.voiceId, false);
+    } catch (reason) {
+      setPhase("error");
+      setStep(2);
+      setError(reason instanceof Error ? reason.message : "Sample call failed.");
+    }
+  }
+
   const callerLine = lines.find((line) => line.speaker !== "agent")?.text;
   const spoken = lines.slice(0, shown).filter((line) => line.speaker === "agent").at(-1)?.text;
   const device =
@@ -314,104 +317,116 @@ function VoiceDemo({
       />
     ) : (
       <IphoneCall
-        name={businessName.trim() || "North Roofing"}
-        caption={spoken || greet}
-        callerLine={step >= 3 ? callerLine : "Can someone look at a leak this week?"}
-        timer={phase === "recording" ? `0:0${Math.max(0, 10 - left)}` : phase === "cloning" ? "Cloning" : "00:12"}
-        live={phase !== "error"}
+        name={label}
+        caption={step >= 3 ? spoken || "Incoming call, answered by AI" : "Incoming call, answered by AI"}
+        callerLine={step >= 3 ? callerLine : undefined}
+        timer={phase === "recording" ? `0:0${Math.max(0, 10 - left)}` : phase === "call" ? "00:12" : "00:00"}
+        live={phase === "recording" || phase === "call"}
         waveRef={waveRef}
       />
     );
 
   return (
-    <Stage
-      controls={
-        <>
-          {compact ? null : (
-          <ol className="step-meter">
-            {["Record", "Business", "The call", "Your phone"].map((item, index) => (
-              <li key={item} className={step === index + 1 ? "now" : step > index + 1 ? "done" : ""}>
-                <span>{index + 1}</span>
-                {item}
-              </li>
-            ))}
-          </ol>
-          )}
-          {step === 1 ? (
-            <>
-              <label>
-                Business name
-                <input value={businessName} onChange={(event) => setBusinessName(event.target.value)} placeholder="Your company" />
-              </label>
-              <p className="read-script">{greet}</p>
-              <label className="consent">
-                <input type="checkbox" checked={consent} onChange={(event) => setConsent(event.target.checked)} />
-                <span>This is my voice. Use it for this demo, then delete it.</span>
-              </label>
-              <button
-                type="button"
-                className="btn btn-solid btn-lg"
-                disabled={!consent || !businessName.trim() || phase === "recording" || phase === "cloning" || phase === "hear"}
-                onClick={() => void record()}
-              >
-                {phase === "recording" ? `Listening ${left}s` : phase === "cloning" ? "Cloning your voice..." : "Record 10 seconds"}
-              </button>
-              {phase === "cloning" ? <p className="status-line">Cloning your voice...</p> : null}
-              {phase === "error" ? (
-                <div className="form-error" role="alert">
-                  <p>{error}</p>
-                  <button type="button" className="btn btn-ghost btn-lg" onClick={() => void chooseDemoVoice()}>
-                    Use the demo voice instead
-                  </button>
-                </div>
-              ) : null}
-              {phase === "hear" ? (
-                <button type="button" className="btn btn-solid btn-lg" onClick={() => setStep(2)}>
-                  Continue
+    <>
+      {compact ? null : (
+        <ol className="demo-guide">
+          <li>
+            <b>1</b> Type your business name.
+          </li>
+          <li>
+            <b>2</b> Read one sentence aloud (10 sec) to clone your voice.
+          </li>
+          <li>
+            <b>3</b> Hear your AI receptionist answer a call.
+          </li>
+        </ol>
+      )}
+      <Stage
+        controls={
+          <>
+            {compact ? null : (
+              <ol className="step-meter" aria-label="Demo progress">
+                {["Business", "Voice", "Call", "Summary"].map((item, index) => (
+                  <li key={item} className={step === index + 1 ? "now" : step > index + 1 ? "done" : ""}>
+                    <span>{index + 1}</span>
+                    {item}
+                  </li>
+                ))}
+              </ol>
+            )}
+            {step === 1 ? (
+              <>
+                <label>
+                  Business name
+                  <input value={businessName} onChange={(event) => setBusinessName(event.target.value)} placeholder="Harbor Roofing" />
+                </label>
+                <label>
+                  Industry
+                  <select value={industry} onChange={(event) => setIndustry(event.target.value as BusinessId)}>
+                    <option value="roofing">Roofing</option>
+                    <option value="home-services">HVAC and home services</option>
+                    <option value="real-estate">Real estate</option>
+                    <option value="property">Property management</option>
+                    <option value="insurance">Insurance agency</option>
+                    <option value="other">Other</option>
+                  </select>
+                </label>
+                <button className="btn btn-primary btn-lg" type="button" disabled={!businessName.trim()} onClick={() => setStep(2)}>
+                  Next
                 </button>
-              ) : null}
-              {greetUrl && phase === "hear" ? (
-                <button type="button" className="btn btn-ghost btn-lg" onClick={() => void playWithWave(greetUrl, waveRef.current)}>
-                  Play again
+              </>
+            ) : null}
+            {step === 2 ? (
+              <>
+                <p className="read-script">{greet}</p>
+                <label className="consent">
+                  <input type="checkbox" checked={consent} onChange={(event) => setConsent(event.target.checked)} />
+                  <span>This is my voice. Use it for this demo, then delete it.</span>
+                </label>
+                <button
+                  className="btn btn-primary btn-lg"
+                  type="button"
+                  disabled={!consent || phase === "recording" || phase === "cloning"}
+                  onClick={() => void record()}
+                >
+                  {phase === "recording" ? `Recording ${left}s` : phase === "cloning" ? "Cloning your voice..." : "Start recording"}
                 </button>
-              ) : null}
-            </>
-          ) : null}
-          {step === 2 ? (
-            <>
-              <label>
-                Business name
-                <input value={businessName} onChange={(event) => setBusinessName(event.target.value)} />
-              </label>
-              <label>
-                Website, optional
-                <input value={website} onChange={(event) => setWebsite(event.target.value)} placeholder="https://" />
-              </label>
-              <label>
-                Industry
-                <select value={industry} onChange={(event) => setIndustry(event.target.value as BusinessId)}>
-                  <option value="roofing">Roofing</option>
-                  <option value="home-services">HVAC/Home services</option>
-                  <option value="real-estate">Real estate</option>
-                  <option value="property">Property management</option>
-                  <option value="insurance">Insurance agency</option>
-                  <option value="other">Other</option>
-                </select>
-              </label>
-              <button type="button" className="btn btn-solid btn-lg" onClick={() => void buildCall()}>
-                Play the call
-              </button>
-              {callError ? <p className="form-error" role="alert">{callError}</p> : null}
-            </>
-          ) : null}
-          {phase === "call" ? <p className="status-line">Playing the call for {label}.</p> : null}
-          {phase === "summary" && summary ? (
-            <BookLink />
-          ) : null}
-        </>
-      }
-      device={device}
-    />
+                {error ? (
+                  <p className="form-error" role="alert">
+                    {error}
+                  </p>
+                ) : null}
+                <button className="text-btn" type="button" onClick={() => void skipSample()}>
+                  Skip, hear a sample call
+                </button>
+              </>
+            ) : null}
+            {step === 3 && phase !== "summary" ? (
+              <>
+                <p className="type-body">Hear {label} answer a caller.</p>
+                <button className="btn btn-primary btn-lg" type="button" disabled={phase === "call" || phase === "cloning"} onClick={() => void buildCall()}>
+                  {phase === "call" ? "Playing the call" : phase === "cloning" ? "Getting a sample voice..." : "Play the call"}
+                </button>
+                {callError ? (
+                  <p className="form-error" role="alert">
+                    {callError}
+                  </p>
+                ) : null}
+              </>
+            ) : null}
+            {phase === "summary" && summary ? (
+              <>
+                <p className="type-body">This is the summary your phone would get.</p>
+                <Link className="btn btn-primary" href="/book" onClick={() => track("cta_click", { location: "demo-summary" })}>
+                  Get this for my business
+                </Link>
+              </>
+            ) : null}
+          </>
+        }
+        device={device}
+      />
+    </>
   );
 }
 

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { CalEmbed } from "@/components/book/CalEmbed";
 import { bookCallHref, demoLabel, planLabel } from "@/lib/content";
@@ -12,10 +13,12 @@ export function BookLink({
   className = "btn btn-primary",
   onClick,
   location = "section",
+  hero = false,
 }: {
   className?: string;
   onClick?: () => void;
   location?: string;
+  hero?: boolean;
 }) {
   function open(event: { preventDefault: () => void }) {
     track("cta_click", { location });
@@ -27,23 +30,58 @@ export function BookLink({
   }
 
   return (
-    <Link className={className} href={bookCallHref} onClick={open}>
+    <Link className={className} href={bookCallHref} data-hero-cta={hero ? "" : undefined} onClick={open}>
       {planLabel}
     </Link>
   );
 }
 
-export function Actions({ demoHref, location = "section" }: { demoHref?: string; location?: string }) {
+export function Actions({
+  demoHref,
+  demoText,
+  location = "section",
+  hero = false,
+}: {
+  demoHref?: string;
+  demoText?: string;
+  location?: string;
+  hero?: boolean;
+}) {
   return (
     <div className="actions">
-      <BookLink location={location} />
+      <BookLink location={location} hero={hero} />
       {demoHref ? (
         <Link className="btn btn-secondary" href={demoHref}>
-          {demoLabel}
+          {demoText || demoLabel}
         </Link>
       ) : null}
     </div>
   );
+}
+
+export function StickyBook() {
+  const pathname = usePathname();
+  const [on, setOn] = useState(false);
+
+  useEffect(() => {
+    const target = document.querySelector("[data-hero-cta]");
+    if (!target) {
+      setOn(true);
+      return;
+    }
+    const watch = new IntersectionObserver(([entry]) => {
+      setOn(!entry?.isIntersecting);
+    });
+    watch.observe(target);
+    return () => watch.disconnect();
+  }, [pathname]);
+
+  useEffect(() => {
+    document.body.classList.toggle("sticky-on", on);
+    return () => document.body.classList.remove("sticky-on");
+  }, [on]);
+
+  return <BookLink className={on ? "sticky-cta btn btn-primary is-on" : "sticky-cta btn btn-primary"} location="sticky" />;
 }
 
 export function BookModal() {
