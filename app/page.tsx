@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-import { TryItLive } from "@/components/demo/TryItLive";
-import { FinalCta, HereBand, HomeHero, HowSteps, LogoMarquee, OfferBento } from "@/components/home/Marketing";
+import { CaseStudies, FinalCta, HereBand, HomeHero, LogoMarquee, OfferingBands, SetupBand } from "@/components/home/Marketing";
 import { JsonLd } from "@/components/JsonLd";
 import { Contact } from "@/components/sections";
 import { homeFaqs, site } from "@/lib/content";
@@ -17,15 +16,15 @@ export default function Page() {
     <>
       <JsonLd data={homeJsonLd()} />
       <HomeHero />
-      <TryItLive />
-      <OfferBento />
+      <OfferingBands />
       <HereBand />
       <LogoMarquee />
-      <HowSteps />
+      <CaseStudies />
+      <SetupBand />
       <FinalCta />
       <section id="faq" className="section">
         <div className="wrap topic-wrap">
-          <h2>Common questions</h2>
+          <h2 className="section-title">Questions</h2>
           <div className="faq-list">
             {homeFaqs.map((item) => (
               <details key={item.question}>

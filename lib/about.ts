@@ -26,7 +26,8 @@ export const aboutPage: TopicPageData = {
       bullets: [
         "Name: Futurix",
         "Place: Suffern, New York",
-        "Founder: Segev Halfon",
+        "Founder: Segev Halfon, MSc CS (AI), Technion",
+        "Earlier role: senior software engineer, Israeli Air Force Ofek 324",
         "Email: segev@futurixs.com",
         "Work: voice agents, custom projects, AI assistants, AI enablement",
         "Clients: US small and mid-size businesses",
@@ -35,8 +36,8 @@ export const aboutPage: TopicPageData = {
     {
       heading: "Who leads the work",
       paragraphs: [
-        "Segev Halfon leads Futurix and stays on the work, from the first look at a workflow through the build and the training. The public professional profile is on LinkedIn.",
-        "A first conversation is a 15-minute call. Bring the workflow. If a small version is worth building, we will say so. If it is not, we will say that too.",
+        "Segev Halfon is the founder. He holds an MSc in Computer Science, focused on AI, from the Technion. Before Futurix he was a senior software engineer in the Israeli Air Force, Ofek 324.",
+        "He stays on the work, from the first look at a workflow through the build and the training. A first conversation is a 15-minute call. Bring the workflow.",
       ],
     },
     {

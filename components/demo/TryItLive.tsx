@@ -74,24 +74,30 @@ export function TryItLive({
   initialTab = "voice",
   presetIndustry,
   only,
+  anchor = "try",
+  heading = true,
 }: {
   asPage?: boolean;
   initialTab?: TabId;
   presetIndustry?: BusinessId;
   only?: TabId[];
+  anchor?: string;
+  heading?: boolean;
 }) {
   const reduce = useReducedMotion();
   const [tab, setTab] = useState<TabId>(initialTab);
   const current = tabs.find((item) => item.id === tab) ?? tabs[0];
+  const visible = tabs.filter((item) => !only || only.includes(item.id));
 
   return (
-    <section id="try" className="try-live">
+    <section id={anchor} className={heading ? "try-live" : "try-live try-plain"}>
       <div className="wrap">
-        <p className="kicker">Try it live</p>
+        {heading ? <p className="kicker">Try it live</p> : null}
         {asPage ? <h1 className="hero-title">Try it live</h1> : null}
-        <h2 className="section-title">{current.title}</h2>
+        {heading ? <h2 className="section-title">{current.title}</h2> : null}
+        {visible.length > 1 ? (
         <div className="try-tabs" role="tablist">
-          {tabs.filter((item) => !only || only.includes(item.id)).map((item) => {
+          {visible.map((item) => {
             const Icon = item.icon;
             const on = tab === item.id;
             return (
@@ -110,6 +116,7 @@ export function TryItLive({
             );
           })}
         </div>
+        ) : null}
         {tab === "voice" ? <VoiceDemo presetIndustry={presetIndustry} /> : null}
         {tab === "assistant" ? <AssistantDemo presetIndustry={presetIndustry} /> : null}
         {tab === "projects" ? <ProjectDemo /> : null}
@@ -138,8 +145,7 @@ function VoiceDemo({ presetIndustry = "roofing" }: { presetIndustry?: BusinessId
   const [booking, setBooking] = useState(false);
   const [callError, setCallError] = useState("");
   const recorder = useRef<MediaRecorder | null>(null);
-  const bars = useRef<HTMLDivElement | null>(null);
-  const playBars = useRef<HTMLDivElement | null>(null);
+  const waveRef = useRef<HTMLDivElement | null>(null);
 
   const label = businessName.trim() || "your business";
   const greet = `Hi, thanks for calling ${label}. How can I help you today?`;
@@ -164,7 +170,7 @@ function VoiceDemo({ presetIndustry = "roofing" }: { presetIndustry?: BusinessId
     const draw = () => {
       if (!recorder.current || recorder.current.state !== "recording") return;
       analyser.getByteFrequencyData(data);
-      paint(bars.current, data);
+      paint(waveRef.current, data);
       frame = requestAnimationFrame(draw);
     };
     const media = new MediaRecorder(stream);
@@ -239,7 +245,7 @@ function VoiceDemo({ presetIndustry = "roofing" }: { presetIndustry?: BusinessId
     if (!response.ok) throw new Error(payload.error || `Speech failed (${response.status}).`);
     setGreetUrl(payload.audio);
     setPhase("hear");
-    await playWithWave(payload.audio, playBars.current);
+    await playWithWave(payload.audio, waveRef.current);
   }
 
   async function buildCall() {
@@ -278,7 +284,7 @@ function VoiceDemo({ presetIndustry = "roofing" }: { presetIndustry?: BusinessId
     const clips: string[] = call.clips || [];
     for (let index = 0; index < script.lines.length; index += 1) {
       setShown(index + 1);
-      if (clips[index]) await playWithWave(clips[index], playBars.current);
+      if (clips[index]) await playWithWave(clips[index], waveRef.current);
       else await wait(900);
     }
     setBookedOn(true);
@@ -301,7 +307,7 @@ function VoiceDemo({ presetIndustry = "roofing" }: { presetIndustry?: BusinessId
       <div className="iphone">
         <div className="iphone-notch" />
         <p className="phone-label">In call</p>
-        <div className="mini-wave tall" ref={playBars} aria-hidden="true">
+        <div className="mini-wave tall" ref={waveRef} aria-hidden="true">
           {Array.from({ length: 16 }).map((_, index) => (
             <i key={index} />
           ))}
@@ -315,20 +321,23 @@ function VoiceDemo({ presetIndustry = "roofing" }: { presetIndustry?: BusinessId
         {bookedOn && summary ? <p className="booked-chip">Booked: {summary.booked}</p> : null}
       </div>
     ) : (
-      <button
-        type="button"
-        className={`mic-orb ${phase === "recording" ? "on" : ""}`}
-        style={{ ["--p" as string]: String((10 - left) / 10) }}
-        disabled={!consent || !businessName.trim() || phase === "recording" || phase === "cloning"}
-        onClick={() => void record()}
-      >
-        <span>{phase === "recording" ? left : phase === "cloning" ? "..." : "10"}</span>
-        <div className="mini-wave" ref={bars} aria-hidden="true">
-          {Array.from({ length: 12 }).map((_, index) => (
+      <div className="iphone glow-phone">
+        <div className="iphone-notch" />
+        <p className="phone-label">{businessName.trim() || "Your business"}</p>
+        <div
+          className={`mini-wave tall ${phase === "recording" || phase === "hear" || phase === "cloning" ? "" : "idle-wave"}`}
+          ref={waveRef}
+          aria-hidden="true"
+        >
+          {Array.from({ length: 16 }).map((_, index) => (
             <i key={index} />
           ))}
         </div>
-      </button>
+        <p className="bubble agent">
+          <b>{businessName.trim() || "Receptionist"}</b>
+          {greet}
+        </p>
+      </div>
     );
 
   return (
@@ -354,6 +363,14 @@ function VoiceDemo({ presetIndustry = "roofing" }: { presetIndustry?: BusinessId
                 <input type="checkbox" checked={consent} onChange={(event) => setConsent(event.target.checked)} />
                 <span>This is my voice. Use it for this demo, then delete it.</span>
               </label>
+              <button
+                type="button"
+                className="btn btn-solid btn-lg"
+                disabled={!consent || !businessName.trim() || phase === "recording" || phase === "cloning" || phase === "hear"}
+                onClick={() => void record()}
+              >
+                {phase === "recording" ? `Listening ${left}s` : phase === "cloning" ? "Cloning your voice..." : "Record 10 seconds"}
+              </button>
               {phase === "cloning" ? <p className="status-line">Cloning your voice...</p> : null}
               {phase === "error" ? (
                 <div className="form-error" role="alert">
@@ -369,7 +386,7 @@ function VoiceDemo({ presetIndustry = "roofing" }: { presetIndustry?: BusinessId
                 </button>
               ) : null}
               {greetUrl && phase === "hear" ? (
-                <button type="button" className="btn btn-ghost btn-lg" onClick={() => void playWithWave(greetUrl, playBars.current)}>
+                <button type="button" className="btn btn-ghost btn-lg" onClick={() => void playWithWave(greetUrl, waveRef.current)}>
                   Play again
                 </button>
               ) : null}

@@ -1,3 +1,6 @@
+import { existsSync } from "node:fs";
+import path from "node:path";
+import Image from "next/image";
 import Link from "next/link";
 import { TryItLive } from "@/components/demo/TryItLive";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
@@ -39,6 +42,7 @@ export function TopicPage({ page }: { page: TopicPageData }) {
   const preset = industryPreset[page.path];
   const tiles = page.sections.slice(0, 4);
   const steps = page.sections.slice(0, 3);
+  const hasDemo = Boolean(tab || preset);
 
   return (
     <>
@@ -50,15 +54,22 @@ export function TopicPage({ page }: { page: TopicPageData }) {
             <h1>{page.h1}</h1>
             <p className="hero-sub">{firstSentence(page.lede[0] ?? page.description)}</p>
             <div className="hero-actions">
-              <Link className="btn btn-solid btn-lg" href="/get-started">
-                Get started
-              </Link>
-              <Link className="text-link apple-more" href="#details">
-                Learn more &gt;
+              {hasDemo ? (
+                <a className="btn btn-solid btn-lg" href="#try">
+                  Try the live demo
+                </a>
+              ) : (
+                <Link className="btn btn-solid btn-lg" href="/get-started">
+                  Get started
+                </Link>
+              )}
+              <Link className="btn btn-line btn-lg" href={bookCallHref}>
+                Book a call
               </Link>
             </div>
           </div>
         </header>
+        {page.path === "/about" ? <Founder /> : null}
         {tab ? <TryItLive initialTab={tab} only={[tab]} /> : null}
         {preset ? (
           <TryItLive initialTab="voice" only={["voice", "assistant"]} presetIndustry={preset} />
@@ -142,17 +153,37 @@ export function TopicPage({ page }: { page: TopicPageData }) {
           <div className="wrap">
             <h2>Set this up for your business.</h2>
             <div className="hero-actions">
-              <Link className="btn btn-solid btn-lg" href="/get-started">
-                Get started
-              </Link>
-              <Link className="apple-more" href={bookCallHref}>
-                Book a 15-minute call &gt;
-              </Link>
+            <Link className="btn btn-solid btn-lg" href={hasDemo ? "#try" : "/get-started"}>
+              {hasDemo ? "Try the live demo" : "Get started"}
+            </Link>
+            <Link className="btn btn-line btn-lg" href={bookCallHref}>
+              Book a call
+            </Link>
             </div>
           </div>
         </section>
       </article>
       <Contact />
     </>
+  );
+}
+
+function Founder() {
+  const ready = existsSync(path.join(process.cwd(), "public", "segev-halfon.jpg"));
+  return (
+    <section className="founder">
+      {ready ? (
+        <Image
+          src="/segev-halfon.jpg"
+          alt="Segev Halfon"
+          width={160}
+          height={160}
+          className="founder-photo"
+        />
+      ) : null}
+      <p className="kicker">Founder</p>
+      <h2>Segev Halfon</h2>
+      <p>MSc CS (AI), Technion. Senior software engineer, Israeli Air Force Ofek 324.</p>
+    </section>
   );
 }

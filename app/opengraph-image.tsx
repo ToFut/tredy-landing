@@ -12,8 +12,8 @@ export default function OpenGraphImage() {
         style={{
           width: "100%",
           height: "100%",
-          background: "#f3efe6",
-          color: "#161616",
+          background: "#ffffff",
+          color: "#1d1d1f",
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
