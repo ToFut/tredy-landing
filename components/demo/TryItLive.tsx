@@ -680,17 +680,20 @@ function playWithWave(url: string, node: HTMLDivElement | null) {
       paint(node, data);
       if (!audio.paused) frame = requestAnimationFrame(draw);
     };
-    audio.onended = () => {
+    const finish = () => {
       cancelAnimationFrame(frame);
       void ctx.close();
       resolve();
     };
-    audio.onerror = () => {
-      cancelAnimationFrame(frame);
-      void ctx.close();
-      resolve();
-    };
-    void audio.play().then(draw).catch(() => resolve());
+    audio.onended = finish;
+    audio.onerror = finish;
+    void audio.play().then(() => {
+      if (!Number.isFinite(audio.duration) || audio.duration === 0) {
+        finish();
+        return;
+      }
+      draw();
+    }).catch(finish);
   });
 }
 

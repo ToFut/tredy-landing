@@ -13,7 +13,7 @@
 }
 
 .home-hero {
-  padding: 56px 0 24px;
+  padding: 20px 0 12px;
   background: #fff;
 }
 
@@ -24,9 +24,23 @@
 }
 
 .home-hero .hero-copy {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  justify-items: start;
   text-align: left;
-  width: auto;
+  width: 100%;
+}
+
+.home-hero .hero-copy > * {
+  align-self: stretch;
+  justify-self: start;
+  text-align: left;
+  margin-left: 0;
+  margin-right: 0;
+  width: 100%;
+  max-width: 100%;
 }
 
 .home-hero .hero-title,
@@ -35,7 +49,7 @@
   text-align: left;
   margin-left: 0;
   margin-right: 0;
-  width: auto;
+  width: 100%;
   max-width: none;
 }
 
@@ -51,6 +65,14 @@
 
 .home-hero .hero-actions {
   justify-content: flex-start;
+  width: 100%;
+  max-width: 100%;
+  margin-inline: 0;
+}
+
+.hero-phone {
+  display: grid;
+  justify-items: center;
 }
 
 .hero-proof {
@@ -274,17 +296,19 @@
 
 .ios-status-icons {
   display: flex;
-  gap: 4px;
+  gap: 6px;
   align-items: center;
+  color: #fff;
 }
 
-.ios-status-icons i,
-.ios-status-icons b {
+.ios-status-icons svg {
+  width: 17px;
+  height: 12px;
   display: block;
-  width: 14px;
-  height: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.7);
-  border-radius: 2px;
+}
+
+.ios-status-icons svg:last-child {
+  width: 25px;
 }
 
 .ios-carrier,
@@ -356,27 +380,47 @@
 .ios-keys {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 12px 8px;
+  gap: 14px 8px;
   margin-top: 18px;
-  color: rgba(255, 255, 255, 0.72);
+  color: rgba(255, 255, 255, 0.86);
   font-size: 11px;
 }
 
+.ios-keys span {
+  display: grid;
+  justify-items: center;
+  gap: 6px;
+}
+
 .ios-keys i {
-  width: 46px;
-  height: 46px;
-  margin: 0 auto 4px;
-  display: block;
+  width: 62px;
+  height: 62px;
+  display: grid;
+  place-items: center;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.ios-keys svg,
+.ios-end svg {
+  width: 26px;
+  height: 26px;
+  display: block;
 }
 
 .ios-end {
-  width: 64px;
-  height: 64px;
+  width: 68px;
+  height: 68px;
   margin: 18px auto 0;
   border-radius: 50%;
   background: #ff3b30;
+  display: grid;
+  place-items: center;
+  color: #fff;
+}
+
+.ios-end svg {
+  transform: rotate(135deg);
 }
 
 .wa {
@@ -686,6 +730,62 @@
 
 .rollout small {
   color: #6e6e73;
+}
+
+@media (max-width: 720px) {
+  .home-hero .hero-actions {
+    width: 100%;
+    max-width: 100%;
+    margin-inline: 0;
+    align-items: stretch;
+  }
+}
+
+.demo-band .hero-sub,
+.setup-band .hero-sub,
+.studies .hero-sub {
+  text-align: left;
+  margin-left: 0;
+  margin-right: 0;
+  width: 100%;
+  max-width: 40rem;
+}
+
+.demo-band .hero-actions,
+.setup-band .hero-actions {
+  justify-content: flex-start;
+  width: 100%;
+  margin-inline: 0;
+}
+
+.product-hero .wrap > * {
+  justify-self: center;
+  text-align: center;
+}
+
+.product-hero .hero-sub {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.product-hero .hero-actions {
+  justify-content: center;
+  width: auto;
+  margin-inline: auto;
+}
+
+.product-hero .crumbs ol {
+  justify-content: center;
+}
+
+.page-lead .crumbs ol {
+  justify-content: flex-start;
+}
+
+.topic .crumbs ol,
+.legal .crumbs ol,
+.article-copy .crumbs ol {
+  justify-content: flex-start;
 }
 
 @media (min-width: 960px) {

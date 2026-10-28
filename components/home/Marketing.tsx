@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { TryItLive } from "@/components/demo/TryItLive";
 import { PlatformMarquee } from "@/components/home/PlatformMarquee";
 import { Wizard } from "@/components/start/Wizard";
 import { IphoneCall, OpsDashboard, RolloutBoard, TeamThread } from "@/components/visuals/Screens";
@@ -64,7 +63,14 @@ export function HomeHero() {
             voice clone.
           </p>
         </div>
-        <TryItLive anchor="demo" heading={false} only={["voice"]} variant="hero" />
+        <div className="hero-phone">
+          <IphoneCall
+            name="North Roofing"
+            caption="Hi, thanks for calling North Roofing. How can I help you today?"
+            callerLine="Can someone look at a leak this week?"
+            timer="00:12"
+          />
+        </div>
       </div>
     </section>
   );

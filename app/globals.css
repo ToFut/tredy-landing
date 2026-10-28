@@ -1037,6 +1037,7 @@ p {
 
 .legal-wrap {
   width: min(740px, calc(100% - 48px));
+  margin-inline: auto;
 }
 
 .legal h1 {
