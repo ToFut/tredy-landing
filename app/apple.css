@@ -1,0 +1,408 @@
+.hero-premium {
+  position: relative;
+  padding: 72px 0 40px;
+  background: #fff;
+  text-align: center;
+  overflow: hidden;
+}
+
+.hero-grid {
+  display: grid;
+  justify-items: center;
+  gap: 36px;
+}
+
+.hero-title,
+.section-title,
+.here-band h2,
+.final-cta h2 {
+  font-size: clamp(40px, 6vw, 80px);
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  font-weight: 640;
+  color: #1d1d1f;
+  margin: 0 auto;
+}
+
+.hero-sub,
+.one-line {
+  color: #6e6e73;
+  font-size: 21px;
+  line-height: 1.3;
+  margin: 14px auto 0;
+  max-width: 28rem;
+}
+
+.hero-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 22px;
+  margin-top: 22px;
+}
+
+.apple-more {
+  color: #0071e3;
+  font-size: 19px;
+  margin: 0;
+}
+
+.float-phone {
+  width: min(320px, 100%);
+}
+
+.glow-phone,
+.iphone,
+.light-phone,
+.mac-window,
+.bento-card,
+.plan-card,
+.stage-controls {
+  border-radius: 32px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+}
+
+.iphone,
+.glow-phone {
+  background: #000;
+  color: #f5f5f7;
+  padding: 22px 16px 18px;
+}
+
+.light-phone {
+  background: #f5f5f7;
+  color: #1d1d1f;
+}
+
+.try-live {
+  background: #f5f5f7;
+  padding: 72px 0;
+  text-align: center;
+}
+
+.try-tabs {
+  display: flex;
+  width: min(720px, 100%);
+  margin: 22px auto;
+  overflow-x: auto;
+  background: #e8e8ed;
+  border-radius: 14px;
+  padding: 4px;
+  gap: 4px;
+}
+
+.try-tab {
+  position: relative;
+  flex: 1 0 auto;
+  min-height: 44px;
+  border: 0;
+  background: transparent;
+  color: #1d1d1f;
+  border-radius: 10px;
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  padding: 0 14px;
+}
+
+.try-tab.on {
+  background: #fff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
+}
+
+.try-pill {
+  position: absolute;
+  inset: 0;
+  border-radius: 10px;
+  background: #fff;
+  z-index: 0;
+}
+
+.try-tab svg,
+.try-tab span {
+  position: relative;
+  z-index: 1;
+}
+
+.stage {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  text-align: left;
+  margin-top: 12px;
+}
+
+.stage-controls label,
+.stage-controls input,
+.stage-controls select {
+  width: 100%;
+}
+
+.stage-controls input,
+.stage-controls select {
+  background: #fff;
+  color: #1d1d1f;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 12px;
+  padding: 14px;
+  font-size: 17px;
+}
+
+.mic-orb {
+  width: 220px;
+  height: 220px;
+  margin: 0 auto;
+  border: 0;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  display: grid;
+  place-items: center;
+  position: relative;
+}
+
+.mic-orb::before {
+  content: "";
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  background: conic-gradient(#0071e3 calc(var(--p, 0) * 360deg), #d2d2d7 0);
+}
+
+.mic-orb span,
+.mic-orb .mini-wave {
+  position: relative;
+  z-index: 1;
+}
+
+.mic-orb span {
+  font-size: 40px;
+  font-weight: 600;
+  letter-spacing: -0.04em;
+}
+
+.consent {
+  color: #6e6e73;
+  font-size: 13px;
+}
+
+.try-live .read-script {
+  background: #f5f5f7;
+  color: #1d1d1f;
+}
+
+.bento {
+  display: grid;
+  gap: 16px;
+  margin-top: 28px;
+}
+
+.bento-card {
+  display: block;
+  background: #fff;
+  padding: 28px;
+  text-decoration: none;
+  min-height: 240px;
+}
+
+.bento-card h3 {
+  font-size: 32px;
+  margin-top: 18px;
+}
+
+.bento-card p {
+  color: #6e6e73;
+  font-size: 17px;
+  margin-top: 6px;
+}
+
+.mini-art {
+  height: 92px;
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.mini-bubble {
+  width: 72px;
+  height: 28px;
+  border-radius: 14px;
+  background: #e8e8ed;
+}
+
+.mini-bubble.alt {
+  width: 110px;
+  background: #d6e6fa;
+  margin-bottom: 18px;
+}
+
+.mini-art.window span {
+  width: 28%;
+  height: 64px;
+  border-radius: 10px;
+  background: #e8e8ed;
+}
+
+.mini-art.steps {
+  align-items: center;
+}
+
+.mini-art.steps i {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #0071e3;
+  display: block;
+}
+
+.section {
+  padding: 88px 0;
+  background: #fff;
+}
+
+.here-band,
+.marquee-section,
+.how-steps,
+.final-cta {
+  background: #f5f5f7;
+}
+
+.here-band,
+.final-cta {
+  text-align: center;
+  padding: 100px 0;
+}
+
+.here-band h2 {
+  max-width: 14ch;
+}
+
+.here-band .btn,
+.final-cta .btn {
+  margin-top: 22px;
+}
+
+.marquee {
+  overflow: hidden;
+  margin-top: 28px;
+}
+
+.marquee-track {
+  display: flex;
+  gap: 48px;
+  width: max-content;
+  animation: slide 32s linear infinite;
+  color: #6e6e73;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+}
+
+.marquee-note {
+  text-align: center;
+  color: #6e6e73;
+  font-size: 12px;
+  margin-top: 16px;
+}
+
+.how-steps {
+  list-style: none;
+  display: grid;
+  gap: 16px;
+  padding: 0;
+  margin: 28px 0 0;
+}
+
+.how-steps li {
+  background: #fff;
+  border-radius: 28px;
+  padding: 28px;
+  font-size: 28px;
+  letter-spacing: -0.03em;
+}
+
+.how-steps span {
+  display: block;
+  color: #6e6e73;
+  font-size: 15px;
+  margin-bottom: 8px;
+}
+
+.mac-window {
+  background: #fff;
+  padding: 16px;
+  min-height: 280px;
+}
+
+.mac-dots {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.mac-dots i {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #d2d2d7;
+  display: block;
+}
+
+.step-meter {
+  justify-content: flex-start;
+}
+
+.step-meter .now span,
+.step-meter .done span {
+  background: #0071e3;
+  color: #fff;
+}
+
+@keyframes slide {
+  to { transform: translateX(-50%); }
+}
+
+@media (min-width: 960px) {
+  .hero-grid {
+    grid-template-columns: 1.1fr 0.9fr;
+    text-align: left;
+    align-items: center;
+    justify-items: start;
+  }
+
+  .hero-actions {
+    justify-content: flex-start;
+  }
+
+  .stage {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .stage-controls {
+    flex: 0 0 380px;
+    background: #fff;
+    padding: 28px;
+  }
+
+  .stage-device {
+    flex: 1;
+    display: grid;
+    place-items: center;
+  }
+
+  .bento,
+  .how-steps {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track,
+  .float-phone,
+  .mini-wave i,
+  .sample-bars i {
+    animation: none;
+  }
+}

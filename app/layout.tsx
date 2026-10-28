@@ -6,6 +6,7 @@ import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { site } from "@/lib/content";
 import "./globals.css";
+import "./apple.css";
 
 const sans = Geist({
   subsets: ["latin"],

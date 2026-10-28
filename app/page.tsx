@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { TryItLive } from "@/components/demo/TryItLive";
+import { FinalCta, HereBand, HomeHero, HowSteps, LogoMarquee, OfferBento } from "@/components/home/Marketing";
 import { JsonLd } from "@/components/JsonLd";
 import { Contact } from "@/components/sections";
-import { Packages } from "@/components/start/Packages";
 import { homeFaqs, site } from "@/lib/content";
 import { homeJsonLd, pageMetadata } from "@/lib/seo";
 
@@ -16,8 +16,13 @@ export default function Page() {
   return (
     <>
       <JsonLd data={homeJsonLd()} />
-      <TryItLive asPage />
-      <Packages />
+      <HomeHero />
+      <TryItLive />
+      <OfferBento />
+      <HereBand />
+      <LogoMarquee />
+      <HowSteps />
+      <FinalCta />
       <section id="faq" className="section">
         <div className="wrap topic-wrap">
           <h2>Common questions</h2>

@@ -1,15 +1,17 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { motion, useReducedMotion } from "framer-motion";
+import { AppWindow, Inbox, Phone, Sparkles } from "lucide-react";
+import { useRef, useState, type ReactNode } from "react";
 import { Wizard } from "@/components/start/Wizard";
 import type { BusinessId } from "@/lib/start";
 import type { CallLine, CallSummary } from "@/lib/demo/templates";
 
 const tabs = [
-  { id: "voice", label: "Voice Agent", title: "Hear your business answer the phone" },
-  { id: "assistant", label: "AI Assistant", title: "Watch AI handle your inbox" },
-  { id: "projects", label: "Custom Projects", title: "See your custom app" },
-  { id: "enablement", label: "AI Enablement", title: "Check your AI readiness" },
+  { id: "voice", label: "Voice Agent", title: "Hear your business answer the phone", icon: Phone },
+  { id: "assistant", label: "AI Assistant", title: "Watch AI handle your inbox", icon: Inbox },
+  { id: "projects", label: "Custom Projects", title: "See your custom app", icon: AppWindow },
+  { id: "enablement", label: "AI Enablement", title: "Check your AI readiness", icon: Sparkles },
 ] as const;
 
 type TabId = (typeof tabs)[number]["id"];
@@ -74,6 +76,7 @@ export function TryItLive({
   asPage?: boolean;
   initialTab?: TabId;
 }) {
+  const reduce = useReducedMotion();
   const [tab, setTab] = useState<TabId>(initialTab);
   const current = tabs.find((item) => item.id === tab) ?? tabs[0];
 
@@ -81,21 +84,27 @@ export function TryItLive({
     <section id="try" className="try-live">
       <div className="wrap">
         <p className="kicker">Try it live</p>
-        {asPage ? <h1>Try it live</h1> : null}
-        <h2>{current.title}</h2>
+        {asPage ? <h1 className="hero-title">Try it live</h1> : null}
+        <h2 className="section-title">{current.title}</h2>
         <div className="try-tabs" role="tablist">
-          {tabs.map((item) => (
-            <button
-              key={item.id}
-              type="button"
-              role="tab"
-              aria-selected={tab === item.id}
-              className={tab === item.id ? "try-tab on" : "try-tab"}
-              onClick={() => setTab(item.id)}
-            >
-              {item.label}
-            </button>
-          ))}
+          {tabs.map((item) => {
+            const Icon = item.icon;
+            const on = tab === item.id;
+            return (
+              <button
+                key={item.id}
+                type="button"
+                role="tab"
+                aria-selected={on}
+                className={on ? "try-tab on" : "try-tab"}
+                onClick={() => setTab(item.id)}
+              >
+                {on && !reduce ? <motion.span layoutId="try-pill" className="try-pill" /> : null}
+                <Icon aria-hidden="true" />
+                <span>{item.label}</span>
+              </button>
+            );
+          })}
         </div>
         {tab === "voice" ? <VoiceDemo /> : null}
         {tab === "assistant" ? <AssistantDemo /> : null}
@@ -273,149 +282,141 @@ function VoiceDemo() {
     setPhase("summary");
   }
 
-  return (
-    <div className="demo-panel">
-      <ol className="step-meter">
-        {["Record", "Business", "The call", "Your phone"].map((item, index) => (
-          <li key={item} className={step === index + 1 ? "now" : step > index + 1 ? "done" : ""}>
-            <span>{index + 1}</span>
-            {item}
-          </li>
+  const device =
+    phase === "summary" && summary ? (
+      <div className="iphone light-phone">
+        <div className="iphone-notch" />
+        <p className="phone-label">Summary sent to your phone</p>
+        <div className="chat-bubbles">
+          <p>{summary.caller} called about {summary.need}.</p>
+          <p>Area: {summary.area}. Urgency: {summary.urgency}.</p>
+          <p>Booked {summary.booked}. Next: {summary.next}.</p>
+        </div>
+      </div>
+    ) : step >= 3 ? (
+      <div className="iphone">
+        <div className="iphone-notch" />
+        <p className="phone-label">In call</p>
+        <div className="mini-wave tall" ref={playBars} aria-hidden="true">
+          {Array.from({ length: 16 }).map((_, index) => (
+            <i key={index} />
+          ))}
+        </div>
+        {lines.slice(0, shown).map((line, index) => (
+          <p key={`${line.speaker}-${index}`} className={line.speaker === "agent" ? "bubble agent" : "bubble caller"}>
+            <b>{line.speaker === "agent" ? label : "Caller"}</b>
+            {line.text}
+          </p>
         ))}
-      </ol>
-      <p className="one-line">Read the line, hold for 10 seconds, then hear yourself answer.</p>
+        {bookedOn && summary ? <p className="booked-chip">Booked: {summary.booked}</p> : null}
+      </div>
+    ) : (
+      <button
+        type="button"
+        className={`mic-orb ${phase === "recording" ? "on" : ""}`}
+        style={{ ["--p" as string]: String((10 - left) / 10) }}
+        disabled={!consent || !businessName.trim() || phase === "recording" || phase === "cloning"}
+        onClick={() => void record()}
+      >
+        <span>{phase === "recording" ? left : phase === "cloning" ? "..." : "10"}</span>
+        <div className="mini-wave" ref={bars} aria-hidden="true">
+          {Array.from({ length: 12 }).map((_, index) => (
+            <i key={index} />
+          ))}
+        </div>
+      </button>
+    );
 
-      {step === 1 ? (
+  return (
+    <Stage
+      controls={
         <>
-          <label>
-            Business name
-            <input value={businessName} onChange={(event) => setBusinessName(event.target.value)} placeholder="North Roofing" />
-          </label>
-          <p className="read-script">{greet}</p>
-          <div className="record-row">
-            <div className={`count-ring ${phase === "recording" ? "on" : ""}`} style={{ ["--p" as string]: `${((10 - left) / 10) * 100}` }}>
-              <strong>{phase === "recording" ? left : 10}</strong>
-            </div>
-            <div className="mini-wave" ref={bars} aria-hidden="true">
-              {Array.from({ length: 12 }).map((_, index) => (
-                <i key={index} />
-              ))}
-            </div>
-          </div>
-          <label className="consent">
-            <input type="checkbox" checked={consent} onChange={(event) => setConsent(event.target.checked)} />
-            This is my voice and I agree to it being used to create a demo voice. It is deleted after the demo.
-          </label>
-          {phase === "cloning" ? <p className="status-line">Cloning your voice...</p> : null}
-          {phase === "hear" ? (
-            <div>
-              <p className="status-line">Hear your clone</p>
+          <ol className="step-meter">
+            {["Record", "Business", "The call", "Your phone"].map((item, index) => (
+              <li key={item} className={step === index + 1 ? "now" : step > index + 1 ? "done" : ""}>
+                <span>{index + 1}</span>
+                {item}
+              </li>
+            ))}
+          </ol>
+          {step === 1 ? (
+            <>
+              <label>
+                Business name
+                <input value={businessName} onChange={(event) => setBusinessName(event.target.value)} placeholder="North Roofing" />
+              </label>
               <p className="read-script">{greet}</p>
-              <div className="mini-wave" ref={playBars} aria-hidden="true">
-                {Array.from({ length: 12 }).map((_, index) => (
-                  <i key={index} />
-                ))}
-              </div>
-              {greetUrl ? <button type="button" className="btn btn-ghost btn-lg" onClick={() => void playWithWave(greetUrl, playBars.current)}>Play again</button> : null}
-              <button type="button" className="btn btn-solid btn-lg" onClick={() => setStep(2)}>
-                Continue
-              </button>
-            </div>
+              <label className="consent">
+                <input type="checkbox" checked={consent} onChange={(event) => setConsent(event.target.checked)} />
+                <span>This is my voice. Use it for this demo, then delete it.</span>
+              </label>
+              {phase === "cloning" ? <p className="status-line">Cloning your voice...</p> : null}
+              {phase === "error" ? (
+                <div className="form-error" role="alert">
+                  <p>{error}</p>
+                  <button type="button" className="btn btn-ghost btn-lg" onClick={() => void chooseDemoVoice()}>
+                    Use the demo voice instead
+                  </button>
+                </div>
+              ) : null}
+              {phase === "hear" ? (
+                <button type="button" className="btn btn-solid btn-lg" onClick={() => setStep(2)}>
+                  Continue
+                </button>
+              ) : null}
+              {greetUrl && phase === "hear" ? (
+                <button type="button" className="btn btn-ghost btn-lg" onClick={() => void playWithWave(greetUrl, playBars.current)}>
+                  Play again
+                </button>
+              ) : null}
+            </>
           ) : null}
-          {phase === "error" ? (
-            <div className="form-error" role="alert">
-              <p>{error}</p>
-              <button type="button" className="btn btn-ghost btn-lg" onClick={() => void chooseDemoVoice()}>
-                Use the demo voice instead
+          {step === 2 ? (
+            <>
+              <label>
+                Business name
+                <input value={businessName} onChange={(event) => setBusinessName(event.target.value)} />
+              </label>
+              <label>
+                Website, optional
+                <input value={website} onChange={(event) => setWebsite(event.target.value)} placeholder="https://" />
+              </label>
+              <label>
+                Industry
+                <select value={industry} onChange={(event) => setIndustry(event.target.value as BusinessId)}>
+                  <option value="roofing">Roofing</option>
+                  <option value="home-services">HVAC/Home services</option>
+                  <option value="real-estate">Real estate</option>
+                  <option value="property">Property management</option>
+                  <option value="insurance">Insurance agency</option>
+                  <option value="other">Other</option>
+                </select>
+              </label>
+              <button type="button" className="btn btn-solid btn-lg" onClick={() => void buildCall()}>
+                Play the call
               </button>
-            </div>
+              {callError ? <p className="form-error" role="alert">{callError}</p> : null}
+            </>
           ) : null}
-          {phase === "idle" || phase === "recording" ? (
-            <button
-              type="button"
-              className="btn btn-solid btn-lg mic-btn"
-              disabled={!consent || !businessName.trim() || phase === "recording"}
-              onClick={() => void record()}
-            >
-              {phase === "recording" ? "Recording..." : "Record 10 seconds"}
+          {phase === "summary" && summary ? (
+            <button type="button" className="btn btn-solid btn-lg" onClick={() => setBooking(true)}>
+              Set this up for my business
             </button>
           ) : null}
+          {booking ? (
+            <Wizard
+              id="book"
+              initialGoals={["phone", "book"]}
+              initialBusiness={industry}
+              initialDetails={{ businessName, website }}
+              startAtContact
+              extra={{ Need: summary?.need || "", Booked: summary?.booked || "" }}
+            />
+          ) : null}
         </>
-      ) : null}
-
-      {step === 2 ? (
-        <>
-          <p className="one-line">Add the industry, or a website, and we write the call.</p>
-          <label>
-            Business name
-            <input value={businessName} onChange={(event) => setBusinessName(event.target.value)} />
-          </label>
-          <label>
-            Website, optional
-            <input value={website} onChange={(event) => setWebsite(event.target.value)} placeholder="https://" />
-          </label>
-          <label>
-            Industry
-            <select value={industry} onChange={(event) => setIndustry(event.target.value as BusinessId)}>
-              <option value="roofing">Roofing</option>
-              <option value="home-services">HVAC/Home services</option>
-              <option value="real-estate">Real estate</option>
-              <option value="property">Property management</option>
-              <option value="insurance">Insurance agency</option>
-              <option value="other">Other</option>
-            </select>
-          </label>
-          <button type="button" className="btn btn-solid btn-lg" onClick={() => void buildCall()}>
-            Play the call
-          </button>
-          {callError && step === 2 ? <p className="form-error" role="alert">{callError}</p> : null}
-        </>
-      ) : null}
-
-      {step >= 3 ? (
-        <div className="iphone">
-          <div className="iphone-notch" />
-          <p className="phone-label">In call</p>
-          <div className="mini-wave tall" ref={playBars} aria-hidden="true">
-            {Array.from({ length: 16 }).map((_, index) => (
-              <i key={index} />
-            ))}
-          </div>
-          {lines.slice(0, shown).map((line, index) => (
-            <p key={`${line.speaker}-${index}`} className={line.speaker === "agent" ? "bubble agent" : "bubble caller"}>
-              <b>{line.speaker === "agent" ? label : "Caller"}</b>
-              {line.text}
-            </p>
-          ))}
-          {bookedOn && summary ? <p className="booked-chip">Booked: {summary.booked}</p> : null}
-          {callError ? <p className="form-error" role="alert">{callError}</p> : null}
-        </div>
-      ) : null}
-
-      {phase === "summary" && summary ? (
-        <div className="phone-frame">
-          <p className="phone-label">Summary sent to your phone</p>
-          <div className="chat-bubbles">
-            <p>{summary.caller} called about {summary.need}.</p>
-            <p>Area: {summary.area}. Urgency: {summary.urgency}.</p>
-            <p>Booked {summary.booked}. Next: {summary.next}.</p>
-          </div>
-          <button type="button" className="btn btn-solid btn-lg" onClick={() => setBooking(true)}>
-            Set this up for my business
-          </button>
-        </div>
-      ) : null}
-      {booking ? (
-        <Wizard
-          id="book"
-          initialGoals={["phone", "book"]}
-          initialBusiness={industry}
-          initialDetails={{ businessName, website }}
-          startAtContact
-          extra={{ Need: summary?.need || "", Booked: summary?.booked || "" }}
-        />
-      ) : null}
-    </div>
+      }
+      device={device}
+    />
   );
 }
 
@@ -439,8 +440,10 @@ function AssistantDemo() {
   }
 
   return (
-    <div className="demo-panel">
-      <p className="one-line">Pick the kind of message. One tap shows the draft and where it goes.</p>
+    <Stage
+      controls={
+        <>
+      <p className="one-line">One message. See the draft and where it goes.</p>
       <label>
         Industry
         <select
@@ -458,10 +461,6 @@ function AssistantDemo() {
           <option value="other">Other</option>
         </select>
       </label>
-      <article className="inbox-card">
-        <p className="kicker">{sample.from}</p>
-        <p>{sample.text}</p>
-      </article>
       {count === 0 ? (
         <button type="button" className="btn btn-solid btn-lg" onClick={handleMessage}>
           Handle this message
@@ -479,7 +478,21 @@ function AssistantDemo() {
         </button>
       ) : null}
       {booking ? <Wizard initialGoals={["inbox"]} initialBusiness={industry} startAtContact id="book-assistant" /> : null}
-    </div>
+        </>
+      }
+      device={
+        <div className="iphone light-phone">
+          <div className="iphone-notch" />
+          <p className="phone-label">{sample.from}</p>
+          <div className="chat-bubbles">
+            <p>{sample.text}</p>
+            {count >= 2 ? <p className="draft-bubble">{sample.draft}</p> : null}
+          </div>
+          {count >= 1 ? <p className="booked-chip">{sample.tag}</p> : null}
+          {count >= 3 ? <p className="status-line">{sample.route}</p> : null}
+        </div>
+      }
+    />
   );
 }
 
@@ -489,8 +502,10 @@ function ProjectDemo() {
   const [booking, setBooking] = useState(false);
 
   return (
-    <div className="demo-panel">
-      <p className="one-line">Pick an industry. A sample app layout builds on screen.</p>
+    <Stage
+      controls={
+        <>
+      <p className="one-line">Pick an industry. Watch a sample app appear.</p>
       <label>
         Industry
         <select
@@ -515,7 +530,16 @@ function ProjectDemo() {
         </button>
       ) : null}
       {built ? (
-        <div className="app-mock">
+        <button type="button" className="btn btn-solid btn-lg" onClick={() => setBooking(true)}>
+          Set this up for my business
+        </button>
+      ) : null}
+      {booking ? <Wizard initialGoals={["custom"]} initialBusiness={industry || undefined} startAtContact id="book-project" /> : null}
+        </>
+      }
+      device={
+        <div className={`mac-window ${built ? "on" : ""}`}>
+          <div className="mac-dots" aria-hidden="true"><i /><i /><i /></div>
           <p className="kicker">Sample layout, not live data</p>
           <div className="dash-top">
             <span>Portal</span>
@@ -523,23 +547,16 @@ function ProjectDemo() {
             <span>Inbox</span>
           </div>
           <div className="bars sample-bars">
-            <i />
-            <i />
-            <i />
-            <i />
+            <i /><i /><i /><i />
           </div>
           <div className="board">
             <p>New</p>
             <p>Scheduled</p>
             <p>Done</p>
           </div>
-          <button type="button" className="btn btn-solid btn-lg" onClick={() => setBooking(true)}>
-            Set this up for my business
-          </button>
         </div>
-      ) : null}
-      {booking ? <Wizard initialGoals={["custom"]} initialBusiness={industry || undefined} startAtContact id="book-project" /> : null}
-    </div>
+      }
+    />
   );
 }
 
@@ -552,8 +569,10 @@ function QuizDemo() {
   const level = score >= 4 ? "Ready for a first version" : score >= 2 ? "A few pieces in place" : "Starting out";
 
   return (
-    <div className="demo-panel">
-      <p className="one-line">Five taps. You get a readiness level and a 30, 60, 90 day plan.</p>
+    <Stage
+      controls={
+        <>
+      <p className="one-line">Five taps. A plan for 30, 60, and 90 days.</p>
       {!done ? (
         <>
           <p className="wizard-step">Question {index + 1} of 5</p>
@@ -595,6 +614,32 @@ function QuizDemo() {
         </div>
       )}
       {booking ? <Wizard initialGoals={["train"]} startAtContact id="book-enable" /> : null}
+        </>
+      }
+      device={
+        <div className="plan-card apple-plan">
+          <p className="kicker">{done ? "Quiz result" : `Question ${index + 1} of 5`}</p>
+          <h3>{done ? level : questions[index]}</h3>
+          {done ? (
+            <ul>
+              <li>30 days: name the one workflow and the rules.</li>
+              <li>60 days: use a first version and review it.</li>
+              <li>90 days: keep what the team uses.</li>
+            </ul>
+          ) : (
+            <p>Yes answers so far: {score}.</p>
+          )}
+        </div>
+      }
+    />
+  );
+}
+
+function Stage({ controls, device }: { controls: ReactNode; device: ReactNode }) {
+  return (
+    <div className="stage">
+      <div className="stage-device">{device}</div>
+      <div className="stage-controls">{controls}</div>
     </div>
   );
 }
