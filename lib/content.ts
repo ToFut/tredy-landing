@@ -13,13 +13,18 @@ export const site = {
   location: "Suffern, New York",
   contactEmail: "segev@futurixs.com",
   description:
-    "Futurix builds voice agents, AI assistants, and custom AI projects, and helps companies enable AI. Studio in Suffern, New York.",
-  title:
-    "Futurix | Voice agents, AI assistants, custom projects, and AI enablement",
+    "Voice Agents, Custom Projects, AI Assistants, and AI Enablement for US small and mid-size businesses. Don't have the time or know-how to enable AI? We're here.",
+  title: "Futurix | Custom AI Solutions and AI Enablement for Small Business",
+  founder: "Segev Halfon",
+  founderLinkedIn: "https://www.linkedin.com/in/segev-halfon-400376123",
+  entity:
+    "Futurix, a custom AI solutions and AI enablement company based in Suffern, New York",
 };
 
 export type Offering = {
   id: string;
+  path: string;
+  linkLabel: string;
   number: string;
   nav: string;
   title: string;
@@ -32,6 +37,8 @@ export type Offering = {
 export const offerings: Offering[] = [
   {
     id: "voice-agents",
+    path: "/voice-agents",
+    linkLabel: "AI receptionist for small business",
     number: "01",
     nav: "Voice agents",
     title: "Voice Agents",
@@ -51,6 +58,8 @@ export const offerings: Offering[] = [
   },
   {
     id: "custom-projects",
+    path: "/custom-projects",
+    linkLabel: "Custom AI development company in the US",
     number: "02",
     nav: "Custom projects",
     title: "Custom Projects",
@@ -70,6 +79,8 @@ export const offerings: Offering[] = [
   },
   {
     id: "ai-assistants",
+    path: "/ai-assistants",
+    linkLabel: "AI automation for small business",
     number: "03",
     nav: "AI assistants",
     title: "AI Assistants",
@@ -89,6 +100,8 @@ export const offerings: Offering[] = [
   },
   {
     id: "ai-enablement",
+    path: "/ai-enablement",
+    linkLabel: "AI consultant for small business",
     number: "04",
     nav: "AI enablement",
     title: "AI Enablement",
@@ -289,9 +302,9 @@ export const studioFacts = [
 ];
 
 export const nav = [
-  ...offerings.map((item) => ({ href: `#${item.id}`, label: item.nav })),
-  { href: "#work", label: "Work" },
-  { href: "#faq", label: "FAQ" },
+  ...offerings.map((item) => ({ href: item.path, label: item.nav })),
+  { href: "/#work", label: "Work" },
+  { href: "/#faq", label: "FAQ" },
 ];
 
 export const here = {

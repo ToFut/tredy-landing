@@ -1,11 +1,12 @@
 import Link from "next/link";
 import { offerings, site } from "@/lib/content";
+import { industryPages } from "@/lib/industries";
 
 const studio = [
+  { href: "/about", label: "About" },
   { href: "/#approach", label: "Approach" },
-  { href: "/#industries", label: "Industries" },
   { href: "/#work", label: "Work" },
-  { href: "/#why", label: "Why Futurix" },
+  { href: "/blog", label: "Blog" },
   { href: "/#faq", label: "FAQ" },
   { href: "/contact", label: "Contact" },
   { href: "/privacy", label: "Privacy" },
@@ -18,8 +19,8 @@ export function Footer() {
         <div>
           <p className="footer-brand">Futurix</p>
           <p className="footer-blurb">
-            Voice agents, AI assistants, custom projects, and AI enablement for
-            businesses that want the work in production.
+            {site.entity}. Voice agents, custom projects, AI assistants, and AI enablement
+            for small and mid-size businesses.
           </p>
           <p className="footer-meta">
             {site.location}
@@ -31,8 +32,18 @@ export function Footer() {
           <p className="kicker">Offerings</p>
           <ul className="footer-links">
             {offerings.map((item) => (
-              <li key={item.id}>
-                <Link href={`/#${item.id}`}>{item.title}</Link>
+              <li key={item.path}>
+                <Link href={item.path}>{item.title}</Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <p className="kicker">Industries</p>
+          <ul className="footer-links">
+            {industryPages.map((item) => (
+              <li key={item.path}>
+                <Link href={item.path}>{item.crumbs[item.crumbs.length - 1]?.name}</Link>
               </li>
             ))}
           </ul>

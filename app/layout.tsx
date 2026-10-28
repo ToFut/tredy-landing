@@ -1,9 +1,10 @@
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 import { Instrument_Sans, Newsreader } from "next/font/google";
+import { Analytics } from "@/components/Analytics";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
-import { offerings, site } from "@/lib/content";
+import { site } from "@/lib/content";
 import "./globals.css";
 
 const sans = Instrument_Sans({
@@ -41,39 +42,14 @@ export const metadata: Metadata = {
     description: site.description,
   },
   robots: { index: true, follow: true },
+  ...(process.env.NEXT_PUBLIC_GSC_VERIFICATION
+    ? { verification: { google: process.env.NEXT_PUBLIC_GSC_VERIFICATION } }
+    : {}),
 };
 
 export const viewport: Viewport = {
   themeColor: "#f3efe6",
   colorScheme: "light",
-};
-
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "ProfessionalService",
-  name: site.name,
-  url: site.url,
-  email: site.contactEmail,
-  description: site.description,
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: "Suffern",
-    addressRegion: "NY",
-    addressCountry: "US",
-  },
-  areaServed: "United States",
-  hasOfferCatalog: {
-    "@type": "OfferCatalog",
-    name: "Futurix offerings",
-    itemListElement: offerings.map((item) => ({
-      "@type": "Offer",
-      itemOffered: {
-        "@type": "Service",
-        name: item.title,
-        description: item.description,
-      },
-    })),
-  },
 };
 
 export default function RootLayout({
@@ -90,10 +66,7 @@ export default function RootLayout({
         <Header />
         <main id="main">{children}</main>
         <Footer />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
+        <Analytics />
       </body>
     </html>
   );

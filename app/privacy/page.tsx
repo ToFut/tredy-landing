@@ -1,17 +1,26 @@
 import type { Metadata } from "next";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { JsonLd } from "@/components/JsonLd";
 import { site } from "@/lib/content";
+import { breadcrumbOnlyJsonLd, pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Privacy",
+const crumbs = [
+  { name: "Home", path: "/" },
+  { name: "Privacy", path: "/privacy" },
+];
+
+export const metadata: Metadata = pageMetadata({
+  title: "Privacy notice | Futurix",
   description: "How Futurix handles information submitted through futurixs.com.",
-  alternates: { canonical: "/privacy" },
-  openGraph: { url: `${site.url}/privacy` },
-};
+  path: "/privacy",
+});
 
 export default function PrivacyPage() {
   return (
     <article className="legal">
+      <JsonLd data={breadcrumbOnlyJsonLd(crumbs)} />
       <div className="legal-wrap">
+        <Breadcrumbs items={crumbs} />
         <p className="kicker">Privacy</p>
         <h1>Privacy notice</h1>
         <p>Futurix, {site.location}. This notice covers futurixs.com.</p>

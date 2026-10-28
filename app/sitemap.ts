@@ -1,9 +1,26 @@
 import type { MetadataRoute } from "next";
-import { site } from "@/lib/content";
+import { aboutPage } from "@/lib/about";
+import { industryPages } from "@/lib/industries";
+import { posts } from "@/lib/posts";
+import { absoluteUrl } from "@/lib/seo";
+import { servicePages } from "@/lib/service-pages";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  return ["", "/contact", "/privacy"].map((path) => ({
-    url: `${site.url}${path}`,
-    lastModified: new Date("2026-10-28"),
+  const lastModified = new Date("2026-10-28");
+  const paths = [
+    "/",
+    "/about",
+    "/contact",
+    "/privacy",
+    "/blog",
+    ...servicePages.map((page) => page.path),
+    ...industryPages.map((page) => page.path),
+    ...posts.map((post) => post.path),
+    aboutPage.path,
+  ];
+  const unique = [...new Set(paths)];
+  return unique.map((path) => ({
+    url: absoluteUrl(path),
+    lastModified,
   }));
 }

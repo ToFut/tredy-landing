@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { JsonLd } from "@/components/JsonLd";
 import {
   Approach,
   Contact,
@@ -14,15 +15,18 @@ import {
   Work,
 } from "@/components/sections";
 import { site } from "@/lib/content";
+import { homeJsonLd, pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  alternates: { canonical: "/" },
-  openGraph: { url: site.url },
-};
+export const metadata: Metadata = pageMetadata({
+  title: site.title,
+  description: site.description,
+  path: "/",
+});
 
 export default function Page() {
   return (
     <>
+      <JsonLd data={homeJsonLd()} />
       <Hero />
       <OfferingStrip />
       <Here />

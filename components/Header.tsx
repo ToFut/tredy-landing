@@ -6,8 +6,9 @@ import { useEffect, useState } from "react";
 import { bookCallHref, nav } from "@/lib/content";
 import { Logo } from "@/components/Logo";
 
-function target(hash: string, pathname: string) {
-  return pathname === "/" ? hash : `/${hash}`;
+function target(href: string, pathname: string) {
+  if (href.startsWith("/")) return href;
+  return pathname === "/" ? href : `/${href}`;
 }
 
 export function Header() {

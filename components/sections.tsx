@@ -1,12 +1,12 @@
 import Link from "next/link";
 import { ContactForm } from "@/components/ContactForm";
 import { HeroDiagram, OfferingDiagram, WorkArt } from "@/components/Diagrams";
+import { industryPages } from "@/lib/industries";
 import {
   approach,
   bookCallHref,
   faqs,
   here,
-  industries,
   offerings,
   platforms,
   platformsNote,
@@ -28,8 +28,10 @@ export function Hero() {
           </p>
           <h1>AI that answers, assists, and gets built into your business.</h1>
           <p className="lede">
-            Futurix builds voice agents, AI assistants, and custom AI projects, and helps
-            companies enable AI.
+            Futurix, a custom AI solutions and AI enablement company based in Suffern, New York,
+            builds voice agents, AI assistants, and custom AI projects for US small and mid-size
+            businesses. We also help companies enable AI when the team does not have the time or
+            the know-how.
           </p>
           <p className="support">
             We fit the work into the tools and workflows you already run. Start with a small
@@ -141,6 +143,9 @@ export function Services() {
                   <span>Outcome</span>
                   {item.outcome}
                 </p>
+                <Link className="text-link" href={item.path}>
+                  {item.linkLabel}
+                </Link>
               </div>
               <div>
                 <p className="kicker">What we build</p>
@@ -236,15 +241,25 @@ export function Industries() {
         <div>
           <div className="section-intro">
             <p className="kicker">Industries</p>
-            <h2>Operators with a specific workflow to improve.</h2>
+            <h2>Industries with a call or a desk we can take on.</h2>
+            <p>
+              Roofing, home services, real estate, property management, and insurance agencies.
+              Each page describes the workflow, the four offerings, and the tools already in that
+              trade.
+            </p>
           </div>
           <ol className="industry-list">
-            {industries.map((item, index) => (
-              <li key={item.title}>
+            {industryPages.map((item, index) => (
+              <li key={item.path}>
                 <span>{String(index + 1).padStart(2, "0")}</span>
                 <div>
-                  <h3>{item.title}</h3>
-                  <p>{item.body}</p>
+                  <h3>
+                    <Link href={item.path}>{item.crumbs[item.crumbs.length - 1]?.name}</Link>
+                  </h3>
+                  <p>{item.description}</p>
+                  <Link className="text-link" href={item.path}>
+                    See this industry
+                  </Link>
                 </div>
               </li>
             ))}
