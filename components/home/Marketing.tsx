@@ -2,66 +2,85 @@ import Link from "next/link";
 import { PlatformMarquee } from "@/components/home/PlatformMarquee";
 import { Wizard } from "@/components/start/Wizard";
 import { IphoneCall, OpsDashboard, RolloutBoard, TeamThread } from "@/components/visuals/Screens";
-import { bookCallHref } from "@/lib/content";
+import { planLabel } from "@/lib/content";
 
 const offerings = [
   {
     href: "/voice-agents",
     index: "01",
     title: "Voice Agents",
-    line: "Your phone, answered.",
-    detail: "A receptionist that books and texts back.",
-    link: "Try the live demo",
+    line: "Never miss a call",
+    detail: "An AI receptionist answers your phone 24/7.",
+    price: "From $1,800",
+    link: "See voice agents",
   },
   {
     href: "/ai-assistants",
     index: "02",
     title: "AI Assistants",
-    line: "The inbox, handled.",
-    detail: "Drafts, tags, and routes in the tools you already open.",
+    line: "Follow up every lead",
+    detail: "Drafts and routes the replies your team would send.",
+    price: "From $1,200",
     link: "See assistants",
   },
   {
     href: "/custom-projects",
     index: "03",
     title: "Custom Projects",
-    line: "Software around the work.",
-    detail: "Portals, dashboards, and platforms shaped to your process.",
+    line: "Software built for how you work",
+    detail: "A portal or tool shaped to the job you already do.",
+    price: "",
     link: "See projects",
   },
   {
     href: "/ai-enablement",
     index: "04",
     title: "AI Enablement",
-    line: "A plan the team can run.",
-    detail: "Assessment, training, and rollout without the buzzwords.",
-    link: "See enablement",
+    line: "Train your team to use AI",
+    detail: "A short plan and training so the team actually uses it.",
+    price: "",
+    link: "See training",
   },
 ];
+
+export function PlanCta({ demoHref }: { demoHref?: string }) {
+  return (
+    <div className="plan-actions">
+      <Link className="btn btn-solid btn-lg" href="/#plan">
+        {planLabel}
+      </Link>
+      {demoHref ? (
+        <Link className="demo-link" href={demoHref}>
+          Hear a live demo call
+        </Link>
+      ) : null}
+    </div>
+  );
+}
 
 export function HomeHero() {
   return (
     <section className="home-hero">
-      <div className="wrap home-hero-grid">
+      <div className="wrap">
+        <p className="kicker">AI for small and mid-size businesses</p>
+        <h1 className="hero-title">
+          We set up AI for your business,
+          <br />
+          so you never miss a customer.
+        </h1>
+        <div className="home-hero-grid">
         <div className="hero-copy">
-          <p className="kicker">AI for small and mid-size businesses</p>
-          <h1 className="hero-title">AI that answers, books, and runs while you work.</h1>
           <p className="hero-sub">
-            Don&apos;t have the time or know-how to enable AI? We&apos;re here. Voice agents, assistants, custom
-            software, and enablement, built with Grok, Claude, and ElevenLabs.
+            AI receptionists that answer your phone 24/7, assistants that follow up on leads, and custom AI tools. Done
+            for you, live in days.
           </p>
-          <div className="hero-actions">
-            <a className="btn btn-solid btn-lg" href="#demo">
-              Hear it answer
-            </a>
-            <a className="btn btn-line btn-lg" href={bookCallHref}>
-              Book a 15-min call
-            </a>
-          </div>
-          <p className="hero-proof">
-            Real work only. <Link href="#work">Line Properties</Link> · <Link href="#work">Peak Exchange</Link> · live
-            voice clone.
-          </p>
+          <p className="here-line">Don&apos;t have the time or know-how to enable AI? We&apos;re here.</p>
+          <ul className="benefit-chips">
+            <li>Answers every call</li>
+            <li>Books appointments</li>
+            <li>Texts you a summary</li>
+          </ul>
+          <PlanCta demoHref="#demo" />
         </div>
         <div className="hero-phone">
           <IphoneCall
@@ -70,6 +89,7 @@ export function HomeHero() {
             callerLine="Can someone look at a leak this week?"
             timer="00:12"
           />
+        </div>
         </div>
       </div>
     </section>
@@ -82,10 +102,10 @@ export function ModelStrip() {
 
 export function OfferingCards() {
   return (
-    <section className="section" id="offerings">
+    <section className="section reveal" id="offerings">
       <div className="wrap">
         <p className="kicker">Four offerings</p>
-        <h2 className="section-title offer-heading">Start with the bottleneck.</h2>
+        <h2 className="section-title offer-heading">What we set up</h2>
         <div className="offer-cards">
           {offerings.map((item) => (
             <Link key={item.href} href={item.href} className="offer-card">
@@ -97,10 +117,12 @@ export function OfferingCards() {
               </p>
               <h3>{item.line}</h3>
               <p>{item.detail}</p>
+              {item.price ? <p className="card-price">{item.price}</p> : null}
               <span>{item.link} &gt;</span>
             </Link>
           ))}
         </div>
+        <PlanCta />
       </div>
     </section>
   );
@@ -153,32 +175,24 @@ function OfferArt({ kind }: { kind: string }) {
 
 export function HowWeWork() {
   const steps = [
-    {
-      title: "Find the bottleneck",
-      line: "A short call on where time leaks: missed rings, an inbox pile, or a tool that never shipped.",
-    },
-    {
-      title: "Ship a first version",
-      line: "A voice agent, assistant, or custom surface your team can try on real work.",
-    },
-    {
-      title: "Enable and extend",
-      line: "Training, guardrails, and only the next piece that earns its place.",
-    },
+    { title: "Tell us your business", line: "Name, what you need, and how to reach you." },
+    { title: "We build and connect it", line: "Your phone, your leads, and the tools you already use." },
+    { title: "It answers and books for you", line: "Customers get a reply. You get the booking and a text." },
   ];
   return (
-    <section className="section" id="how">
+    <section className="how-strip" id="how">
       <div className="wrap">
-        <h2 className="section-title offer-heading">Three steps. One first version.</h2>
+        <h2 className="section-title offer-heading">How it works</h2>
         <ol className="work-steps">
           {steps.map((step, index) => (
             <li key={step.title}>
-              <span>0{index + 1}</span>
+              <span aria-hidden="true">{index + 1}</span>
               <h3>{step.title}</h3>
               <p>{step.line}</p>
             </li>
           ))}
         </ol>
+        <PlanCta />
       </div>
     </section>
   );
@@ -186,7 +200,7 @@ export function HowWeWork() {
 
 export function CaseStudies() {
   return (
-    <section className="section studies" id="work">
+    <section className="section studies reveal" id="work">
       <div className="wrap">
         <p className="kicker">Selected work</p>
         <h2 className="section-title offer-heading">Built for real operations.</h2>
@@ -211,6 +225,7 @@ export function CaseStudies() {
             <Link href="/custom-projects">Related: custom projects &gt;</Link>
           </article>
         </div>
+        <PlanCta />
       </div>
     </section>
   );
@@ -218,22 +233,11 @@ export function CaseStudies() {
 
 export function FinalCta() {
   return (
-    <section className="section setup-band" id="contact">
+    <section className="section setup-band" id="plan">
       <div className="wrap">
-        <h2 className="section-title offer-heading">Put AI on the work that already costs you.</h2>
-        <p className="hero-sub">
-          Tell us where the time goes. We will say whether a voice agent, an assistant, or a custom project is the right
-          first step.
-        </p>
-        <div className="hero-actions">
-          <a className="btn btn-solid btn-lg" href="#demo">
-            Hear it answer
-          </a>
-          <a className="btn btn-line btn-lg" href="mailto:segev@futurixs.com">
-            segev@futurixs.com
-          </a>
-        </div>
-        <Wizard id="home-setup" />
+        <h2 className="section-title offer-heading">Get your free AI plan</h2>
+        <p className="hero-sub">Three details. We reply with what to set up first.</p>
+        <Wizard id="plan-form" />
       </div>
     </section>
   );

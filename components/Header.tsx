@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Logo } from "@/components/Logo";
-import { bookCallHref } from "@/lib/content";
+import { bookCallHref, planLabel } from "@/lib/content";
 
 const offerings = [
   { href: "/voice-agents", label: "Voice Agents" },
@@ -84,7 +84,7 @@ export function Header() {
           </div>
         </nav>
         <Link className="btn btn-solid header-cta" href={bookCallHref}>
-          Book a call
+          {planLabel}
         </Link>
         <button
           type="button"
@@ -124,11 +124,14 @@ export function Header() {
               Blog
             </Link>
             <Link className="btn btn-solid" href={bookCallHref} onClick={() => setOpen(false)}>
-              Book a call
+              {planLabel}
             </Link>
           </nav>
         </div>
       ) : null}
+      <Link className="sticky-plan btn btn-solid" href={bookCallHref}>
+        {planLabel}
+      </Link>
     </header>
   );
 }

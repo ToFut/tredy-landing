@@ -1,5 +1,6 @@
 /** Point every "Book a call" button here. Swap for a booking URL when one exists. */
-export const bookCallHref = "/#contact";
+export const bookCallHref = "/#plan";
+export const planLabel = "Get your free AI plan";
 
 /**
  * Drop a public audio file in later, for example "/samples/voice-agent.mp3".
@@ -264,20 +265,25 @@ export const reasons = [
 
 export const homeFaqs = [
   {
-    question: "What does Futurix build?",
-    answer: "Voice agents, AI assistants, custom projects, and AI enablement.",
+    question: "How long does it take?",
+    answer: "A first version is live in days. You tell us the business, we connect it, and you hear it before it goes on your line.",
   },
   {
-    question: "What does a first project look like?",
-    answer: "One workflow you can use, then you decide what to extend.",
+    question: "What does it cost?",
+    answer:
+      "A voice receptionist starts at $1,800. An assistant starts at $1,200. Custom tools are scoped on the free plan call. There is no charge for that call.",
   },
   {
-    question: "Do you work with our existing systems?",
-    answer: "Yes. We connect to the CRM, calendar, and tools you already run.",
+    question: "What do I need to start?",
+    answer: "Your business name, what you want handled, and an email or phone number. We use the number and tools you already have.",
   },
   {
-    question: "Who owns the result?",
-    answer: "You do. Support can continue, and it is not required to keep the system.",
+    question: "Does it sound robotic?",
+    answer: "No. You hear a live sample in the demo, and you approve what it is allowed to say before it answers real customers.",
+  },
+  {
+    question: "Can I keep my number?",
+    answer: "Yes. Customers keep calling the number they already know. The AI answers on that line.",
   },
 ];
 

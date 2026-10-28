@@ -86,7 +86,12 @@ export function IphoneCall({
   waveRef?: RefObject<HTMLDivElement | null>;
 }) {
   return (
+    <div className="iphone-shell">
+      <span className="iphone-side silent" aria-hidden="true" />
+      <span className="iphone-side volume" aria-hidden="true" />
+      <span className="iphone-side power" aria-hidden="true" />
     <div className="ios-call" aria-label={`Phone call with ${name}`}>
+      <span className="dynamic-island" aria-hidden="true" />
       <div className="ios-status" aria-hidden="true">
         <span>9:41</span>
         <span className="ios-status-icons">
@@ -143,6 +148,7 @@ export function IphoneCall({
         </svg>
       </div>
     </div>
+    </div>
   );
 }
 
@@ -156,6 +162,9 @@ export function WhatsAppThread({
   return (
     <div className="wa" aria-label={`Message thread with ${name}`}>
       <header className="wa-head">
+        <svg className="wa-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M15 5L8 12l7 7" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
         <span className="wa-avatar" aria-hidden="true">
           {initials(name)}
         </span>
@@ -163,14 +172,47 @@ export function WhatsAppThread({
           <strong>{name}</strong>
           <small>online</small>
         </div>
+        <svg className="wa-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M7 4h3l1.2 2.4H17a2 2 0 0 1 2 2V17a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z" fill="none" stroke="currentColor" strokeWidth="1.6" />
+          <path d="M9 14c.6 1.4 1.8 2.4 3.4 2.4 1.2 0 2-.6 2.6-1.4" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+        </svg>
+        <svg className="wa-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <rect x="3" y="7" width="11" height="10" rx="2" fill="none" stroke="currentColor" strokeWidth="1.6" />
+          <path d="M14 11l6-3v8l-6-3z" fill="currentColor" />
+        </svg>
       </header>
       <div className="wa-body">
+        <svg className="wa-doodles" aria-hidden="true">
+          <defs>
+            <pattern id="wa-doodle" width="120" height="120" patternUnits="userSpaceOnUse">
+              <g fill="none" stroke="#cfc6ba" strokeWidth="1.2" strokeLinecap="round">
+                <circle cx="18" cy="16" r="6" />
+                <path d="M14 28c1 4 8 4 9 0" />
+                <rect x="48" y="10" width="14" height="10" rx="2" />
+                <path d="M62 14h4v6h-4z" />
+                <path d="M92 18c4 0 6 4 4 7s-8 2-8-2 1-5 4-5z" />
+                <path d="M20 62h16M28 54v16" />
+                <circle cx="70" cy="58" r="7" />
+                <path d="M66 58h8M70 54v8" />
+                <path d="M96 70l6 8h-12z" />
+                <rect x="40" y="88" width="16" height="12" rx="3" />
+                <path d="M44 88v-3a4 4 0 0 1 8 0v3" />
+              </g>
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#wa-doodle)" />
+        </svg>
         {messages.map((message) => (
           <p key={`${message.time}-${message.text}`} className={message.side === "out" ? "wa-bubble out" : "wa-bubble in"}>
             {message.text}
             <span>
               {message.time}
-              {message.side === "out" ? <i className="wa-ticks" aria-hidden="true" /> : null}
+              {message.side === "out" ? (
+                <svg className="wa-ticks" viewBox="0 0 18 12" aria-hidden="true">
+                  <path d="M1 6.5l2.4 2.4L8 4" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+                  <path d="M6 7l2.4 2.4L16 3" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              ) : null}
             </span>
           </p>
         ))}
@@ -178,7 +220,12 @@ export function WhatsAppThread({
       <div className="wa-bar">
         <span aria-hidden="true">+</span>
         <input aria-label="Message" placeholder="Message" readOnly />
-        <span className="wa-mic" aria-hidden="true" />
+        <span className="wa-mic" aria-hidden="true">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 14a3 3 0 0 0 3-3V7a3 3 0 0 0-6 0v4a3 3 0 0 0 3 3z" fill="currentColor" />
+            <path d="M7 11a5 5 0 0 0 10 0M12 16v3" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+          </svg>
+        </span>
       </div>
     </div>
   );

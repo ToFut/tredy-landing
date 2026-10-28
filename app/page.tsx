@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { TryItLive } from "@/components/demo/TryItLive";
-import { CaseStudies, FinalCta, HomeHero, HowWeWork, ModelStrip, OfferingCards } from "@/components/home/Marketing";
+import { CaseStudies, FinalCta, HomeHero, HowWeWork, ModelStrip, OfferingCards, PlanCta } from "@/components/home/Marketing";
 import { JsonLd } from "@/components/JsonLd";
 import { homeFaqs, site } from "@/lib/content";
 import { homeJsonLd, pageMetadata } from "@/lib/seo";
@@ -16,18 +16,21 @@ export default function Page() {
     <>
       <JsonLd data={homeJsonLd()} />
       <HomeHero />
+      <HowWeWork />
       <ModelStrip />
       <OfferingCards />
-      <HowWeWork />
       <CaseStudies />
-      <section className="section demo-band" id="demo">
+      <section className="section demo-band reveal" id="demo">
         <div className="wrap">
           <h2 className="section-title offer-heading">Hear it answer.</h2>
           <p className="hero-sub">Record 10 seconds, name the business, and hear the call. The voice is deleted after the demo.</p>
         </div>
         <TryItLive anchor="try" heading={false} only={["voice"]} />
+        <div className="wrap">
+          <PlanCta />
+        </div>
       </section>
-      <section id="faq" className="section">
+      <section id="faq" className="section reveal">
         <div className="wrap article-copy">
           <h2 className="section-title offer-heading">Questions</h2>
           <div className="faq-list">
@@ -38,6 +41,7 @@ export default function Page() {
               </details>
             ))}
           </div>
+          <PlanCta />
         </div>
       </section>
       <FinalCta />

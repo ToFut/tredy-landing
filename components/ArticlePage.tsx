@@ -57,7 +57,7 @@ export function ArticlePage({ post }: { post: Post }) {
           </section>
           <p className="topic-cta">
             <Link className="btn btn-solid" href={bookCallHref}>
-              Book a 15-minute call
+              Get your free AI plan
               <span aria-hidden="true"> →</span>
             </Link>
           </p>

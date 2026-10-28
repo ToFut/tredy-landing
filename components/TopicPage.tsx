@@ -4,7 +4,8 @@ import { TryItLive } from "@/components/demo/TryItLive";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { JsonLd } from "@/components/JsonLd";
 import { Contact } from "@/components/sections";
-import { bookCallHref } from "@/lib/content";
+import { Wizard } from "@/components/start/Wizard";
+import { planLabel } from "@/lib/content";
 import { aboutJsonLd, industryJsonLd, serviceJsonLd } from "@/lib/seo";
 import type { BusinessId } from "@/lib/start";
 import type { TopicPageData } from "@/lib/types";
@@ -23,6 +24,17 @@ const industryPreset: Record<string, BusinessId> = {
   "/industries/property-management": "property",
   "/industries/insurance": "insurance",
 };
+
+const outcomes: Record<string, string> = {
+  "/voice-agents": "Never miss a call. An AI receptionist answers your phone 24/7.",
+  "/ai-assistants": "Follow up every lead, then route what a person should see.",
+  "/custom-projects": "Software built for how you work.",
+  "/ai-enablement": "Train your team to use AI on the work you already do.",
+};
+
+function plainLine(page: TopicPageData) {
+  return outcomes[page.path] ?? firstSentence(page.lede[0] ?? page.description);
+}
 
 function firstSentence(text: string) {
   const cut = text.split(". ")[0] ?? text;
@@ -50,20 +62,18 @@ export function TopicPage({ page }: { page: TopicPageData }) {
           <div className="wrap">
             <Breadcrumbs items={page.crumbs} />
             <h1>{page.h1}</h1>
-            <p className="hero-sub">{firstSentence(page.lede[0] ?? page.description)}</p>
-            <div className="hero-actions">
-              {hasDemo ? (
-                <a className="btn btn-solid btn-lg" href="#try">
-                  Try the live demo
-                </a>
-              ) : (
-                <Link className="btn btn-solid btn-lg" href="/get-started">
-                  Get started
-                </Link>
-              )}
-              <Link className="btn btn-line btn-lg" href={bookCallHref}>
-                Book a call
+            <p className="hero-sub">{plainLine(page)}</p>
+            {page.path === "/voice-agents" ? <p className="card-price">From $1,800</p> : null}
+            {page.path === "/ai-assistants" ? <p className="card-price">From $1,200</p> : null}
+            <div className="plan-actions">
+              <Link className="btn btn-solid btn-lg" href={page.kind === "service" ? "#plan" : "/#plan"}>
+                {planLabel}
               </Link>
+              {hasDemo ? (
+                <a className="demo-link" href="#try">
+                  Hear a live demo call
+                </a>
+              ) : null}
             </div>
           </div>
         </header>
@@ -150,18 +160,30 @@ export function TopicPage({ page }: { page: TopicPageData }) {
         <section className="final-cta">
           <div className="wrap">
             <h2>Set this up for your business.</h2>
-            <div className="hero-actions">
-            <Link className="btn btn-solid btn-lg" href={hasDemo ? "#try" : "/get-started"}>
-              {hasDemo ? "Try the live demo" : "Get started"}
-            </Link>
-            <Link className="btn btn-line btn-lg" href={bookCallHref}>
-              Book a call
-            </Link>
+            <div className="plan-actions">
+              <Link className="btn btn-solid btn-lg" href={page.kind === "service" ? "#plan" : "/#plan"}>
+                {planLabel}
+              </Link>
+              {hasDemo ? (
+                <a className="demo-link" href="#try">
+                  Hear a live demo call
+                </a>
+              ) : null}
             </div>
           </div>
         </section>
       </article>
-      <Contact />
+      {page.kind === "service" ? (
+        <section className="section" id="plan">
+          <div className="wrap">
+            <h2 className="section-title">Get your free AI plan</h2>
+            <p className="hero-sub">Three details. We reply with what to set up first.</p>
+            <Wizard />
+          </div>
+        </section>
+      ) : (
+        <Contact />
+      )}
     </>
   );
 }
