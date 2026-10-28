@@ -1,3 +1,17 @@
+html {
+  color-scheme: light;
+  background: #fff;
+}
+
+@media (prefers-color-scheme: dark) {
+  html,
+  body {
+    background: #fff;
+    color: #1d1d1f;
+    color-scheme: light;
+  }
+}
+
 :root {
   --space-1: 8px;
   --space-2: 16px;
@@ -345,9 +359,93 @@ a.btn-secondary {
   color: rgba(255, 255, 255, 0.78);
 }
 
-.book-wrap {
-  max-width: 720px;
+.book-page {
+  background: #f5f5f7;
+  padding: 64px 24px 96px;
+}
+
+.book-card {
+  width: min(560px, 100%);
   margin-inline: auto;
+  padding: 32px;
+  border-radius: 16px;
+  background: #fff;
+  color: #1d1d1f;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.book-card h1,
+.book-card p,
+.book-card label,
+.book-card legend {
+  color: #1d1d1f;
+}
+
+.step-bar {
+  height: 4px;
+  margin: 16px 0;
+  border-radius: 99px;
+  background: #e8e8ed;
+  overflow: hidden;
+}
+
+.step-bar span {
+  display: block;
+  height: 100%;
+  background: #0071e3;
+}
+
+.book-card .choice.on {
+  background: #0071e3;
+  color: #fff;
+  border-color: #0071e3;
+}
+
+.ios-call .ios-name,
+.ios-call .ios-carrier,
+.ios-call .ios-timer,
+.ios-call .ios-keys,
+.ios-call .ios-keys span,
+section.band .ios-call h3,
+section.band .ios-call .ios-carrier,
+section.band .ios-call .ios-timer {
+  color: #f5f5f7;
+}
+
+section.band .ios-call .ios-captions p,
+.ios-call .ios-captions p {
+  color: #fff;
+  background: #3a3a3c;
+}
+
+.brand-marquee > p:first-child,
+.brand-logo {
+  color: #3a3a3c;
+}
+
+.form-note a,
+.contact a {
+  color: #004a93;
+}
+
+.brand-logo {
+  min-width: 0;
+  gap: 8px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.brand-logo svg {
+  width: 28px;
+  height: 28px;
+}
+
+.brand-track {
+  gap: 48px;
+}
+
+.brand-note {
+  display: none;
 }
 
 .book-form,
@@ -461,6 +559,10 @@ a.sticky-cta {
 }
 
 @media (max-width: 960px) {
+  .header-cta {
+    display: none;
+  }
+
   .span-7,
   .span-5,
   .span-6,

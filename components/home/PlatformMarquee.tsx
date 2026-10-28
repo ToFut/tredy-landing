@@ -55,7 +55,6 @@ export function PlatformMarquee() {
           ))}
         </div>
       </div>
-      <p className="brand-note">Platforms we build with. Not clients. Names belong to their owners.</p>
     </section>
   );
 }

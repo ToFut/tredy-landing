@@ -1,7 +1,6 @@
 "use client";
 
 import { FormEvent, useState } from "react";
-import { studioMailto } from "@/lib/start";
 import { planLabel } from "@/lib/content";
 
 const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
@@ -13,30 +12,37 @@ export function BookFlow() {
   const [contact, setContact] = useState("");
   const [day, setDay] = useState("");
   const [slot, setSlot] = useState("");
+  const [error, setError] = useState("");
 
-  function submit(event: FormEvent<HTMLFormElement>) {
+  async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const href = studioMailto({
-      Name: name,
-      "Phone or email": contact,
-      Day: day,
-      Time: slot,
+    setError("");
+    const response = await fetch("/api/book", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name, contact, day, slot }),
     });
-    window.location.href = href;
+    if (!response.ok) {
+      const payload = await response.json().catch(() => ({}));
+      setError(payload.error || "Could not save your request. Try again.");
+      return;
+    }
     setStep(3);
   }
 
   if (step === 3) {
     return (
       <div className="book-done" role="status">
-        <h1 className="type-h1">We will call you within 1 business day.</h1>
-        <p className="type-body">If your email app did not open, write to segev@futurixs.com with the same details.</p>
+        <h2 className="type-h2">Thanks, we will call you within 1 business day.</h2>
       </div>
     );
   }
 
   return (
     <form className="book-form" onSubmit={step === 2 ? submit : (event) => event.preventDefault()}>
+      <div className="step-bar" role="progressbar" aria-valuemin={1} aria-valuemax={2} aria-valuenow={step}>
+        <span style={{ width: step === 1 ? "50%" : "100%" }} />
+      </div>
       <p className="type-small">Step {step} of 2</p>
       {step === 1 ? (
         <>
@@ -81,8 +87,9 @@ export function BookFlow() {
               ))}
             </div>
           </fieldset>
-          <div className="plan-actions">
-            <button className="text-btn" type="button" onClick={() => setStep(1)}>
+          {error ? <p role="alert">{error}</p> : null}
+          <div className="actions">
+            <button className="btn btn-secondary" type="button" onClick={() => setStep(1)}>
               Back
             </button>
             <button className="btn btn-primary" type="submit" disabled={!day || !slot}>

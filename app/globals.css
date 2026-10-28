@@ -521,18 +521,18 @@ p {
 }
 
 .band {
-  background: var(--night);
-  color: var(--cream);
-  padding: 84px 0;
+  background: #fff;
+  color: #1d1d1f;
+  padding: 80px 0;
 }
 
 .band h2,
 .band h3 {
-  color: var(--cream);
+  color: #1d1d1f;
 }
 
 .band p {
-  color: rgba(247, 244, 238, 0.74);
+  color: #6e6e73;
 }
 
 .principle-grid,

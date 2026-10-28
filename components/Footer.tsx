@@ -28,6 +28,7 @@ export function Footer() {
             <br />
             <a href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a>
           </p>
+          <p className="type-small">Platforms we build with. Not clients. Names belong to their owners.</p>
         </div>
         <div>
           <p className="kicker">Offerings</p>

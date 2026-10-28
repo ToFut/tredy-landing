@@ -118,7 +118,7 @@ export function IphoneCall({
       <div className="ios-avatar" aria-hidden="true">
         {initials(name)}
       </div>
-      <h3 className="ios-name">{name}</h3>
+      <p className="ios-name">{name}</p>
       <p className="ios-timer">{timer}</p>
       <div className={`ios-wave ${live ? "on" : ""}`} ref={waveRef} aria-hidden="true">
         {Array.from({ length: 9 }).map((_, index) => (
@@ -220,7 +220,7 @@ export function WhatsAppThread({
       </div>
       <div className="wa-bar">
         <span aria-hidden="true">+</span>
-        <input aria-label="Message" placeholder="Message" readOnly />
+        <input aria-label="Message" placeholder="Message" readOnly tabIndex={-1} />
         <span className="wa-mic" aria-hidden="true">
           <svg viewBox="0 0 24 24">
             <path d="M12 14a3 3 0 0 0 3-3V7a3 3 0 0 0-6 0v4a3 3 0 0 0 3 3z" fill="currentColor" />
@@ -272,7 +272,7 @@ export function TeamThread({
           )}
         </div>
         <div className="team-compose">
-          <input aria-label={`Message ${channel}`} placeholder={`Message #${channel}`} readOnly />
+          <input aria-label={`Message ${channel}`} placeholder={`Message #${channel}`} readOnly tabIndex={-1} />
         </div>
       </div>
     </div>

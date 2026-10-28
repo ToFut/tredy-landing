@@ -10,8 +10,8 @@ export const metadata: Metadata = pageMetadata({
 
 export default function BookPage() {
   return (
-    <section className="band">
-      <div className="wrap book-wrap">
+    <section className="book-page">
+      <div className="book-card">
         <p className="eyebrow">Book a call</p>
         <h1 className="type-h1">Book a free 15-min call</h1>
         <p className="type-body">We will look at your phone, leads, or tools and tell you the first thing to set up.</p>
