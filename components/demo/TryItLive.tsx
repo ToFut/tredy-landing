@@ -4,6 +4,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { AppWindow, Inbox, Phone, Sparkles } from "lucide-react";
 import { useRef, useState, type ReactNode } from "react";
 import { Wizard } from "@/components/start/Wizard";
+import { IphoneCall, OpsDashboard, RolloutBoard, TeamThread, WhatsAppThread } from "@/components/visuals/Screens";
 import type { BusinessId } from "@/lib/start";
 import type { CallLine, CallSummary } from "@/lib/demo/templates";
 
@@ -76,6 +77,7 @@ export function TryItLive({
   only,
   anchor = "try",
   heading = true,
+  variant = "page",
 }: {
   asPage?: boolean;
   initialTab?: TabId;
@@ -83,6 +85,7 @@ export function TryItLive({
   only?: TabId[];
   anchor?: string;
   heading?: boolean;
+  variant?: "page" | "hero";
 }) {
   const reduce = useReducedMotion();
   const [tab, setTab] = useState<TabId>(initialTab);
@@ -90,7 +93,7 @@ export function TryItLive({
   const visible = tabs.filter((item) => !only || only.includes(item.id));
 
   return (
-    <section id={anchor} className={heading ? "try-live" : "try-live try-plain"}>
+    <section id={anchor} className={heading ? "try-live" : variant === "hero" ? "try-live try-plain hero-demo" : "try-live try-plain"}>
       <div className="wrap">
         {heading ? <p className="kicker">Try it live</p> : null}
         {asPage ? <h1 className="hero-title">Try it live</h1> : null}
@@ -117,7 +120,7 @@ export function TryItLive({
           })}
         </div>
         ) : null}
-        {tab === "voice" ? <VoiceDemo presetIndustry={presetIndustry} /> : null}
+        {tab === "voice" ? <VoiceDemo presetIndustry={presetIndustry} compact={variant === "hero"} /> : null}
         {tab === "assistant" ? <AssistantDemo presetIndustry={presetIndustry} /> : null}
         {tab === "projects" ? <ProjectDemo /> : null}
         {tab === "enablement" ? <QuizDemo /> : null}
@@ -126,7 +129,13 @@ export function TryItLive({
   );
 }
 
-function VoiceDemo({ presetIndustry = "roofing" }: { presetIndustry?: BusinessId }) {
+function VoiceDemo({
+  presetIndustry = "roofing",
+  compact = false,
+}: {
+  presetIndustry?: BusinessId;
+  compact?: boolean;
+}) {
   const [step, setStep] = useState(1);
   const [consent, setConsent] = useState(false);
   const [businessName, setBusinessName] = useState("");
@@ -141,13 +150,12 @@ function VoiceDemo({ presetIndustry = "roofing" }: { presetIndustry?: BusinessId
   const [lines, setLines] = useState<CallLine[]>([]);
   const [summary, setSummary] = useState<CallSummary | null>(null);
   const [shown, setShown] = useState(0);
-  const [bookedOn, setBookedOn] = useState(false);
   const [booking, setBooking] = useState(false);
   const [callError, setCallError] = useState("");
   const recorder = useRef<MediaRecorder | null>(null);
   const waveRef = useRef<HTMLDivElement | null>(null);
 
-  const label = businessName.trim() || "your business";
+  const label = businessName.trim() || "North Roofing";
   const greet = `Hi, thanks for calling ${label}. How can I help you today?`;
 
   async function record() {
@@ -252,7 +260,6 @@ function VoiceDemo({ presetIndustry = "roofing" }: { presetIndustry?: BusinessId
     setCallError("");
     setPhase("call");
     setShown(0);
-    setBookedOn(false);
     const scriptResponse = await fetch("/api/demo/script", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -276,7 +283,6 @@ function VoiceDemo({ presetIndustry = "roofing" }: { presetIndustry?: BusinessId
     if (!callResponse.ok) {
       setCallError(call.error || "Call audio failed.");
       setShown(script.lines.length);
-      setBookedOn(true);
       setStep(4);
       setPhase("summary");
       return;
@@ -287,63 +293,38 @@ function VoiceDemo({ presetIndustry = "roofing" }: { presetIndustry?: BusinessId
       if (clips[index]) await playWithWave(clips[index], waveRef.current);
       else await wait(900);
     }
-    setBookedOn(true);
     setStep(4);
     setPhase("summary");
   }
 
+  const callerLine = lines.find((line) => line.speaker !== "agent")?.text;
+  const spoken = lines.slice(0, shown).filter((line) => line.speaker === "agent").at(-1)?.text;
   const device =
     phase === "summary" && summary ? (
-      <div className="iphone light-phone">
-        <div className="iphone-notch" />
-        <p className="phone-label">Summary sent to your phone</p>
-        <div className="chat-bubbles">
-          <p>{summary.caller} called about {summary.need}.</p>
-          <p>Area: {summary.area}. Urgency: {summary.urgency}.</p>
-          <p>Booked {summary.booked}. Next: {summary.next}.</p>
-        </div>
-      </div>
-    ) : step >= 3 ? (
-      <div className="iphone">
-        <div className="iphone-notch" />
-        <p className="phone-label">In call</p>
-        <div className="mini-wave tall" ref={waveRef} aria-hidden="true">
-          {Array.from({ length: 16 }).map((_, index) => (
-            <i key={index} />
-          ))}
-        </div>
-        {lines.slice(0, shown).map((line, index) => (
-          <p key={`${line.speaker}-${index}`} className={line.speaker === "agent" ? "bubble agent" : "bubble caller"}>
-            <b>{line.speaker === "agent" ? label : "Caller"}</b>
-            {line.text}
-          </p>
-        ))}
-        {bookedOn && summary ? <p className="booked-chip">Booked: {summary.booked}</p> : null}
-      </div>
+      <WhatsAppThread
+        name={label}
+        messages={[
+          { side: "in", text: `${summary.caller} called about ${summary.need}.`, time: "10:41" },
+          { side: "in", text: `Area: ${summary.area}. Urgency: ${summary.urgency}.`, time: "10:41" },
+          { side: "out", text: `Booked ${summary.booked}. Next: ${summary.next}.`, time: "10:42" },
+        ]}
+      />
     ) : (
-      <div className="iphone glow-phone">
-        <div className="iphone-notch" />
-        <p className="phone-label">{businessName.trim() || "Your business"}</p>
-        <div
-          className={`mini-wave tall ${phase === "recording" || phase === "hear" || phase === "cloning" ? "" : "idle-wave"}`}
-          ref={waveRef}
-          aria-hidden="true"
-        >
-          {Array.from({ length: 16 }).map((_, index) => (
-            <i key={index} />
-          ))}
-        </div>
-        <p className="bubble agent">
-          <b>{businessName.trim() || "Receptionist"}</b>
-          {greet}
-        </p>
-      </div>
+      <IphoneCall
+        name={businessName.trim() || "North Roofing"}
+        caption={spoken || greet}
+        callerLine={step >= 3 ? callerLine : "Can someone look at a leak this week?"}
+        timer={phase === "recording" ? `0:0${Math.max(0, 10 - left)}` : phase === "cloning" ? "Cloning" : "00:12"}
+        live={phase !== "error"}
+        waveRef={waveRef}
+      />
     );
 
   return (
     <Stage
       controls={
         <>
+          {compact ? null : (
           <ol className="step-meter">
             {["Record", "Business", "The call", "Your phone"].map((item, index) => (
               <li key={item} className={step === index + 1 ? "now" : step > index + 1 ? "done" : ""}>
@@ -352,11 +333,12 @@ function VoiceDemo({ presetIndustry = "roofing" }: { presetIndustry?: BusinessId
               </li>
             ))}
           </ol>
+          )}
           {step === 1 ? (
             <>
               <label>
                 Business name
-                <input value={businessName} onChange={(event) => setBusinessName(event.target.value)} placeholder="North Roofing" />
+                <input value={businessName} onChange={(event) => setBusinessName(event.target.value)} placeholder="Your company" />
               </label>
               <p className="read-script">{greet}</p>
               <label className="consent">
@@ -502,16 +484,14 @@ function AssistantDemo({ presetIndustry = "roofing" }: { presetIndustry?: Busine
         </>
       }
       device={
-        <div className="iphone light-phone">
-          <div className="iphone-notch" />
-          <p className="phone-label">{sample.from}</p>
-          <div className="chat-bubbles">
-            <p>{sample.text}</p>
-            {count >= 2 ? <p className="draft-bubble">{sample.draft}</p> : null}
-          </div>
-          {count >= 1 ? <p className="booked-chip">{sample.tag}</p> : null}
-          {count >= 3 ? <p className="status-line">{sample.route}</p> : null}
-        </div>
+        <TeamThread
+          channel="inbox"
+          messages={[
+            { author: sample.from, time: "9:14 AM", text: sample.text },
+            ...(count >= 2 ? [{ author: "Futurix assistant", time: "9:14 AM", text: sample.draft }] : []),
+            ...(count >= 3 ? [{ author: "Futurix", time: "9:14 AM", text: sample.route, system: true }] : []),
+          ]}
+        />
       }
     />
   );
@@ -559,23 +539,18 @@ function ProjectDemo() {
         </>
       }
       device={
-        <div className={`mac-window ${built ? "on" : ""}`}>
-          <div className="mac-dots" aria-hidden="true"><i /><i /><i /></div>
-          <p className="kicker">Sample layout, not live data</p>
-          <div className="dash-top">
-            <span>Portal</span>
-            <span>Jobs</span>
-            <span>Inbox</span>
-          </div>
-          <div className="bars sample-bars">
-            <i /><i /><i /><i />
-          </div>
-          <div className="board">
-            <p>New</p>
-            <p>Scheduled</p>
-            <p>Done</p>
-          </div>
-        </div>
+        <OpsDashboard
+          title={built ? "North Roofing jobs" : "Jobs"}
+          rows={
+            built
+              ? [
+                  { status: "New", job: "Leak on Oak Street", when: "Today" },
+                  { status: "Scheduled", job: "Estimate, Thursday", when: "Thu 10:00" },
+                  { status: "Done", job: "Ridge cap, Maple Ave", when: "Yesterday" },
+                ]
+              : [{ status: "Waiting", job: "Choose an industry to fill the board", when: "" }]
+          }
+        />
       }
     />
   );
@@ -638,19 +613,21 @@ function QuizDemo() {
         </>
       }
       device={
-        <div className="plan-card apple-plan">
-          <p className="kicker">{done ? "Quiz result" : `Question ${index + 1} of 5`}</p>
-          <h3>{done ? level : questions[index]}</h3>
-          {done ? (
-            <ul>
-              <li>30 days: name the one workflow and the rules.</li>
-              <li>60 days: use a first version and review it.</li>
-              <li>90 days: keep what the team uses.</li>
-            </ul>
-          ) : (
-            <p>Yes answers so far: {score}.</p>
-          )}
-        </div>
+        <RolloutBoard
+          step={done ? level : `Question ${Math.max(index, 0) + 1} of 5`}
+          items={
+            done
+              ? [
+                  { label: "30 days: name the workflow and the rules", state: "Next" },
+                  { label: "60 days: use a first version and review it", state: "Later" },
+                  { label: "90 days: keep what the team uses", state: "Later" },
+                ]
+              : questions.map((question, itemIndex) => ({
+                  label: question,
+                  state: answers[itemIndex] === "yes" ? "Yes" : answers[itemIndex] === "not" ? "Not yet" : "Open",
+                }))
+          }
+        />
       }
     />
   );

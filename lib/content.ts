@@ -13,8 +13,8 @@ export const site = {
   location: "Suffern, New York",
   contactEmail: "segev@futurixs.com",
   description:
-    "Voice Agents, Custom Projects, AI Assistants, and AI Enablement for US small and mid-size businesses. Don't have the time or know-how to enable AI? We're here.",
-  title: "Futurix | Custom AI Solutions and AI Enablement for Small Business",
+    "AI receptionist for small business, AI chatbot for business, custom AI development, and AI consulting. Don't have the time or know-how to enable AI? We're here.",
+  title: "AI Receptionist for Small Business | Futurix",
   founder: "Segev Halfon",
   founderLinkedIn: "https://www.linkedin.com/in/segev-halfon-400376123",
   entity:

@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
-import { CaseStudies, FinalCta, HereBand, HomeHero, LogoMarquee, OfferingBands, SetupBand } from "@/components/home/Marketing";
+import { CaseStudies, FinalCta, HomeHero, HowWeWork, ModelStrip, OfferingCards } from "@/components/home/Marketing";
 import { JsonLd } from "@/components/JsonLd";
-import { Contact } from "@/components/sections";
 import { homeFaqs, site } from "@/lib/content";
 import { homeJsonLd, pageMetadata } from "@/lib/seo";
 
@@ -16,15 +15,13 @@ export default function Page() {
     <>
       <JsonLd data={homeJsonLd()} />
       <HomeHero />
-      <OfferingBands />
-      <HereBand />
-      <LogoMarquee />
+      <ModelStrip />
+      <OfferingCards />
+      <HowWeWork />
       <CaseStudies />
-      <SetupBand />
-      <FinalCta />
       <section id="faq" className="section">
-        <div className="wrap topic-wrap">
-          <h2 className="section-title">Questions</h2>
+        <div className="wrap article-copy">
+          <h2 className="section-title offer-heading">Questions</h2>
           <div className="faq-list">
             {homeFaqs.map((item) => (
               <details key={item.question}>
@@ -35,7 +32,7 @@ export default function Page() {
           </div>
         </div>
       </section>
-      <Contact />
+      <FinalCta />
     </>
   );
 }

@@ -5,7 +5,7 @@ import { industryPages } from "@/lib/industries";
 const studio = [
   { href: "/get-started", label: "Get started" },
   { href: "/about", label: "About" },
-  { href: "/#approach", label: "Approach" },
+  { href: "/#how", label: "How we work" },
   { href: "/#work", label: "Work" },
   { href: "/blog", label: "Blog" },
   { href: "/#faq", label: "FAQ" },

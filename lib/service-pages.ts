@@ -8,7 +8,7 @@ export const servicePages: TopicPageData[] = [
     path: "/voice-agents",
     kind: "service",
     serviceType: "AI voice agents and AI receptionist",
-    title: "AI Voice Agents and AI Receptionist for Small Business | Futurix",
+    title: "AI Receptionist and AI Phone Answering Service | Futurix",
     description:
       "AI phone agents that answer calls, book jobs, and capture leads 24/7 for roofing, HVAC, real estate, and property teams. Built and launched for you.",
     h1: "AI voice agents and an AI receptionist for small business",
@@ -101,9 +101,9 @@ export const servicePages: TopicPageData[] = [
     path: "/ai-assistants",
     kind: "service",
     serviceType: "AI assistants and workflow automation",
-    title: "AI Assistants and Automation for Small Business | Futurix",
+    title: "AI Chatbot for Business | Futurix",
     description:
-      "Chat and workflow assistants that handle follow-ups, FAQs, and ops tasks. Done-for-you AI automation so your team spends time on work that pays.",
+      "AI chatbot for business and workflow assistants that handle follow-ups, FAQs, and ops tasks. Done for you, inside the tools your team already opens.",
     h1: "AI assistants and automation for small business",
     lede: [
       `${entity}, builds chat and workflow assistants that take follow-ups, FAQs, and repeat ops tasks off the owner's desk. AI automation for a small business lives inside the inbox, files, and tools the team already opens.`,
@@ -187,7 +187,7 @@ export const servicePages: TopicPageData[] = [
     path: "/custom-projects",
     kind: "service",
     serviceType: "Custom AI development and software",
-    title: "Custom AI Development and Software Projects | Futurix",
+    title: "Custom AI Development for Small Business | Futurix",
     description:
       "Custom AI and software built around your process, tools, and data. From a first scoped build to production handoff for US businesses.",
     h1: "Custom AI development and software for US businesses",
@@ -273,9 +273,9 @@ export const servicePages: TopicPageData[] = [
     path: "/ai-enablement",
     kind: "service",
     serviceType: "AI enablement, training, and implementation",
-    title: "AI Enablement, Training, and Implementation for SMBs | Futurix",
+    title: "AI Consulting for Small Business | Futurix",
     description:
-      "Don't have the time or know-how to enable AI? Strategy, readiness, training, and rollout so your team actually uses AI at work.",
+      "AI consulting for small business: readiness, training, and rollout so your team actually uses AI at work. Don't have the time or know-how to enable AI? We're here.",
     h1: "AI enablement, training, and implementation for small business",
     lede: [
       `${entity}, helps owners who do not have the time or the know-how to enable AI. An AI consultant for a small business should leave you with a decision, a first workflow, and a team that can use it.`,

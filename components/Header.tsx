@@ -4,12 +4,19 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Logo } from "@/components/Logo";
+import { bookCallHref } from "@/lib/content";
 
-const links = [
+const offerings = [
   { href: "/voice-agents", label: "Voice Agents" },
   { href: "/ai-assistants", label: "AI Assistants" },
   { href: "/custom-projects", label: "Custom Projects" },
   { href: "/ai-enablement", label: "AI Enablement" },
+];
+
+const links = [
+  { href: "/#work", label: "Work" },
+  { href: "/#demo", label: "Live demo" },
+  { href: "/about", label: "About" },
 ];
 
 const industries = [
@@ -43,7 +50,22 @@ export function Header() {
       <div className="wrap header-bar">
         <Logo />
         <nav className="desktop-nav" aria-label="Primary">
-          {links.map((item) => (
+          <Link href="/#work" aria-current={pathname === "/#work" ? "page" : undefined}>
+            Work
+          </Link>
+          <div className="nav-drop">
+            <button type="button" className="nav-drop-btn" aria-haspopup="true">
+              Offerings
+            </button>
+            <div className="nav-menu">
+              {offerings.map((item) => (
+                <Link key={item.href} href={item.href}>
+                  {item.label}
+                </Link>
+              ))}
+            </div>
+          </div>
+          {links.slice(1).map((item) => (
             <Link key={item.href} href={item.href} aria-current={pathname === item.href ? "page" : undefined}>
               {item.label}
             </Link>
@@ -60,15 +82,9 @@ export function Header() {
               ))}
             </div>
           </div>
-          <Link href="/about" aria-current={pathname === "/about" ? "page" : undefined}>
-            About
-          </Link>
-          <Link href="/blog" aria-current={pathname === "/blog" ? "page" : undefined}>
-            Blog
-          </Link>
         </nav>
-        <Link className="btn btn-solid header-cta" href="/get-started">
-          Get started
+        <Link className="btn btn-solid header-cta" href={bookCallHref}>
+          Book a call
         </Link>
         <button
           type="button"
@@ -83,11 +99,18 @@ export function Header() {
       {open ? (
         <div id="mobile-nav" className="mobile-nav">
           <nav aria-label="Mobile">
-            {links.map((item) => (
+            <Link href="/#work" onClick={() => setOpen(false)}>
+              Work
+            </Link>
+            <p className="kicker">Offerings</p>
+            {offerings.map((item) => (
               <Link key={item.href} href={item.href} onClick={() => setOpen(false)}>
                 {item.label}
               </Link>
             ))}
+            <Link href="/#demo" onClick={() => setOpen(false)}>
+              Live demo
+            </Link>
             <p className="kicker">Industries</p>
             {industries.map((item) => (
               <Link key={item.href} href={item.href} onClick={() => setOpen(false)}>
@@ -100,8 +123,8 @@ export function Header() {
             <Link href="/blog" onClick={() => setOpen(false)}>
               Blog
             </Link>
-            <Link className="btn btn-solid" href="/get-started" onClick={() => setOpen(false)}>
-              Get started
+            <Link className="btn btn-solid" href={bookCallHref} onClick={() => setOpen(false)}>
+              Book a call
             </Link>
           </nav>
         </div>
