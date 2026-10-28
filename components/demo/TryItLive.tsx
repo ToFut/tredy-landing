@@ -155,7 +155,7 @@ function VoiceDemo({
   const recorder = useRef<MediaRecorder | null>(null);
   const waveRef = useRef<HTMLDivElement | null>(null);
 
-  const label = businessName.trim() || "North Roofing";
+  const label = businessName.trim() || "Harbor Roofing";
   const greet = `Hi, thanks for calling ${label}. How can I help you today?`;
 
   async function record() {
@@ -334,7 +334,7 @@ function VoiceDemo({
             <b>1</b> Type your business name.
           </li>
           <li>
-            <b>2</b> Read one sentence aloud (10 sec) to clone your voice.
+            <b>2</b> Read one sentence (10 sec).
           </li>
           <li>
             <b>3</b> Hear your AI receptionist answer a call.

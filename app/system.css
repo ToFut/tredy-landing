@@ -885,11 +885,15 @@ header.product-hero > .wrap .card-price {
   font-weight: 700;
 }
 
+#demo.band {
+  padding-block: 32px 48px;
+}
+
 .demo-guide {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 16px;
-  margin: 8px 0 24px;
+  gap: 12px;
+  margin: 0 0 12px;
   padding: 0;
   list-style: none;
 }
@@ -916,17 +920,22 @@ header.product-hero > .wrap .card-price {
 }
 
 .try-live .stage {
-  align-items: center;
+  align-items: flex-start;
+  margin-top: 0;
 }
 
 .try-live .stage-controls {
   flex: 1 1 440px;
   max-width: 480px;
-  align-self: center;
+  align-self: flex-start;
   display: flex;
   flex-direction: column;
   align-items: stretch;
   gap: 12px;
+}
+
+.try-live .step-meter {
+  margin: 0 0 4px;
 }
 
 .try-live .iphone-shell {
@@ -1068,5 +1077,9 @@ header.product-hero > .wrap .card-price {
   .demo-guide,
   .service-steps {
     grid-template-columns: 1fr;
+  }
+
+  .try-live .stage-controls {
+    order: -1;
   }
 }
