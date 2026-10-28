@@ -1,6 +1,7 @@
 /** Point every "Book a call" button here. Swap for a booking URL when one exists. */
-export const bookCallHref = "/#plan";
-export const planLabel = "Get your free AI plan";
+export const bookCallHref = "/book";
+export const planLabel = "Book a free 15-min call";
+export const demoLabel = "Hear a demo call";
 
 /**
  * Drop a public audio file in later, for example "/samples/voice-agent.mp3".

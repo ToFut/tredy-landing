@@ -4,27 +4,13 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Logo } from "@/components/Logo";
-import { bookCallHref, planLabel } from "@/lib/content";
+import { BookLink } from "@/components/ui/Actions";
 
 const offerings = [
   { href: "/voice-agents", label: "Voice Agents" },
   { href: "/ai-assistants", label: "AI Assistants" },
   { href: "/custom-projects", label: "Custom Projects" },
   { href: "/ai-enablement", label: "AI Enablement" },
-];
-
-const links = [
-  { href: "/#work", label: "Work" },
-  { href: "/#demo", label: "Live demo" },
-  { href: "/about", label: "About" },
-];
-
-const industries = [
-  { href: "/industries/roofing", label: "Roofing" },
-  { href: "/industries/home-services", label: "Home Services" },
-  { href: "/industries/real-estate", label: "Real Estate" },
-  { href: "/industries/property-management", label: "Property Management" },
-  { href: "/industries/insurance", label: "Insurance" },
 ];
 
 export function Header() {
@@ -50,12 +36,9 @@ export function Header() {
       <div className="wrap header-bar">
         <Logo />
         <nav className="desktop-nav" aria-label="Primary">
-          <Link href="/#work" aria-current={pathname === "/#work" ? "page" : undefined}>
-            Work
-          </Link>
           <div className="nav-drop">
             <button type="button" className="nav-drop-btn" aria-haspopup="true">
-              Offerings
+              Services
             </button>
             <div className="nav-menu">
               {offerings.map((item) => (
@@ -65,27 +48,13 @@ export function Header() {
               ))}
             </div>
           </div>
-          {links.slice(1).map((item) => (
-            <Link key={item.href} href={item.href} aria-current={pathname === item.href ? "page" : undefined}>
-              {item.label}
-            </Link>
-          ))}
-          <div className="nav-drop">
-            <button type="button" className="nav-drop-btn" aria-haspopup="true">
-              Industries
-            </button>
-            <div className="nav-menu">
-              {industries.map((item) => (
-                <Link key={item.href} href={item.href}>
-                  {item.label}
-                </Link>
-              ))}
-            </div>
-          </div>
+          <Link href="/#demo">Live demo</Link>
+          <Link href="/#work">Work</Link>
+          <Link href="/about" aria-current={pathname === "/about" ? "page" : undefined}>
+            About
+          </Link>
         </nav>
-        <Link className="btn btn-solid header-cta" href={bookCallHref}>
-          {planLabel}
-        </Link>
+        <BookLink className="btn btn-primary header-cta" />
         <button
           type="button"
           className="nav-toggle"
@@ -99,10 +68,7 @@ export function Header() {
       {open ? (
         <div id="mobile-nav" className="mobile-nav">
           <nav aria-label="Mobile">
-            <Link href="/#work" onClick={() => setOpen(false)}>
-              Work
-            </Link>
-            <p className="kicker">Offerings</p>
+            <p className="kicker">Services</p>
             {offerings.map((item) => (
               <Link key={item.href} href={item.href} onClick={() => setOpen(false)}>
                 {item.label}
@@ -111,27 +77,16 @@ export function Header() {
             <Link href="/#demo" onClick={() => setOpen(false)}>
               Live demo
             </Link>
-            <p className="kicker">Industries</p>
-            {industries.map((item) => (
-              <Link key={item.href} href={item.href} onClick={() => setOpen(false)}>
-                {item.label}
-              </Link>
-            ))}
+            <Link href="/#work" onClick={() => setOpen(false)}>
+              Work
+            </Link>
             <Link href="/about" onClick={() => setOpen(false)}>
               About
             </Link>
-            <Link href="/blog" onClick={() => setOpen(false)}>
-              Blog
-            </Link>
-            <Link className="btn btn-solid" href={bookCallHref} onClick={() => setOpen(false)}>
-              {planLabel}
-            </Link>
+            <BookLink onClick={() => setOpen(false)} />
           </nav>
         </div>
       ) : null}
-      <Link className="sticky-plan btn btn-solid" href={bookCallHref}>
-        {planLabel}
-      </Link>
     </header>
   );
 }

@@ -3,7 +3,7 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { AppWindow, Inbox, Phone, Sparkles } from "lucide-react";
 import { useRef, useState, type ReactNode } from "react";
-import { Wizard } from "@/components/start/Wizard";
+import { BookLink } from "@/components/ui/Actions";
 import { IphoneCall, OpsDashboard, RolloutBoard, TeamThread, WhatsAppThread } from "@/components/visuals/Screens";
 import type { BusinessId } from "@/lib/start";
 import type { CallLine, CallSummary } from "@/lib/demo/templates";
@@ -150,7 +150,6 @@ function VoiceDemo({
   const [lines, setLines] = useState<CallLine[]>([]);
   const [summary, setSummary] = useState<CallSummary | null>(null);
   const [shown, setShown] = useState(0);
-  const [booking, setBooking] = useState(false);
   const [callError, setCallError] = useState("");
   const recorder = useRef<MediaRecorder | null>(null);
   const waveRef = useRef<HTMLDivElement | null>(null);
@@ -402,19 +401,7 @@ function VoiceDemo({
             </>
           ) : null}
           {phase === "summary" && summary ? (
-            <button type="button" className="btn btn-solid btn-lg" onClick={() => setBooking(true)}>
-              Set this up for my business
-            </button>
-          ) : null}
-          {booking ? (
-            <Wizard
-              id="book"
-              initialGoals={["phone", "book"]}
-              initialBusiness={industry}
-              initialDetails={{ businessName, website }}
-              startAtContact
-              extra={{ Need: summary?.need || "", Booked: summary?.booked || "" }}
-            />
+            <BookLink />
           ) : null}
         </>
       }
@@ -427,7 +414,6 @@ function AssistantDemo({ presetIndustry = "roofing" }: { presetIndustry?: Busine
   const [industry, setIndustry] = useState<BusinessId>(presetIndustry);
   const [count, setCount] = useState(0);
   const sample = inboxSamples[industry];
-  const [booking, setBooking] = useState(false);
 
   function handleMessage() {
     setCount(0);
@@ -476,11 +462,8 @@ function AssistantDemo({ presetIndustry = "roofing" }: { presetIndustry?: Busine
         </div>
       )}
       {count >= 3 ? (
-        <button type="button" className="btn btn-solid btn-lg" onClick={() => setBooking(true)}>
-          Set this up for my business
-        </button>
+        <BookLink />
       ) : null}
-      {booking ? <Wizard initialGoals={["inbox"]} initialBusiness={industry} startAtContact id="book-assistant" /> : null}
         </>
       }
       device={
@@ -500,7 +483,6 @@ function AssistantDemo({ presetIndustry = "roofing" }: { presetIndustry?: Busine
 function ProjectDemo() {
   const [industry, setIndustry] = useState<BusinessId | "">("");
   const [built, setBuilt] = useState(false);
-  const [booking, setBooking] = useState(false);
 
   return (
     <Stage
@@ -531,11 +513,8 @@ function ProjectDemo() {
         </button>
       ) : null}
       {built ? (
-        <button type="button" className="btn btn-solid btn-lg" onClick={() => setBooking(true)}>
-          Set this up for my business
-        </button>
+        <BookLink />
       ) : null}
-      {booking ? <Wizard initialGoals={["custom"]} initialBusiness={industry || undefined} startAtContact id="book-project" /> : null}
         </>
       }
       device={
@@ -558,7 +537,6 @@ function ProjectDemo() {
 
 function QuizDemo() {
   const [answers, setAnswers] = useState<Array<"yes" | "not" | null>>([null, null, null, null, null]);
-  const [booking, setBooking] = useState(false);
   const index = answers.findIndex((item) => item === null);
   const done = index === -1;
   const score = answers.filter((item) => item === "yes").length;
@@ -604,12 +582,9 @@ function QuizDemo() {
             <li>60 days: use a first version on live work and review it.</li>
             <li>90 days: keep what the team actually uses, and stop the rest.</li>
           </ul>
-          <button type="button" className="btn btn-solid btn-lg" onClick={() => setBooking(true)}>
-            Set this up for my business
-          </button>
+          <BookLink />
         </div>
       )}
-      {booking ? <Wizard initialGoals={["train"]} startAtContact id="book-enable" /> : null}
         </>
       }
       device={

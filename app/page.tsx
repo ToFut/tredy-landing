@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { TryItLive } from "@/components/demo/TryItLive";
-import { CaseStudies, FinalCta, HomeHero, HowWeWork, ModelStrip, OfferingCards, PlanCta } from "@/components/home/Marketing";
+import { CaseStudies, FinalCta, HomeHero, HowWeWork, ModelStrip, OfferingCards } from "@/components/home/Marketing";
 import { JsonLd } from "@/components/JsonLd";
+import { Actions } from "@/components/ui/Actions";
 import { homeFaqs, site } from "@/lib/content";
 import { homeJsonLd, pageMetadata } from "@/lib/seo";
 
@@ -16,23 +17,24 @@ export default function Page() {
     <>
       <JsonLd data={homeJsonLd()} />
       <HomeHero />
-      <HowWeWork />
       <ModelStrip />
       <OfferingCards />
-      <CaseStudies />
-      <section className="section demo-band reveal" id="demo">
+      <HowWeWork />
+      <section className="band" id="demo">
         <div className="wrap">
-          <h2 className="section-title offer-heading">Hear it answer.</h2>
-          <p className="hero-sub">Record 10 seconds, name the business, and hear the call. The voice is deleted after the demo.</p>
+          <p className="eyebrow">Live demo</p>
+          <h2 className="type-h2">Try it: hear an AI answer your phone</h2>
+          <p className="type-body">Record 10 seconds, name the business, and hear the call. The voice is deleted after the demo.</p>
         </div>
         <TryItLive anchor="try" heading={false} only={["voice"]} />
         <div className="wrap">
-          <PlanCta />
+          <Actions demoHref="#try" />
         </div>
       </section>
-      <section id="faq" className="section reveal">
-        <div className="wrap article-copy">
-          <h2 className="section-title offer-heading">Questions</h2>
+      <CaseStudies />
+      <section id="faq" className="band">
+        <div className="wrap">
+          <h2 className="type-h2">Questions</h2>
           <div className="faq-list">
             {homeFaqs.map((item) => (
               <details key={item.question}>
@@ -41,7 +43,7 @@ export default function Page() {
               </details>
             ))}
           </div>
-          <PlanCta />
+          <Actions />
         </div>
       </section>
       <FinalCta />

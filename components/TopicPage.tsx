@@ -4,8 +4,7 @@ import { TryItLive } from "@/components/demo/TryItLive";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { JsonLd } from "@/components/JsonLd";
 import { Contact } from "@/components/sections";
-import { Wizard } from "@/components/start/Wizard";
-import { planLabel } from "@/lib/content";
+import { Actions } from "@/components/ui/Actions";
 import { aboutJsonLd, industryJsonLd, serviceJsonLd } from "@/lib/seo";
 import type { BusinessId } from "@/lib/start";
 import type { TopicPageData } from "@/lib/types";
@@ -65,16 +64,7 @@ export function TopicPage({ page }: { page: TopicPageData }) {
             <p className="hero-sub">{plainLine(page)}</p>
             {page.path === "/voice-agents" ? <p className="card-price">From $1,800</p> : null}
             {page.path === "/ai-assistants" ? <p className="card-price">From $1,200</p> : null}
-            <div className="plan-actions">
-              <Link className="btn btn-solid btn-lg" href={page.kind === "service" ? "#plan" : "/#plan"}>
-                {planLabel}
-              </Link>
-              {hasDemo ? (
-                <a className="demo-link" href="#try">
-                  Hear a live demo call
-                </a>
-              ) : null}
-            </div>
+            <Actions demoHref={hasDemo ? "#try" : undefined} />
           </div>
         </header>
         {page.path === "/about" ? <Founder /> : null}
@@ -95,8 +85,8 @@ export function TopicPage({ page }: { page: TopicPageData }) {
             </div>
           </div>
         </section>
-        <section id="details" className="section details-section">
-          <div className="article-copy">
+        <section id="details" className="band">
+          <div className="wrap">
             {page.lede.map((paragraph) => (
               <p key={paragraph}>{paragraph}</p>
             ))}
@@ -130,8 +120,8 @@ export function TopicPage({ page }: { page: TopicPageData }) {
             </ol>
           </div>
         </section>
-        <section className="section" id="faq">
-          <div className="wrap article-copy">
+        <section className="band" id="faq">
+          <div className="wrap">
             <h2 className="section-title">Questions</h2>
             <div className="faq-list">
               {page.faqs.map((item) => (
@@ -157,33 +147,15 @@ export function TopicPage({ page }: { page: TopicPageData }) {
             </ul>
           </div>
         </section>
-        <section className="final-cta">
+        <section className="band cta-band">
           <div className="wrap">
-            <h2>Set this up for your business.</h2>
-            <div className="plan-actions">
-              <Link className="btn btn-solid btn-lg" href={page.kind === "service" ? "#plan" : "/#plan"}>
-                {planLabel}
-              </Link>
-              {hasDemo ? (
-                <a className="demo-link" href="#try">
-                  Hear a live demo call
-                </a>
-              ) : null}
-            </div>
+            <h2 className="type-h2">Book a free 15-min call</h2>
+            <p className="type-body">We will tell you if this is the right first step.</p>
+            <Actions demoHref={hasDemo ? "#try" : undefined} />
           </div>
         </section>
       </article>
-      {page.kind === "service" ? (
-        <section className="section" id="plan">
-          <div className="wrap">
-            <h2 className="section-title">Get your free AI plan</h2>
-            <p className="hero-sub">Three details. We reply with what to set up first.</p>
-            <Wizard />
-          </div>
-        </section>
-      ) : (
-        <Contact />
-      )}
+      {page.kind === "about" || page.kind === "industry" ? <Contact /> : null}
     </>
   );
 }

@@ -8,6 +8,8 @@ import { site } from "@/lib/content";
 import "./globals.css";
 import "./apple.css";
 import "./screens.css";
+import "./system.css";
+import { BookLink } from "@/components/ui/Actions";
 
 const sans = Geist({
   subsets: ["latin"],
@@ -68,6 +70,7 @@ export default function RootLayout({
         <Header />
         <main id="main">{children}</main>
         <Footer />
+        <BookLink className="sticky-cta btn btn-primary" />
         <Analytics />
       </body>
     </html>

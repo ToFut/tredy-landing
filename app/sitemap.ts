@@ -12,6 +12,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/about",
     "/get-started",
     "/contact",
+    "/book",
     "/privacy",
     "/blog",
     ...servicePages.map((page) => page.path),

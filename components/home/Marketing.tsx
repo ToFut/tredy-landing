@@ -1,8 +1,7 @@
 import Link from "next/link";
 import { PlatformMarquee } from "@/components/home/PlatformMarquee";
-import { Wizard } from "@/components/start/Wizard";
 import { IphoneCall, OpsDashboard, RolloutBoard, TeamThread } from "@/components/visuals/Screens";
-import { planLabel } from "@/lib/content";
+import { Actions } from "@/components/ui/Actions";
 
 const offerings = [
   {
@@ -43,33 +42,13 @@ const offerings = [
   },
 ];
 
-export function PlanCta({ demoHref }: { demoHref?: string }) {
-  return (
-    <div className="plan-actions">
-      <Link className="btn btn-solid btn-lg" href="/#plan">
-        {planLabel}
-      </Link>
-      {demoHref ? (
-        <Link className="demo-link" href={demoHref}>
-          Hear a live demo call
-        </Link>
-      ) : null}
-    </div>
-  );
-}
-
 export function HomeHero() {
   return (
-    <section className="home-hero">
-      <div className="wrap">
-        <p className="kicker">AI for small and mid-size businesses</p>
-        <h1 className="hero-title">
-          We set up AI for your business,
-          <br />
-          so you never miss a customer.
-        </h1>
-        <div className="home-hero-grid">
-        <div className="hero-copy">
+    <section className="band home-hero">
+      <div className="wrap grid-12">
+        <div className="span-7 hero-copy">
+          <p className="kicker">AI for small and mid-size businesses</p>
+          <h1 className="hero-title">We set up AI for your business, so you never miss a customer.</h1>
           <p className="hero-sub">
             AI receptionists that answer your phone 24/7, assistants that follow up on leads, and custom AI tools. Done
             for you, live in days.
@@ -80,16 +59,15 @@ export function HomeHero() {
             <li>Books appointments</li>
             <li>Texts you a summary</li>
           </ul>
-          <PlanCta demoHref="#demo" />
+          <Actions demoHref="/#demo" />
         </div>
-        <div className="hero-phone">
+        <div className="span-5 hero-phone">
           <IphoneCall
             name="North Roofing"
             caption="Hi, thanks for calling North Roofing. How can I help you today?"
             callerLine="Can someone look at a leak this week?"
             timer="00:12"
           />
-        </div>
         </div>
       </div>
     </section>
@@ -102,7 +80,7 @@ export function ModelStrip() {
 
 export function OfferingCards() {
   return (
-    <section className="section reveal" id="offerings">
+    <section className="band" id="offerings">
       <div className="wrap">
         <p className="kicker">Four offerings</p>
         <h2 className="section-title offer-heading">What we set up</h2>
@@ -118,11 +96,11 @@ export function OfferingCards() {
               <h3>{item.line}</h3>
               <p>{item.detail}</p>
               {item.price ? <p className="card-price">{item.price}</p> : null}
-              <span>{item.link} &gt;</span>
+              <span className="see-how">See how it works &gt;</span>
             </Link>
           ))}
         </div>
-        <PlanCta />
+        <Actions />
       </div>
     </section>
   );
@@ -180,7 +158,7 @@ export function HowWeWork() {
     { title: "It answers and books for you", line: "Customers get a reply. You get the booking and a text." },
   ];
   return (
-    <section className="how-strip" id="how">
+    <section className="band" id="how">
       <div className="wrap">
         <h2 className="section-title offer-heading">How it works</h2>
         <ol className="work-steps">
@@ -192,7 +170,7 @@ export function HowWeWork() {
             </li>
           ))}
         </ol>
-        <PlanCta />
+        <Actions />
       </div>
     </section>
   );
@@ -200,7 +178,7 @@ export function HowWeWork() {
 
 export function CaseStudies() {
   return (
-    <section className="section studies reveal" id="work">
+    <section className="band" id="work">
       <div className="wrap">
         <p className="kicker">Selected work</p>
         <h2 className="section-title offer-heading">Built for real operations.</h2>
@@ -225,7 +203,7 @@ export function CaseStudies() {
             <Link href="/custom-projects">Related: custom projects &gt;</Link>
           </article>
         </div>
-        <PlanCta />
+        <Actions />
       </div>
     </section>
   );
@@ -233,11 +211,11 @@ export function CaseStudies() {
 
 export function FinalCta() {
   return (
-    <section className="section setup-band" id="plan">
+    <section className="band cta-band">
       <div className="wrap">
-        <h2 className="section-title offer-heading">Get your free AI plan</h2>
-        <p className="hero-sub">Three details. We reply with what to set up first.</p>
-        <Wizard id="plan-form" />
+        <h2 className="type-h2">Ready for a call?</h2>
+        <p className="type-body">15 minutes. We will tell you the first thing to set up.</p>
+        <Actions />
       </div>
     </section>
   );

@@ -54,11 +54,11 @@
 }
 
 .home-hero .hero-title {
-  max-width: 18em;
-  font-size: clamp(40px, 4.4vw, 60px);
-  line-height: 1.02;
-  letter-spacing: -0.045em;
-  margin-bottom: 28px;
+  max-width: 11em;
+  font-size: clamp(32px, 2.4vw, 42px);
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  margin: 0 0 12px;
 }
 
 .home-hero .hero-sub {
@@ -76,6 +76,74 @@
 .hero-phone {
   display: grid;
   justify-items: center;
+  align-content: center;
+}
+
+.hero-phone .iphone-shell {
+  width: min(300px, 100%);
+}
+
+.hero-phone .ios-call {
+  padding: 12px 12px 14px;
+}
+
+.hero-phone .ios-avatar {
+  width: 52px;
+  height: 52px;
+  margin: 8px auto 4px;
+  font-size: 16px;
+}
+
+.hero-phone .ios-name {
+  font-size: 22px;
+}
+
+.hero-phone .ios-carrier,
+.hero-phone .ios-timer {
+  margin-top: 4px;
+}
+
+.hero-phone .ios-wave {
+  margin-top: 6px;
+  height: 28px;
+}
+
+.hero-phone .ios-captions {
+  margin-top: 8px;
+  gap: 6px;
+}
+
+.hero-phone .ios-captions p {
+  padding: 6px 8px;
+  font-size: 12px;
+}
+
+.hero-phone .ios-keys {
+  gap: 8px 6px;
+  margin-top: 10px;
+}
+
+.hero-phone .ios-keys i {
+  width: 46px;
+  height: 46px;
+}
+
+.hero-phone .ios-keys svg,
+.hero-phone .ios-end svg {
+  width: 20px;
+  height: 20px;
+}
+
+.hero-phone .ios-end {
+  width: 52px;
+  height: 52px;
+  margin-top: 10px;
+}
+
+.hero-phone .dynamic-island {
+  width: 90px;
+  height: 26px;
+  top: 8px;
 }
 
 .here-line {
@@ -217,7 +285,7 @@ a.sticky-plan {
 
 .brand-track {
   display: flex;
-  gap: 56px;
+  gap: 72px;
   width: max-content;
   animation: brand-scroll 48s linear infinite;
 }
@@ -230,18 +298,18 @@ a.sticky-plan {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
-  min-width: 168px;
+  gap: 14px;
+  min-width: 210px;
   color: #86868b;
-  font-size: 28px;
+  font-size: 34px;
   font-weight: 600;
   letter-spacing: -0.03em;
   white-space: nowrap;
 }
 
 .brand-logo svg {
-  width: 34px;
-  height: 34px;
+  width: 42px;
+  height: 42px;
 }
 
 .brand-logo:hover {
@@ -656,6 +724,7 @@ a.sticky-plan {
 
 .wa-bubble {
   position: relative;
+  z-index: 1;
   max-width: 86%;
   margin: 0;
   padding: 8px 10px 16px;
@@ -1033,5 +1102,9 @@ a.sticky-plan {
     max-width: 1100px;
     margin-inline: auto;
     padding-inline: 24px;
+  }
+
+  .reveal {
+    animation: none;
   }
 }

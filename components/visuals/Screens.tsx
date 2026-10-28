@@ -1,6 +1,6 @@
 "use client";
 
-import type { RefObject } from "react";
+import { useId, type RefObject } from "react";
 
 function initials(name: string) {
   const parts = name.trim().split(/\s+/).filter(Boolean);
@@ -159,6 +159,7 @@ export function WhatsAppThread({
   name: string;
   messages: { side: "in" | "out"; text: string; time: string }[];
 }) {
+  const doodleId = useId().replace(/:/g, "");
   return (
     <div className="wa" aria-label={`Message thread with ${name}`}>
       <header className="wa-head">
@@ -173,8 +174,7 @@ export function WhatsAppThread({
           <small>online</small>
         </div>
         <svg className="wa-icon" viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M7 4h3l1.2 2.4H17a2 2 0 0 1 2 2V17a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z" fill="none" stroke="currentColor" strokeWidth="1.6" />
-          <path d="M9 14c.6 1.4 1.8 2.4 3.4 2.4 1.2 0 2-.6 2.6-1.4" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+          <path d="M8 3.5h2.2c.5 0 .9.3 1 .8l.5 2a1 1 0 0 1-.6 1.1l-1.5.7a11 11 0 0 0 5.3 5.3l.7-1.5a1 1 0 0 1 1.1-.6l2 .5c.5.1.8.5.8 1V16a2 2 0 0 1-2.2 2A13.5 13.5 0 0 1 6 8.7 2 2 0 0 1 8 3.5z" fill="currentColor" />
         </svg>
         <svg className="wa-icon" viewBox="0 0 24 24" aria-hidden="true">
           <rect x="3" y="7" width="11" height="10" rx="2" fill="none" stroke="currentColor" strokeWidth="1.6" />
@@ -184,23 +184,24 @@ export function WhatsAppThread({
       <div className="wa-body">
         <svg className="wa-doodles" aria-hidden="true">
           <defs>
-            <pattern id="wa-doodle" width="120" height="120" patternUnits="userSpaceOnUse">
-              <g fill="none" stroke="#cfc6ba" strokeWidth="1.2" strokeLinecap="round">
-                <circle cx="18" cy="16" r="6" />
-                <path d="M14 28c1 4 8 4 9 0" />
-                <rect x="48" y="10" width="14" height="10" rx="2" />
-                <path d="M62 14h4v6h-4z" />
-                <path d="M92 18c4 0 6 4 4 7s-8 2-8-2 1-5 4-5z" />
-                <path d="M20 62h16M28 54v16" />
-                <circle cx="70" cy="58" r="7" />
-                <path d="M66 58h8M70 54v8" />
-                <path d="M96 70l6 8h-12z" />
-                <rect x="40" y="88" width="16" height="12" rx="3" />
-                <path d="M44 88v-3a4 4 0 0 1 8 0v3" />
+            <pattern id={doodleId} width="88" height="88" patternUnits="userSpaceOnUse">
+              <g fill="none" stroke="#b7aa9a" strokeWidth="1.15" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="14" cy="14" r="5" />
+                <path d="M11 22c.6 2.4 5.4 2.4 6 0" />
+                <path d="M40 12h10v7h-10zM50 15h3v4h-3z" />
+                <path d="M70 16c3 0 5 2.4 4 5s-6 2-6-1.4 0-3.6 2-3.6z" />
+                <path d="M16 48h12M22 42v12" />
+                <circle cx="48" cy="48" r="6" />
+                <path d="M45 48h6M48 45v6" />
+                <path d="M72 46l5 7h-10z" />
+                <rect x="30" y="68" width="14" height="10" rx="2" />
+                <path d="M34 68v-2.5a3 3 0 0 1 6 0V68" />
+                <path d="M64 72h12v8H64z" />
+                <circle cx="78" cy="78" r="3" />
               </g>
             </pattern>
           </defs>
-          <rect width="100%" height="100%" fill="url(#wa-doodle)" />
+          <rect width="100%" height="100%" fill={`url(#${doodleId})`} />
         </svg>
         {messages.map((message) => (
           <p key={`${message.time}-${message.text}`} className={message.side === "out" ? "wa-bubble out" : "wa-bubble in"}>
