@@ -3,13 +3,18 @@ import { ContactForm } from "@/components/ContactForm";
 import { HeroDiagram, OfferingDiagram, WorkArt } from "@/components/Diagrams";
 import {
   approach,
+  bookCallHref,
   faqs,
+  here,
   industries,
   offerings,
+  platforms,
+  platformsNote,
   principles,
   reasons,
   site,
   studioFacts,
+  voiceSampleSrc,
   work,
 } from "@/lib/content";
 
@@ -21,7 +26,7 @@ export function Hero() {
           <p className="kicker">
             Voice agents, AI assistants, custom projects, AI enablement
           </p>
-          <h1>Voice agents, AI assistants, and custom AI, built for how your business actually works.</h1>
+          <h1>AI that answers, assists, and gets built into your business.</h1>
           <p className="lede">
             Futurix builds voice agents, AI assistants, and custom AI projects, and helps
             companies enable AI.
@@ -31,7 +36,7 @@ export function Hero() {
             first version, then scale what holds up in the real operation.
           </p>
           <div className="hero-actions">
-            <Link className="btn btn-solid" href="#contact">
+            <Link className="btn btn-solid" href={bookCallHref}>
               Book a 15-minute call
               <span aria-hidden="true"> →</span>
             </Link>
@@ -79,6 +84,23 @@ export function OfferingStrip() {
   );
 }
 
+export function Here() {
+  return (
+    <section id="here" className="here" aria-labelledby="here-title">
+      <div className="wrap here-inner">
+        <p className="kicker kicker-gold">AI enablement</p>
+        <h2 id="here-title">{here.title}</h2>
+        <p>{here.body}</p>
+        <p>{here.support}</p>
+        <Link className="btn btn-paper" href={bookCallHref}>
+          Book a 15-minute call
+          <span aria-hidden="true"> →</span>
+        </Link>
+      </div>
+    </section>
+  );
+}
+
 export function Principles() {
   return (
     <section className="band" aria-label="How an engagement starts">
@@ -114,6 +136,7 @@ export function Services() {
                 <p className="kicker">{item.number}</p>
                 <h3>{item.title}</h3>
                 <p>{item.description}</p>
+                {item.id === "voice-agents" ? <SampleCall /> : null}
                 <p className="outcome">
                   <span>Outcome</span>
                   {item.outcome}
@@ -131,6 +154,54 @@ export function Services() {
             </article>
           ))}
         </div>
+      </div>
+    </section>
+  );
+}
+
+export function SampleCall() {
+  return (
+    <div className="sample-call">
+      <p className="kicker">Hear a sample call</p>
+      {voiceSampleSrc ? (
+        <audio className="sample-audio" controls preload="none" src={voiceSampleSrc}>
+          Sample call
+        </audio>
+      ) : (
+        <div className="sample-player" role="group" aria-label="Sample coming soon">
+          <button type="button" disabled>
+            <span className="sample-play" aria-hidden="true" />
+            <span className="sr-only">Play</span>
+          </button>
+          <span className="sample-track" aria-hidden="true" />
+          <span className="sample-status">Sample coming soon</span>
+        </div>
+      )}
+    </div>
+  );
+}
+
+export function Models() {
+  return (
+    <section id="models" className="section models">
+      <div className="wrap">
+        <div className="section-intro">
+          <p className="kicker">Stack</p>
+          <h2>Models and platforms we build with.</h2>
+          <p>
+            Voice, assistants, and custom projects are built on the tools that fit the job.
+            The list changes as the work changes.
+          </p>
+        </div>
+        <ul className="model-grid">
+          {platforms.map((item) => (
+            <li key={item.name}>
+              <span className="model-name">{item.name}</span>
+              <span className="model-detail">{item.detail}</span>
+            </li>
+          ))}
+        </ul>
+        <p className="models-note">{platformsNote}</p>
       </div>
     </section>
   );

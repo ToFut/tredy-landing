@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { nav } from "@/lib/content";
+import { bookCallHref, nav } from "@/lib/content";
 import { Logo } from "@/components/Logo";
 
 function target(hash: string, pathname: string) {
@@ -43,7 +43,7 @@ function HeaderBar({ pathname }: { pathname: string }) {
             </Link>
           ))}
         </nav>
-        <Link className="btn btn-solid header-cta" href={target("#contact", pathname)}>
+        <Link className="btn btn-solid header-cta" href={bookCallHref}>
           Book a 15-minute call
           <span aria-hidden="true"> →</span>
         </Link>
@@ -68,7 +68,7 @@ function HeaderBar({ pathname }: { pathname: string }) {
             <Link href={target("#approach", pathname)} onClick={() => setOpen(false)}>
               Approach
             </Link>
-            <Link className="btn btn-solid" href={target("#contact", pathname)} onClick={() => setOpen(false)}>
+            <Link className="btn btn-solid" href={bookCallHref} onClick={() => setOpen(false)}>
               Book a 15-minute call
               <span aria-hidden="true"> →</span>
             </Link>

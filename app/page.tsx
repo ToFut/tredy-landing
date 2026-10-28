@@ -3,8 +3,10 @@ import {
   Approach,
   Contact,
   Faq,
+  Here,
   Hero,
   Industries,
+  Models,
   OfferingStrip,
   Principles,
   Services,
@@ -23,8 +25,10 @@ export default function Page() {
     <>
       <Hero />
       <OfferingStrip />
+      <Here />
       <Principles />
       <Services />
+      <Models />
       <Approach />
       <Industries />
       <Work />

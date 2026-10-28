@@ -1,8 +1,17 @@
+/** Point every "Book a call" button here. Swap for a booking URL when one exists. */
+export const bookCallHref = "/#contact";
+
+/**
+ * Drop a public audio file in later, for example "/samples/voice-agent.mp3".
+ * Null renders the "Sample coming soon" player and does not load audio.
+ */
+export const voiceSampleSrc: string | null = null;
+
 export const site = {
   name: "Futurix",
   url: "https://futurixs.com",
   location: "Suffern, New York",
-  contactEmail: "hello@futurixs.com",
+  contactEmail: "segev@futurixs.com",
   description:
     "Futurix builds voice agents, AI assistants, and custom AI projects, and helps companies enable AI. Studio in Suffern, New York.",
   title:
@@ -284,3 +293,29 @@ export const nav = [
   { href: "#work", label: "Work" },
   { href: "#faq", label: "FAQ" },
 ];
+
+export const here = {
+  title: "Don't have the time or know-how to enable AI? We're here.",
+  body: "You do not need an internal AI team before the work can start. We take the assessment, the first version, and the training.",
+  support:
+    "Tell us where the time goes today. We will say whether a voice agent, an assistant, or a custom project is the right first step.",
+};
+
+export const platforms = [
+  { name: "Grok", detail: "xAI" },
+  { name: "Claude", detail: "Anthropic" },
+  { name: "GPT", detail: "OpenAI" },
+  { name: "Codex", detail: "OpenAI" },
+  { name: "Gemini", detail: "Google" },
+  { name: "ElevenLabs", detail: "Voice" },
+  { name: "Cursor", detail: "Building" },
+  { name: "Vercel", detail: "Hosting" },
+  { name: "Microsoft 365", detail: "Azure" },
+  { name: "Twilio", detail: "Calls and messages" },
+  { name: "Supabase", detail: "Data" },
+  { name: "n8n", detail: "Automation" },
+  { name: "Make", detail: "Automation" },
+];
+
+export const platformsNote =
+  "We pick the right model for each job. Names are trademarks of their owners.";
