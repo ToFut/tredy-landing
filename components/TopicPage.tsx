@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { TryItLive } from "@/components/demo/TryItLive";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { JsonLd } from "@/components/JsonLd";
 import { SampleCall } from "@/components/sections";
@@ -23,6 +24,7 @@ export function TopicPage({ page }: { page: TopicPageData }) {
           <Breadcrumbs items={page.crumbs} />
           <p className="kicker">{page.kind === "industry" ? "Industry" : "Futurix"}</p>
           <h1>{page.h1}</h1>
+          {page.path === "/voice-agents" ? <TryItLive initialTab="voice" /> : null}
           {page.lede.map((paragraph) => (
             <p key={paragraph} className="lede">
               {paragraph}

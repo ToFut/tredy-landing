@@ -2,6 +2,9 @@ import { NextResponse } from "next/server";
 import { allowDemo, clientIp, readPublicSite } from "@/lib/demo/guard";
 import { buildScript } from "@/lib/demo/script";
 
+export const runtime = "nodejs";
+export const maxDuration = 30;
+
 export async function POST(request: Request) {
   const ip = clientIp(request);
   if (!(await allowDemo(ip, "script", 6))) {

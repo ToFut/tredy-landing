@@ -1,4 +1,3 @@
-import { LiveDemo } from "@/components/demo/LiveDemo";
 import { TopicPage } from "@/components/TopicPage";
 import { getServicePage } from "@/lib/service-pages";
 import { pageMetadata } from "@/lib/seo";
@@ -12,10 +11,5 @@ export const metadata = pageMetadata({
 });
 
 export default function VoiceAgentsPage() {
-  return (
-    <>
-      <LiveDemo />
-      <TopicPage page={page!} />
-    </>
-  );
+  return <TopicPage page={page!} />;
 }

@@ -1442,9 +1442,152 @@ section[id] {
   margin-top: 12px;
 }
 
+.try-tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin: 18px 0;
+}
+
+.try-tab {
+  min-height: 52px;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--ink);
+  font-size: 15px;
+}
+
+.try-tab.on {
+  background: #f5f2ea;
+  color: #111;
+}
+
+.count-ring {
+  width: 92px;
+  height: 92px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: conic-gradient(#f5f2ea calc(var(--p, 0) * 1%), #222 0);
+}
+
+.count-ring strong {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: #08090d;
+  font-size: 28px;
+}
+
+.mic-btn {
+  margin-top: 16px;
+  width: 100%;
+}
+
+.status-line {
+  margin-top: 14px;
+  font-size: 1.15rem;
+}
+
+.iphone {
+  margin-top: 16px;
+  padding: 28px 16px 18px;
+  border-radius: 32px;
+  background: #050607;
+  border: 8px solid #1b1e27;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.45);
+}
+
+.iphone-notch {
+  width: 110px;
+  height: 16px;
+  margin: 0 auto 12px;
+  border-radius: 0 0 12px 12px;
+  background: #1b1e27;
+}
+
+.bubble {
+  margin-top: 10px;
+  padding: 10px 12px;
+  border-radius: 16px;
+  max-width: 92%;
+}
+
+.bubble b {
+  display: block;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.bubble.caller {
+  background: #1c2230;
+}
+
+.bubble.agent {
+  margin-left: auto;
+  background: #243024;
+}
+
+.inbox-card,
+.app-mock,
+.plan-card {
+  margin-top: 14px;
+  padding: 14px;
+  border-radius: 16px;
+  background: #10131a;
+}
+
+.sample-bars i,
+.bars i {
+  display: inline-block;
+  width: 18px;
+  margin-right: 8px;
+  background: #d7b57a;
+  animation: rise 1.2s ease infinite alternate;
+}
+
+.sample-bars i:nth-child(1) { height: 24px; }
+.sample-bars i:nth-child(2) { height: 48px; }
+.sample-bars i:nth-child(3) { height: 36px; }
+.sample-bars i:nth-child(4) { height: 60px; }
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.board p {
+  padding: 16px 8px;
+  border-radius: 12px;
+  background: #181c27;
+  text-align: center;
+}
+
+.mini-wave.tall {
+  height: 64px;
+  margin: 12px 0;
+}
+
+@keyframes rise {
+  from { transform: scaleY(0.45); }
+  to { transform: scaleY(1); }
+}
+
 @media (min-width: 800px) {
   .choice-grid,
-  .package-grid {
+  .package-grid,
+  .try-tabs {
     grid-template-columns: 1fr 1fr;
+  }
+
+  .try-tabs {
+    grid-template-columns: repeat(4, 1fr);
   }
 }

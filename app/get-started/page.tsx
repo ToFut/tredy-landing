@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
-import { LiveDemo } from "@/components/demo/LiveDemo";
+import { TryItLive } from "@/components/demo/TryItLive";
 import { JsonLd } from "@/components/JsonLd";
 import { Packages } from "@/components/start/Packages";
 import { breadcrumbOnlyJsonLd, pageMetadata } from "@/lib/seo";
@@ -24,7 +24,7 @@ export default function GetStartedPage() {
       <div className="wrap page-lead">
         <Breadcrumbs items={crumbs} />
       </div>
-      <LiveDemo titleAs="h1" />
+      <TryItLive asPage />
       <Packages />
     </>
   );

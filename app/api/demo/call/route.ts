@@ -5,6 +5,9 @@ import { allowDemo, clientIp } from "@/lib/demo/guard";
 import { asIndustry } from "@/lib/demo/script";
 import type { CallLine } from "@/lib/demo/templates";
 
+export const runtime = "nodejs";
+export const maxDuration = 30;
+
 const MODEL = process.env.ELEVENLABS_TTS_MODEL || "eleven_flash_v2_5";
 
 export async function POST(request: Request) {
@@ -33,11 +36,14 @@ export async function POST(request: Request) {
   const key = process.env.ELEVENLABS_API_KEY;
   const industry = asIndustry(String(body.industry || "other"));
   if (!key || !body.voiceId) {
-    return NextResponse.json({
-      mode: "preview",
-      sample: sampleFor(industry),
-      clips: null,
-    });
+    console.error("demo/call missing key or voice");
+    return NextResponse.json(
+      {
+        error: key ? "No voice is selected for this call." : "Speech is not configured (missing ELEVENLABS_API_KEY).",
+        sample: sampleFor(industry),
+      },
+      { status: key ? 400 : 503 },
+    );
   }
 
   const callerVoice = process.env.ELEVENLABS_CALLER_VOICE_ID || body.voiceId;
@@ -48,14 +54,26 @@ export async function POST(request: Request) {
       const audio = await speak(key, voice, line.text.slice(0, 280));
       clips.push(audio);
     }
-  } catch {
-    return NextResponse.json({ error: "The call audio did not generate. The transcript still plays." }, { status: 502 });
+  } catch (error) {
+    console.error("demo/call tts", error instanceof Error ? error.message : "failed");
+    return NextResponse.json({ error: "The call audio did not generate." }, { status: 502 });
   } finally {
-    if (body.cloned && body.voiceId) {
-      await fetch(`https://api.elevenlabs.io/v1/voices/${body.voiceId}`, {
+    const preset = new Set(
+      [process.env.ELEVENLABS_DEFAULT_VOICE_ID, process.env.ELEVENLABS_CALLER_VOICE_ID].filter(Boolean),
+    );
+    if (body.cloned && body.voiceId && !preset.has(body.voiceId)) {
+      const removed = await fetch(`https://api.elevenlabs.io/v1/voices/${body.voiceId}`, {
         method: "DELETE",
         headers: { "xi-api-key": key },
-      }).catch(() => undefined);
+      }).catch((err: unknown) => {
+        console.error("demo/call delete voice", err instanceof Error ? err.message : "failed");
+        return undefined;
+      });
+      if (removed && !removed.ok) {
+        console.error("demo/call delete voice status", removed.status);
+      } else if (removed?.ok) {
+        console.log("demo/call deleted clone", body.voiceId);
+      }
     }
   }
 
@@ -72,7 +90,11 @@ async function speak(key: string, voiceId: string, text: string) {
     },
     body: JSON.stringify({ text, model_id: MODEL }),
   });
-  if (!response.ok) throw new Error("tts");
+  if (!response.ok) {
+    const detail = await response.text();
+    console.error("demo/call line", response.status, detail.slice(0, 400));
+    throw new Error("tts");
+  }
   const bytes = Buffer.from(await response.arrayBuffer());
   return `data:audio/mpeg;base64,${bytes.toString("base64")}`;
 }

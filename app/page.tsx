@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { LiveDemo } from "@/components/demo/LiveDemo";
+import { TryItLive } from "@/components/demo/TryItLive";
 import { JsonLd } from "@/components/JsonLd";
 import { Contact } from "@/components/sections";
 import { Packages } from "@/components/start/Packages";
@@ -16,7 +16,7 @@ export default function Page() {
   return (
     <>
       <JsonLd data={homeJsonLd()} />
-      <LiveDemo titleAs="h1" />
+      <TryItLive asPage />
       <Packages />
       <section id="faq" className="section">
         <div className="wrap topic-wrap">
