@@ -1,0 +1,291 @@
+import Link from "next/link";
+import { ContactForm } from "@/components/ContactForm";
+import { HeroDiagram, OfferingDiagram, WorkArt } from "@/components/Diagrams";
+import {
+  approach,
+  faqs,
+  industries,
+  offerings,
+  principles,
+  reasons,
+  site,
+  studioFacts,
+  work,
+} from "@/lib/content";
+
+export function Hero() {
+  return (
+    <section className="hero">
+      <div className="wrap hero-grid">
+        <div>
+          <p className="kicker">
+            Voice agents, AI assistants, custom projects, AI enablement
+          </p>
+          <h1>Voice agents, AI assistants, and custom AI, built for how your business actually works.</h1>
+          <p className="lede">
+            Futurix builds voice agents, AI assistants, and custom AI projects, and helps
+            companies enable AI.
+          </p>
+          <p className="support">
+            We fit the work into the tools and workflows you already run. Start with a small
+            first version, then scale what holds up in the real operation.
+          </p>
+          <div className="hero-actions">
+            <Link className="btn btn-solid" href="#contact">
+              Book a 15-minute call
+              <span aria-hidden="true"> →</span>
+            </Link>
+            <Link className="btn btn-ghost" href="#work">
+              See our work
+              <span aria-hidden="true"> →</span>
+            </Link>
+          </div>
+          <dl className="facts">
+            {studioFacts.map((fact) => (
+              <div key={fact.label}>
+                <dt>{fact.label}</dt>
+                <dd>{fact.value}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+        <figure className="hero-figure">
+          <HeroDiagram />
+          <figcaption>
+            A first version, inside the tools you already run, with the team in it.
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+  );
+}
+
+export function OfferingStrip() {
+  return (
+    <section id="offerings" className="strip" aria-label="Four offerings">
+      <div className="wrap">
+        <p className="kicker">What Futurix builds</p>
+        <div className="strip-grid">
+          {offerings.map((item) => (
+            <a key={item.id} href={`#${item.id}`}>
+              <span className="kicker">{item.number}</span>
+              <span className="strip-title">{item.title}</span>
+              <span className="strip-summary">{item.summary}</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export function Principles() {
+  return (
+    <section className="band" aria-label="How an engagement starts">
+      <div className="wrap principle-grid">
+        {principles.map((item) => (
+          <article key={item.number}>
+            <p className="kicker kicker-gold">{item.number}</p>
+            <h2>{item.title}</h2>
+            <p>{item.body}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+export function Services() {
+  return (
+    <section id="services" className="section">
+      <div className="wrap">
+        <div className="section-intro">
+          <p className="kicker">Services</p>
+          <h2>Four ways we can help.</h2>
+          <p>
+            An engagement can use one of them, or several. Most work starts with a single
+            workflow.
+          </p>
+        </div>
+        <div className="offering-list">
+          {offerings.map((item) => (
+            <article id={item.id} key={item.id} className="offering">
+              <div>
+                <p className="kicker">{item.number}</p>
+                <h3>{item.title}</h3>
+                <p>{item.description}</p>
+                <p className="outcome">
+                  <span>Outcome</span>
+                  {item.outcome}
+                </p>
+              </div>
+              <div>
+                <p className="kicker">What we build</p>
+                <ul className="examples">
+                  {item.examples.map((example) => (
+                    <li key={example}>{example}</li>
+                  ))}
+                </ul>
+              </div>
+              <OfferingDiagram id={item.id} />
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export function Approach() {
+  return (
+    <section id="approach" className="band">
+      <div className="wrap">
+        <div className="section-intro light">
+          <p className="kicker kicker-gold">Approach</p>
+          <h2>How we work</h2>
+        </div>
+        <div className="approach-grid">
+          {approach.map((step) => (
+            <article key={step.number}>
+              <p className="kicker kicker-gold">{step.number}</p>
+              <h3>{step.title}</h3>
+              <p>{step.body}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export function Industries() {
+  return (
+    <section id="industries" className="section">
+      <div className="wrap industries-layout">
+        <div>
+          <div className="section-intro">
+            <p className="kicker">Industries</p>
+            <h2>Operators with a specific workflow to improve.</h2>
+          </div>
+          <ol className="industry-list">
+            {industries.map((item, index) => (
+              <li key={item.title}>
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                <div>
+                  <h3>{item.title}</h3>
+                  <p>{item.body}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
+        <svg className="industry-art" viewBox="0 0 160 280" aria-hidden="true">
+          <rect x="20" y="150" width="22" height="90" fill="#1a4034" />
+          <rect x="54" y="110" width="22" height="130" fill="#c6a56e" />
+          <rect x="88" y="70" width="22" height="170" fill="#1b3328" />
+          <rect x="122" y="130" width="22" height="110" fill="#d7c4a2" />
+        </svg>
+      </div>
+    </section>
+  );
+}
+
+export function Work() {
+  return (
+    <section id="work" className="section section-tight">
+      <div className="wrap">
+        <div className="section-intro">
+          <p className="kicker">Selected work</p>
+          <h2>Work that shipped.</h2>
+          <p>Platforms, sites, and product work. Each note stays with what the engagement was.</p>
+        </div>
+        <div className="work-grid">
+          {work.map((item) => (
+            <article key={item.title} className={item.wide ? "work-card wide" : "work-card"}>
+              <WorkArt variant={item.variant} />
+              <div className="work-copy">
+                <p className="kicker">{item.kicker}</p>
+                <h3>{item.title}</h3>
+                <p>{item.body}</p>
+                {item.href ? (
+                  <a href={item.href} target="_blank" rel="noopener noreferrer">
+                    View site
+                    <span aria-hidden="true"> →</span>
+                  </a>
+                ) : null}
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export function Why() {
+  return (
+    <section id="why" className="band">
+      <div className="wrap">
+        <div className="section-intro light">
+          <p className="kicker kicker-gold">Why Futurix</p>
+          <h2>The people who frame the work also build it.</h2>
+          <p>Segev Halfon leads a senior, hands-on team.</p>
+        </div>
+        <div className="why-grid">
+          {reasons.map((item) => (
+            <article key={item.number}>
+              <p className="kicker kicker-gold">{item.number}</p>
+              <h3>{item.title}</h3>
+              <p>{item.body}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export function Faq() {
+  return (
+    <section id="faq" className="section">
+      <div className="wrap faq-layout">
+        <div className="section-intro">
+          <p className="kicker">FAQ</p>
+          <h2>Common questions</h2>
+          <p>Straight answers before a first conversation.</p>
+        </div>
+        <div className="faq-list">
+          {faqs.map((item) => (
+            <details key={item.question}>
+              <summary>{item.question}</summary>
+              <p>{item.answer}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export function Contact() {
+  return (
+    <section id="contact" className="contact">
+      <div className="wrap contact-grid">
+        <div>
+          <p className="kicker kicker-gold">Contact</p>
+          <h2>Book a 15-minute call</h2>
+          <p>
+            Tell us which offering you have in mind, and what the work is. If a first version
+            is worth building, we will say so.
+          </p>
+          <p className="contact-who">
+            Segev Halfon leads Futurix.
+            <br />
+            {site.location}
+          </p>
+        </div>
+        <ContactForm />
+      </div>
+    </section>
+  );
+}

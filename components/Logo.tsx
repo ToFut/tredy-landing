@@ -1,0 +1,12 @@
+import Link from "next/link";
+
+export function Logo({ href = "/" }: { href?: string }) {
+  return (
+    <Link href={href} className="logo" aria-label="Futurix, home">
+      <span className="logo-mark" aria-hidden="true">
+        F
+      </span>
+      <span className="logo-word">Futurix</span>
+    </Link>
+  );
+}
