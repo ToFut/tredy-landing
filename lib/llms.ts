@@ -36,6 +36,7 @@ export function llmsText() {
     "",
     "## Company",
     "",
+    `- [Get started](${absoluteUrl("/get-started")}): Record a voice sample and hear a receptionist call for your business.`,
     `- [Home](${absoluteUrl("/")}): ${site.description}`,
     `- [About](${absoluteUrl(aboutPage.path)}): ${aboutPage.description}`,
     `- [Blog](${absoluteUrl("/blog")}): Practical notes for owners.`,

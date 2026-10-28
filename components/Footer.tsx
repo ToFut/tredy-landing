@@ -3,6 +3,7 @@ import { offerings, site } from "@/lib/content";
 import { industryPages } from "@/lib/industries";
 
 const studio = [
+  { href: "/get-started", label: "Get started" },
   { href: "/about", label: "About" },
   { href: "/#approach", label: "Approach" },
   { href: "/#work", label: "Work" },

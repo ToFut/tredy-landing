@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { faqs, offerings, site } from "@/lib/content";
+import { homeFaqs, offerings, site } from "@/lib/content";
 import type { FaqItem, Post, TopicPageData } from "@/lib/types";
 
 export function absoluteUrl(path: string) {
@@ -93,7 +93,7 @@ export function homeJsonLd() {
           })),
         },
       },
-      faqNode(faqs),
+      faqNode(homeFaqs),
     ],
   };
 }

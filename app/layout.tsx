@@ -1,13 +1,13 @@
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
-import { Instrument_Sans, Newsreader } from "next/font/google";
+import { Geist, Newsreader } from "next/font/google";
 import { Analytics } from "@/components/Analytics";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { site } from "@/lib/content";
 import "./globals.css";
 
-const sans = Instrument_Sans({
+const sans = Geist({
   subsets: ["latin"],
   variable: "--font-instrument",
   display: "swap",

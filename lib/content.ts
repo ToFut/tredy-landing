@@ -262,6 +262,25 @@ export const reasons = [
   },
 ];
 
+export const homeFaqs = [
+  {
+    question: "What does Futurix build?",
+    answer: "Voice agents, AI assistants, custom projects, and AI enablement.",
+  },
+  {
+    question: "What does a first project look like?",
+    answer: "One workflow you can use, then you decide what to extend.",
+  },
+  {
+    question: "Do you work with our existing systems?",
+    answer: "Yes. We connect to the CRM, calendar, and tools you already run.",
+  },
+  {
+    question: "Who owns the result?",
+    answer: "You do. Support can continue, and it is not required to keep the system.",
+  },
+];
+
 export const faqs = [
   {
     question: "What does Futurix build?",
