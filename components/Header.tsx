@@ -3,20 +3,25 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { bookCallHref, nav } from "@/lib/content";
 import { Logo } from "@/components/Logo";
 
-function target(href: string, pathname: string) {
-  if (href.startsWith("/")) return href;
-  return pathname === "/" ? href : `/${href}`;
-}
+const links = [
+  { href: "/voice-agents", label: "Voice Agents" },
+  { href: "/ai-assistants", label: "AI Assistants" },
+  { href: "/custom-projects", label: "Custom Projects" },
+  { href: "/ai-enablement", label: "AI Enablement" },
+];
+
+const industries = [
+  { href: "/industries/roofing", label: "Roofing" },
+  { href: "/industries/home-services", label: "Home Services" },
+  { href: "/industries/real-estate", label: "Real Estate" },
+  { href: "/industries/property-management", label: "Property Management" },
+  { href: "/industries/insurance", label: "Insurance" },
+];
 
 export function Header() {
   const pathname = usePathname();
-  return <HeaderBar key={pathname} pathname={pathname} />;
-}
-
-function HeaderBar({ pathname }: { pathname: string }) {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -38,15 +43,32 @@ function HeaderBar({ pathname }: { pathname: string }) {
       <div className="wrap header-bar">
         <Logo />
         <nav className="desktop-nav" aria-label="Primary">
-          {nav.map((item) => (
-            <Link key={item.href} href={target(item.href, pathname)}>
+          {links.map((item) => (
+            <Link key={item.href} href={item.href} aria-current={pathname === item.href ? "page" : undefined}>
               {item.label}
             </Link>
           ))}
+          <div className="nav-drop">
+            <button type="button" className="nav-drop-btn" aria-haspopup="true">
+              Industries
+            </button>
+            <div className="nav-menu">
+              {industries.map((item) => (
+                <Link key={item.href} href={item.href}>
+                  {item.label}
+                </Link>
+              ))}
+            </div>
+          </div>
+          <Link href="/about" aria-current={pathname === "/about" ? "page" : undefined}>
+            About
+          </Link>
+          <Link href="/blog" aria-current={pathname === "/blog" ? "page" : undefined}>
+            Blog
+          </Link>
         </nav>
-        <Link className="btn btn-solid header-cta" href={bookCallHref}>
-          Book a 15-minute call
-          <span aria-hidden="true"> →</span>
+        <Link className="btn btn-solid header-cta" href="/get-started">
+          Get started
         </Link>
         <button
           type="button"
@@ -61,17 +83,25 @@ function HeaderBar({ pathname }: { pathname: string }) {
       {open ? (
         <div id="mobile-nav" className="mobile-nav">
           <nav aria-label="Mobile">
-            {nav.map((item) => (
-              <Link key={item.href} href={target(item.href, pathname)} onClick={() => setOpen(false)}>
+            {links.map((item) => (
+              <Link key={item.href} href={item.href} onClick={() => setOpen(false)}>
                 {item.label}
               </Link>
             ))}
-            <Link href={target("#approach", pathname)} onClick={() => setOpen(false)}>
-              Approach
+            <p className="kicker">Industries</p>
+            {industries.map((item) => (
+              <Link key={item.href} href={item.href} onClick={() => setOpen(false)}>
+                {item.label}
+              </Link>
+            ))}
+            <Link href="/about" onClick={() => setOpen(false)}>
+              About
             </Link>
-            <Link className="btn btn-solid" href={bookCallHref} onClick={() => setOpen(false)}>
-              Book a 15-minute call
-              <span aria-hidden="true"> →</span>
+            <Link href="/blog" onClick={() => setOpen(false)}>
+              Blog
+            </Link>
+            <Link className="btn btn-solid" href="/get-started" onClick={() => setOpen(false)}>
+              Get started
             </Link>
           </nav>
         </div>

@@ -72,9 +72,13 @@ const questions = [
 export function TryItLive({
   asPage = false,
   initialTab = "voice",
+  presetIndustry,
+  only,
 }: {
   asPage?: boolean;
   initialTab?: TabId;
+  presetIndustry?: BusinessId;
+  only?: TabId[];
 }) {
   const reduce = useReducedMotion();
   const [tab, setTab] = useState<TabId>(initialTab);
@@ -87,7 +91,7 @@ export function TryItLive({
         {asPage ? <h1 className="hero-title">Try it live</h1> : null}
         <h2 className="section-title">{current.title}</h2>
         <div className="try-tabs" role="tablist">
-          {tabs.map((item) => {
+          {tabs.filter((item) => !only || only.includes(item.id)).map((item) => {
             const Icon = item.icon;
             const on = tab === item.id;
             return (
@@ -106,8 +110,8 @@ export function TryItLive({
             );
           })}
         </div>
-        {tab === "voice" ? <VoiceDemo /> : null}
-        {tab === "assistant" ? <AssistantDemo /> : null}
+        {tab === "voice" ? <VoiceDemo presetIndustry={presetIndustry} /> : null}
+        {tab === "assistant" ? <AssistantDemo presetIndustry={presetIndustry} /> : null}
         {tab === "projects" ? <ProjectDemo /> : null}
         {tab === "enablement" ? <QuizDemo /> : null}
       </div>
@@ -115,12 +119,12 @@ export function TryItLive({
   );
 }
 
-function VoiceDemo() {
+function VoiceDemo({ presetIndustry = "roofing" }: { presetIndustry?: BusinessId }) {
   const [step, setStep] = useState(1);
   const [consent, setConsent] = useState(false);
   const [businessName, setBusinessName] = useState("");
   const [website, setWebsite] = useState("");
-  const [industry, setIndustry] = useState<BusinessId>("roofing");
+  const [industry, setIndustry] = useState<BusinessId>(presetIndustry);
   const [phase, setPhase] = useState<"idle" | "recording" | "cloning" | "error" | "hear" | "call" | "summary">("idle");
   const [left, setLeft] = useState(10);
   const [error, setError] = useState("");
@@ -420,8 +424,8 @@ function VoiceDemo() {
   );
 }
 
-function AssistantDemo() {
-  const [industry, setIndustry] = useState<BusinessId>("roofing");
+function AssistantDemo({ presetIndustry = "roofing" }: { presetIndustry?: BusinessId }) {
+  const [industry, setIndustry] = useState<BusinessId>(presetIndustry);
   const [count, setCount] = useState(0);
   const sample = inboxSamples[industry];
   const [booking, setBooking] = useState(false);

@@ -2,11 +2,31 @@ import Link from "next/link";
 import { TryItLive } from "@/components/demo/TryItLive";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { JsonLd } from "@/components/JsonLd";
-import { SampleCall } from "@/components/sections";
 import { Contact } from "@/components/sections";
 import { bookCallHref } from "@/lib/content";
 import { aboutJsonLd, industryJsonLd, serviceJsonLd } from "@/lib/seo";
+import type { BusinessId } from "@/lib/start";
 import type { TopicPageData } from "@/lib/types";
+
+const offeringTab = {
+  "/voice-agents": "voice",
+  "/ai-assistants": "assistant",
+  "/custom-projects": "projects",
+  "/ai-enablement": "enablement",
+} as const;
+
+const industryPreset: Record<string, BusinessId> = {
+  "/industries/roofing": "roofing",
+  "/industries/home-services": "home-services",
+  "/industries/real-estate": "real-estate",
+  "/industries/property-management": "property",
+  "/industries/insurance": "insurance",
+};
+
+function firstSentence(text: string) {
+  const cut = text.split(". ")[0] ?? text;
+  return cut.endsWith(".") ? cut : `${cut}.`;
+}
 
 export function TopicPage({ page }: { page: TopicPageData }) {
   const schema =
@@ -15,45 +35,85 @@ export function TopicPage({ page }: { page: TopicPageData }) {
       : page.kind === "about"
         ? aboutJsonLd(page)
         : industryJsonLd(page);
+  const tab = offeringTab[page.path as keyof typeof offeringTab];
+  const preset = industryPreset[page.path];
+  const tiles = page.sections.slice(0, 4);
+  const steps = page.sections.slice(0, 3);
 
   return (
     <>
       <JsonLd data={schema} />
-      <article className="topic">
-        <div className="wrap topic-wrap">
-          <Breadcrumbs items={page.crumbs} />
-          <p className="kicker">{page.kind === "industry" ? "Industry" : "Futurix"}</p>
-          <h1>{page.h1}</h1>
-          {page.path === "/voice-agents" ? <TryItLive initialTab="voice" /> : null}
-          {page.lede.map((paragraph) => (
-            <p key={paragraph} className="lede">
-              {paragraph}
-            </p>
-          ))}
-          <p className="topic-cta">
-            <Link className="btn btn-solid" href={bookCallHref}>
-              Book a 15-minute call
-              <span aria-hidden="true"> →</span>
-            </Link>
-          </p>
-          {page.path === "/voice-agents" ? <SampleCall /> : null}
-          {page.sections.map((section) => (
-            <section key={section.heading} className="topic-section">
-              <h2>{section.heading}</h2>
-              {section.paragraphs.map((paragraph) => (
-                <p key={paragraph}>{paragraph}</p>
+      <article className="product-page">
+        <header className="product-hero">
+          <div className="wrap">
+            <Breadcrumbs items={page.crumbs} />
+            <h1>{page.h1}</h1>
+            <p className="hero-sub">{firstSentence(page.lede[0] ?? page.description)}</p>
+            <div className="hero-actions">
+              <Link className="btn btn-solid btn-lg" href="/get-started">
+                Get started
+              </Link>
+              <Link className="text-link apple-more" href="#details">
+                Learn more &gt;
+              </Link>
+            </div>
+          </div>
+        </header>
+        {tab ? <TryItLive initialTab={tab} only={[tab]} /> : null}
+        {preset ? (
+          <TryItLive initialTab="voice" only={["voice", "assistant"]} presetIndustry={preset} />
+        ) : null}
+        <section className="section">
+          <div className="wrap">
+            <h2 className="section-title">{page.kind === "industry" ? "Use cases" : "What you get"}</h2>
+            <div className="bento">
+              {tiles.map((section) => (
+                <article key={section.heading} className="bento-card">
+                  <h3>{section.heading}</h3>
+                  <p>{firstSentence(section.paragraphs[0] ?? "")}</p>
+                </article>
               ))}
-              {section.bullets ? (
-                <ul>
-                  {section.bullets.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-              ) : null}
-            </section>
-          ))}
-          <section className="topic-section" id="faq">
-            <h2>Common questions</h2>
+            </div>
+          </div>
+        </section>
+        <section id="details" className="section details-section">
+          <div className="article-copy">
+            {page.lede.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
+            {page.sections.map((section) => (
+              <section key={section.heading}>
+                <h2>{section.heading}</h2>
+                {section.paragraphs.map((paragraph) => (
+                  <p key={paragraph}>{paragraph}</p>
+                ))}
+                {section.bullets ? (
+                  <ul>
+                    {section.bullets.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                ) : null}
+              </section>
+            ))}
+          </div>
+        </section>
+        <section className="section">
+          <div className="wrap">
+            <h2 className="section-title">How it works</h2>
+            <ol className="how-steps">
+              {steps.map((section, index) => (
+                <li key={section.heading}>
+                  <span>0{index + 1}</span>
+                  {section.heading}
+                </li>
+              ))}
+            </ol>
+          </div>
+        </section>
+        <section className="section" id="faq">
+          <div className="wrap article-copy">
+            <h2 className="section-title">Questions</h2>
             <div className="faq-list">
               {page.faqs.map((item) => (
                 <details key={item.question}>
@@ -62,19 +122,35 @@ export function TopicPage({ page }: { page: TopicPageData }) {
                 </details>
               ))}
             </div>
-          </section>
-          <section className="topic-section">
-            <h2>Related</h2>
+          </div>
+        </section>
+        <section className="section">
+          <div className="wrap">
+            <h2 className="section-title">Learn more</h2>
             <ul className="related-list">
               {page.related.map((item) => (
                 <li key={item.href}>
-                  <Link href={item.href}>{item.label}</Link>
-                  <span>{item.note}</span>
+                  <Link href={item.href}>
+                    {item.label} &gt;
+                  </Link>
                 </li>
               ))}
             </ul>
-          </section>
-        </div>
+          </div>
+        </section>
+        <section className="final-cta">
+          <div className="wrap">
+            <h2>Set this up for your business.</h2>
+            <div className="hero-actions">
+              <Link className="btn btn-solid btn-lg" href="/get-started">
+                Get started
+              </Link>
+              <Link className="apple-more" href={bookCallHref}>
+                Book a 15-minute call &gt;
+              </Link>
+            </div>
+          </div>
+        </section>
       </article>
       <Contact />
     </>

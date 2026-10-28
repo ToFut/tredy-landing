@@ -398,6 +398,149 @@
   }
 }
 
+.nav-drop {
+  position: relative;
+}
+
+.nav-drop-btn {
+  background: none;
+  border: 0;
+  color: #1d1d1f;
+  font-size: 12px;
+  padding: 8px 0;
+}
+
+.nav-menu {
+  display: none;
+  position: absolute;
+  top: calc(100% - 4px);
+  left: 0;
+  min-width: 220px;
+  padding: 8px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+  z-index: 40;
+}
+
+.nav-drop:hover .nav-menu,
+.nav-drop:focus-within .nav-menu {
+  display: grid;
+}
+
+.nav-menu a {
+  padding: 10px 12px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.nav-menu a:hover {
+  background: #f5f5f7;
+}
+
+.desktop-nav {
+  gap: 16px;
+}
+
+.desktop-nav a,
+.nav-drop-btn {
+  font-size: 12px;
+}
+
+.product-hero {
+  text-align: center;
+  padding: 56px 0 12px;
+  background: #fff;
+}
+
+.product-hero h1 {
+  font-size: clamp(40px, 5vw, 68px);
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  max-width: 16ch;
+  margin: 12px auto 0;
+}
+
+.article-copy {
+  width: min(680px, calc(100% - 48px));
+  margin-inline: auto;
+}
+
+.article-copy h2,
+.details-section h2 {
+  font-size: 28px;
+  letter-spacing: -0.03em;
+  margin: 28px 0 8px;
+}
+
+.article-copy p,
+.article-copy li {
+  color: #6e6e73;
+  font-size: 17px;
+  line-height: 1.5;
+  margin-top: 10px;
+}
+
+.contact {
+  background: #f5f5f7;
+  color: #1d1d1f;
+}
+
+.contact h2,
+.contact-who {
+  color: #1d1d1f !important;
+}
+
+.contact-grid > div > p,
+.contact-form label,
+.form-note {
+  color: #6e6e73;
+}
+
+.contact-form input,
+.contact-form select,
+.contact-form textarea {
+  background: #fff;
+  color: #1d1d1f;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.wordmark {
+  font-size: 28px;
+  margin-top: 28px;
+}
+
+.site-footer {
+  background: #f5f5f7;
+}
+
+@media (max-width: 1080px) {
+  .site-header {
+    overflow: visible;
+  }
+
+  .mobile-nav {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    height: calc(100dvh - 72px);
+    background: #fff;
+    z-index: 50;
+    padding: 28px 24px 48px;
+    overflow: auto;
+  }
+
+  .mobile-nav a {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
+    font-size: 32px;
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    color: #1d1d1f;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .marquee-track,
   .float-phone,
