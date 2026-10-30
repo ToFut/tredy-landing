@@ -10,9 +10,9 @@ const crumbs = [
 ];
 
 export const metadata: Metadata = pageMetadata({
-  title: "Book a 15-minute call | Futurix",
+  title: "Book a free 15-minute live setup | Futurix",
   description:
-    "Book a 15-minute call with Futurix about voice agents, AI assistants, custom projects, or AI enablement.",
+    "Book a free 15-minute live setup with Futurix. AI voice receptionists, automations, and custom software for local businesses.",
   path: "/contact",
 });
 
@@ -24,10 +24,9 @@ export default function ContactPage() {
         <div className="wrap">
           <Breadcrumbs items={crumbs} />
           <p className="kicker">Contact</p>
-          <h1>Talk through a first version.</h1>
+          <h1>Book a free 15-minute live setup.</h1>
           <p>
-            Voice agents, custom projects, AI assistants, or AI enablement. Tell us which one
-            fits, and what the work actually is.
+            Tell us about the calls you miss, or the automation or custom build you need. We reply from segev@futurixs.com.
           </p>
         </div>
       </section>

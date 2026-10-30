@@ -112,7 +112,7 @@ export function BookModal() {
         className="cal-modal-card"
         role="dialog"
         aria-modal="true"
-        aria-label="Book a free 15-min call"
+        aria-label={planLabel}
         onClick={(event) => event.stopPropagation()}
       >
         <button className="btn btn-secondary" type="button" onClick={() => setOpen(false)}>

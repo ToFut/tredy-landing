@@ -57,8 +57,10 @@ export function Header() {
               ))}
             </div>
           </div>
+          <Link href="/pricing" aria-current={pathname === "/pricing" ? "page" : undefined}>
+            Pricing
+          </Link>
           <Link href="/#demo">Live demo</Link>
-          <Link href="/#work">Work</Link>
           <Link href="/about" aria-current={pathname === "/about" ? "page" : undefined}>
             About
           </Link>
@@ -88,11 +90,11 @@ export function Header() {
                 {item.label}
               </Link>
             ))}
+            <Link href="/pricing" onClick={() => setOpen(false)}>
+              Pricing
+            </Link>
             <Link href="/#demo" onClick={() => setOpen(false)}>
               Live demo
-            </Link>
-            <Link href="/#work" onClick={() => setOpen(false)}>
-              Work
             </Link>
             <Link href="/about" onClick={() => setOpen(false)}>
               About

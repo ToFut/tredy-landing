@@ -44,8 +44,10 @@ export function pageMetadata(input: {
 function postalAddress() {
   return {
     "@type": "PostalAddress",
+    streetAddress: "1 Caroll Dr",
     addressLocality: "Suffern",
     addressRegion: "NY",
+    postalCode: "10901",
     addressCountry: "US",
   };
 }

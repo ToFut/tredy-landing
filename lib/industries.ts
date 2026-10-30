@@ -59,7 +59,7 @@ export const industryPages: TopicPageData[] = [
       {
         question: "What does an AI receptionist for a roofing company cost?",
         answer:
-          "A voice receptionist starts at $1,800. The free 15 minute call is where we scope the first version for your office. There is no charge for that call.",
+          "Receptionist packages start at $1,495 setup and $349 a month. The free 15-minute live setup is where we scope the first version for your office. There is no charge for that call.",
       },
       {
         question: "Can an AI receptionist for roofing companies book inspections?",
@@ -149,7 +149,7 @@ export const industryPages: TopicPageData[] = [
       {
         question: "What does an AI receptionist for plumbing, HVAC, or electrical cost?",
         answer:
-          "A voice receptionist starts at $1,800. The free 15 minute call is where we scope the first version. There is no charge for that call.",
+          "Receptionist packages start at $1,495 setup and $349 a month. The free 15-minute live setup is where we scope the first version. There is no charge for that call.",
       },
       {
         question: "Is this an AI answering service for HVAC, or a generic call bot?",
@@ -239,7 +239,7 @@ export const industryPages: TopicPageData[] = [
       {
         question: "What does an AI receptionist for a real estate team cost?",
         answer:
-          "A voice receptionist starts at $1,800. The free 15 minute call is where we scope the first version. There is no charge for that call.",
+          "Receptionist packages start at $1,495 setup and $349 a month. The free 15-minute live setup is where we scope the first version. There is no charge for that call.",
       },
       {
         question: "What is an AI voice agent for real estate?",
@@ -328,7 +328,7 @@ export const industryPages: TopicPageData[] = [
       {
         question: "What does an AI receptionist for a property management company cost?",
         answer:
-          "A voice receptionist starts at $1,800. The free 15 minute call is where we scope the first version. There is no charge for that call.",
+          "Receptionist packages start at $1,495 setup and $349 a month. The free 15-minute live setup is where we scope the first version. There is no charge for that call.",
       },
       {
         question: "What does an AI receptionist for property management answer?",

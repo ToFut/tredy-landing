@@ -8,10 +8,10 @@ export const servicePages: TopicPageData[] = [
     path: "/voice-agents",
     kind: "service",
     serviceType: "AI voice agents and AI receptionist",
-    title: "AI Receptionist and AI Phone Answering Service | Futurix",
+    title: "AI Voice Receptionist for Local Businesses | Futurix",
     description:
-      "AI phone agents that answer calls, book jobs, and capture leads 24/7 for roofing, HVAC, real estate, and property teams. Built and launched for you.",
-    h1: "AI voice agents and an AI receptionist for small business",
+      "AI voice receptionists that answer every call, book appointments, and follow up for dental offices, HVAC and trades, med spas, and law firms. Built and launched by Futurix.",
+    h1: "AI voice receptionist for local businesses",
     lede: [
       `${entity}, builds AI voice agents that answer the phone, book work, and capture the lead. An AI receptionist for a small business picks up 24/7, asks the questions your office already asks, and writes the result into the CRM and calendar you use.`,
       "This is an AI phone answering service with a job to finish, not a phone tree that traps the caller. We build it and launch it for you.",

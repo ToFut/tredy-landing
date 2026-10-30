@@ -33,7 +33,7 @@ export async function POST(request: Request) {
       body: JSON.stringify({
         from: process.env.BOOK_FROM_EMAIL || "Futurix <onboarding@resend.dev>",
         to: ["segev@futurixs.com"],
-        subject: "Book a free 15-min call",
+        subject: "Book a free 15-minute live setup",
         text,
       }),
     });

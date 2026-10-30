@@ -2,7 +2,9 @@ import Link from "next/link";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { JsonLd } from "@/components/JsonLd";
 import { Actions } from "@/components/ui/Actions";
+import { BookingWidget, CalendarDay, IMessageThread, NotesPlan } from "@/components/visuals/AppMocks";
 import { IphoneCall, WhatsAppThread } from "@/components/visuals/Screens";
+import { planLabel } from "@/lib/content";
 import type { ServiceSpec } from "@/lib/service-views";
 import { serviceJsonLd } from "@/lib/seo";
 import type { TopicPageData } from "@/lib/types";
@@ -26,7 +28,7 @@ export function ServiceView({ spec }: { spec: ServiceSpec }) {
     <>
       <JsonLd data={serviceJsonLd(page)} />
       <article>
-        <header className="band industry-hero">
+        <header className="band industry-hero fx-hero">
           <div className="wrap grid-12">
             <div className="span-7 hero-copy">
               <Breadcrumbs items={spec.crumbs} />
@@ -41,10 +43,21 @@ export function ServiceView({ spec }: { spec: ServiceSpec }) {
             </div>
           </div>
         </header>
+        <section className="band" id="who">
+          <div className="wrap">
+            <h2 className="fx-title">Who it is for</h2>
+            <p className="fx-lede">{spec.audienceLead}</p>
+            <ul className="service-who">
+              {spec.audience.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </div>
+        </section>
         <section className="band">
           <div className="wrap">
-            <h2 className="type-h2">How it works</h2>
-            <ol className="service-steps">
+            <h2 className="fx-title">How it works</h2>
+            <ol className="fx-steps">
               {spec.steps.map((step, index) => (
                 <li key={step.title}>
                   <span>{index + 1}</span>
@@ -76,12 +89,18 @@ export function ServiceView({ spec }: { spec: ServiceSpec }) {
               </div>
               {spec.path === "/voice-agents" ? (
                 <p>
-                  <Link href="/#demo">Try the live demo &gt;</Link>
+                  <Link href="/#demo">Try the live demo</Link>
+                </p>
+              ) : null}
+              {spec.path === "/custom-projects" ? (
+                <p>
+                  Past builds include a booking site and a maintenance retainer for Line Properties, and a 1031 exchange
+                  platform for Peak Exchange.
                 </p>
               ) : null}
             </div>
             <div className="span-6">
-              <ServiceVisual kind={spec.visual} />
+              <ServiceVisual kind={spec.exampleVisual} />
             </div>
           </div>
         </section>
@@ -98,9 +117,14 @@ export function ServiceView({ spec }: { spec: ServiceSpec }) {
         </section>
         <section className="band">
           <div className="wrap">
-            <h2 className="type-h2">Pricing</h2>
+            <h2 className="fx-title">Pricing</h2>
             <div className="price-box">
               <p className="card-price">{spec.price}</p>
+              {spec.path === "/voice-agents" ? (
+                <p>
+                  <Link href="/pricing">See Overflow Desk, Booked Front Desk, and Multi-location Ops</Link>
+                </p>
+              ) : null}
               <ul className="service-list">
                 {spec.includes.map((item) => (
                   <li key={item}>{item}</li>
@@ -126,8 +150,8 @@ export function ServiceView({ spec }: { spec: ServiceSpec }) {
         </section>
         <section className="band cta-band">
           <div className="wrap">
-            <h2 className="type-h2">Book a free 15-min call</h2>
-            <p className="type-body">We will tell you if this is the right first step.</p>
+            <h2 className="fx-title">{planLabel}</h2>
+            <p className="fx-lede">We will tell you if this is the right first step.</p>
             <Actions location="service-cta" />
           </div>
         </section>
@@ -136,53 +160,50 @@ export function ServiceView({ spec }: { spec: ServiceSpec }) {
   );
 }
 
-function ServiceVisual({ kind }: { kind: ServiceSpec["visual"] }) {
+function ServiceVisual({ kind }: { kind: ServiceSpec["visual"] | ServiceSpec["exampleVisual"] }) {
   if (kind === "phone") {
     return (
       <IphoneCall
-        name="Harbor Roofing"
-        caption="Incoming call, answered by AI"
-        callerLine="The roof is leaking after the storm on Oak Street."
+        name="Oak Dental"
+        caption="Hi, thanks for calling Oak Dental. I can book a cleaning."
+        callerLine="I need a cleaning next week."
         timer="00:12"
       />
     );
   }
-  if (kind === "sms") {
+  if (kind === "whatsapp") {
     return (
       <WhatsAppThread
-        name="Harbor Roofing"
+        name="Oak Dental"
         messages={[
-          { side: "in", text: "The patch from last week is dripping again.", time: "9:14" },
-          { side: "out", text: "We can come Thursday at 10. Reply YES to book.", time: "9:14" },
+          { side: "in", text: "New patient. Cleaning next week. She can do Thursday at 10.", time: "9:14" },
+          { side: "out", text: "Booked Thursday at 10. Confirmation text sent.", time: "9:14" },
         ]}
       />
     );
   }
-  if (kind === "board") {
+  if (kind === "imessage") {
     return (
-      <table className="mini-board">
-        <tbody>
-          <tr>
-            <td>New</td>
-            <td>Leak on Oak Street</td>
-          </tr>
-          <tr>
-            <td>Set</td>
-            <td>Estimate, Thu 10:00</td>
-          </tr>
-          <tr>
-            <td>Done</td>
-            <td>Ridge cap, Maple Ave</td>
-          </tr>
-        </tbody>
-      </table>
+      <IMessageThread
+        name="Northline HVAC"
+        messages={[
+          { side: "out", text: "Hi, this is Northline HVAC. We can come Thursday at 10. Reply YES to book." },
+          { side: "in", text: "YES" },
+          { side: "out", text: "Booked. See you Thursday at 10." },
+        ]}
+      />
     );
   }
+  if (kind === "calendar") {
+    return <CalendarDay title="Service visit" place="Northline HVAC" />;
+  }
+  if (kind === "booking") {
+    return <BookingWidget />;
+  }
   return (
-    <ul className="mini-check">
-      <li>Name the workflow</li>
-      <li>A person reviews it</li>
-      <li>Rules are written</li>
-    </ul>
+    <NotesPlan
+      title="Front desk rules"
+      lines={["Name the workflow.", "A person reviews the result.", "Write what the AI must not do.", "Keep what the team uses."]}
+    />
   );
 }

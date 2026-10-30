@@ -4,8 +4,8 @@ import { CalEmbed } from "@/components/book/CalEmbed";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Book a free 15-min call | Futurix",
-  description: "Tell us your name and how to reach you. Pick a day and time. We will call you within 1 business day.",
+  title: "Book a free 15-minute live setup | Futurix",
+  description: "Book a free 15-minute live setup with Futurix. We will look at your phone and tell you the first receptionist to launch.",
   path: "/book",
 });
 
@@ -14,8 +14,8 @@ export default function BookPage() {
   return (
     <section className="book-page">
       <div className={calLink ? "book-card book-card-wide" : "book-card"}>
-        <p className="eyebrow">Book a call</p>
-        <h1 className="type-h1">Book a free 15-min call</h1>
+        <p className="kicker">Live setup</p>
+        <h1 className="type-h1">Book a free 15-minute live setup</h1>
         <p className="type-body">We will look at your phone, leads, or tools and tell you the first thing to set up.</p>
         {calLink ? (
           <div className="book-cal">

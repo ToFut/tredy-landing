@@ -3,7 +3,8 @@ import { offerings, site } from "@/lib/content";
 import { industryPages } from "@/lib/industries";
 
 const studio = [
-  { href: "/get-started", label: "Get started" },
+  { href: "/pricing", label: "Pricing" },
+  { href: "/get-started", label: "Live demo" },
   { href: "/about", label: "About" },
   { href: "/#how", label: "How we work" },
   { href: "/#work", label: "Work" },
@@ -20,11 +21,13 @@ export function Footer() {
         <div>
           <p className="footer-brand">Futurix</p>
           <p className="footer-blurb">
-            {site.entity}. Voice agents, custom projects, AI assistants, and AI enablement
-            for small and mid-size businesses.
+            AI voice receptionists for local businesses. We answer every call, book the appointment, and follow up.
+            Automations and custom software when the desk needs more than a voice.
           </p>
           <p className="footer-meta">
-            {site.location}
+            Futurix
+            <br />
+            {site.address}
             <br />
             <a href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a>
           </p>
@@ -63,7 +66,7 @@ export function Footer() {
       </div>
       <div className="wrap">
         <p className="wordmark">Futurix</p>
-        <p className="footer-end">Futurix. {site.location}.</p>
+        <p className="footer-end">Futurix, {site.address}.</p>
       </div>
     </footer>
   );
