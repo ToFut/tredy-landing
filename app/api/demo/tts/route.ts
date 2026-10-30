@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { allowDemo, clientIp } from "@/lib/demo/guard";
+import { audioDataUrl, speakViaProxy, speechProxyConfigured } from "@/lib/demo/speech-proxy";
 
 export const runtime = "nodejs";
 export const maxDuration = 30;
@@ -16,11 +17,10 @@ export async function POST(request: Request) {
 
   const key = process.env.ELEVENLABS_API_KEY;
   if (!key) {
-    console.error("demo/tts missing ELEVENLABS_API_KEY");
-    return NextResponse.json(
-      { error: "Speech is not configured on this server (missing ELEVENLABS_API_KEY)." },
-      { status: 503 },
-    );
+    if (!speechProxyConfigured()) {
+      console.error("demo/tts speech is not configured");
+      return NextResponse.json({ error: "Speech is not configured on this server." }, { status: 503 });
+    }
   }
 
   let body: { voiceId?: string; text?: string };
@@ -33,6 +33,17 @@ export async function POST(request: Request) {
   const text = String(body.text || "").slice(0, 280);
   if (!voiceId || !text) {
     return NextResponse.json({ error: "Missing voice or line." }, { status: 400 });
+  }
+
+  if (!key) {
+    try {
+      const role = voiceId === "caller" ? "caller" : "agent";
+      const bytes = await speakViaProxy(role, text);
+      return NextResponse.json({ audio: audioDataUrl(bytes) });
+    } catch {
+      console.error("demo/tts speech proxy failed");
+      return NextResponse.json({ error: "Could not reach the speech service." }, { status: 502 });
+    }
   }
 
   try {

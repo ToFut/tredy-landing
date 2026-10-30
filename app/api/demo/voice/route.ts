@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { allowDemo, clientIp } from "@/lib/demo/guard";
+import { audioDataUrl, speakViaProxy, speechProxyConfigured } from "@/lib/demo/speech-proxy";
 
 export const runtime = "nodejs";
 export const maxDuration = 30;
@@ -32,11 +33,23 @@ export async function POST(request: Request) {
 
   const key = process.env.ELEVENLABS_API_KEY;
   if (!key) {
-    console.error("demo/voice missing ELEVENLABS_API_KEY");
-    return NextResponse.json(
-      { error: "Voice cloning is not configured on this server (missing ELEVENLABS_API_KEY)." },
-      { status: 503 },
-    );
+    if (!speechProxyConfigured()) {
+      console.error("demo/voice speech is not configured");
+      return NextResponse.json({ error: "Speech is not configured on this server." }, { status: 503 });
+    }
+    try {
+      const bytes = await speakViaProxy("agent", "Thanks for calling. How can I help you today?");
+      if (request.headers.get("accept")?.includes("audio/mpeg")) {
+        return new NextResponse(new Uint8Array(bytes), {
+          status: 200,
+          headers: { "Content-Type": "audio/mpeg", "Cache-Control": "no-store" },
+        });
+      }
+      return NextResponse.json({ voiceId: "demo", cloned: false, audio: audioDataUrl(bytes) });
+    } catch {
+      console.error("demo/voice speech proxy failed");
+      return NextResponse.json({ error: "Could not reach the speech service." }, { status: 502 });
+    }
   }
 
   const form = await request.formData();
