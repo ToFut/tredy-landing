@@ -1,4 +1,7 @@
 import Link from "next/link";
+import { GraduationCap, MessageSquare, Phone, Scale, Smile, Sparkles, SquarePen, Wrench } from "lucide-react";
+import { CallJourney } from "@/components/home/CallJourney";
+import { HeroListen } from "@/components/home/HeroListen";
 import { PlatformMarquee } from "@/components/home/PlatformMarquee";
 import { PricingSection } from "@/components/pricing/PricingSection";
 import { Actions } from "@/components/ui/Actions";
@@ -10,21 +13,25 @@ const audiences = [
     title: "Dental",
     line: "New patient calls, approved insurance questions, and hygiene visits that should land on the book.",
     href: "/voice-agents",
+    icon: Smile,
   },
   {
     title: "HVAC and trades",
     line: "Emergency and estimate calls while the crew is on a job, including after hours.",
     href: "/industries/home-services",
+    icon: Wrench,
   },
   {
     title: "Med spas",
     line: "Consults and treatment bookings that still get a time when the front desk is with a guest.",
     href: "/voice-agents",
+    icon: Sparkles,
   },
   {
     title: "Law firms",
     line: "Intake that qualifies and books a consult, then hands off anything an attorney should take.",
     href: "/voice-agents",
+    icon: Scale,
   },
 ];
 
@@ -36,6 +43,7 @@ const offerings = [
     line: "The core offer",
     detail: "Answers every call, books the appointment, and follows up by text.",
     price: "From $1,495 setup",
+    icon: Phone,
   },
   {
     href: "/ai-assistants",
@@ -44,6 +52,7 @@ const offerings = [
     line: "The follow-up",
     detail: "Missed-call text-back, inbox drafts, and routing into the tools you already use.",
     price: "Quoted with setup",
+    icon: MessageSquare,
   },
   {
     href: "/custom-projects",
@@ -52,6 +61,7 @@ const offerings = [
     line: "The software",
     detail: "Booking sites, portals, and internal tools when the desk needs its own product.",
     price: "Custom quote",
+    icon: SquarePen,
   },
   {
     href: "/ai-enablement",
@@ -60,25 +70,35 @@ const offerings = [
     line: "The rollout",
     detail: "A short plan and training so the team actually uses what we ship.",
     price: "Custom quote",
+    icon: GraduationCap,
   },
 ];
+
+function OfferIcon({ icon: Icon }: { icon: typeof Phone }) {
+  return <Icon aria-hidden="true" />;
+}
 
 export function HomeHero() {
   return (
     <section className="band home-hero fx-hero tone-a">
-      <div className="wrap hero-copy">
-        <p className="kicker">For local businesses</p>
-        <h1 className="hero-title">AI receptionists that answer every call.</h1>
-        <p className="hero-sub">
-          We pick up the phone, book the appointment, and follow up. Built for dental offices, HVAC and trades, med
-          spas, and law firms. Automations and custom software, when the desk needs more than a voice.
-        </p>
-        <ul className="benefit-chips">
-          <li>Answers every call</li>
-          <li>Books appointments</li>
-          <li>Follows up by text</li>
-        </ul>
-        <Actions demoHref="/#demo" location="hero" hero />
+      <div className="wrap hero-grid">
+        <div className="hero-copy">
+          <p className="kicker">AI receptionists for local businesses</p>
+          <h1 className="hero-title">
+            Every call answered.
+            <br />
+            Every visit booked.
+          </h1>
+          <p className="hero-sub">
+            For dental offices, HVAC and trades, med spas, and law firms. We answer the phone, book the appointment, and
+            send the confirmation text.
+          </p>
+          <div className="hero-ctas">
+            <Actions location="hero" hero />
+            <HeroListen />
+          </div>
+        </div>
+        <CallJourney />
       </div>
     </section>
   );
@@ -86,18 +106,22 @@ export function HomeHero() {
 
 export function AudienceBand() {
   return (
-    <section className="band fx-audience tone-b" id="who">
+    <section className="band fx-audience tone-a" id="who">
       <div className="wrap">
         <p className="kicker">Who it is for</p>
         <h2 className="fx-title">Offices that lose jobs when the phone rings out.</h2>
         <div className="fx-audience-grid">
-          {audiences.map((item) => (
-            <Link key={item.title} href={item.href} className="fx-audience-card">
-              <h3>{item.title}</h3>
-              <p>{item.line}</p>
-              <span>See the receptionist</span>
-            </Link>
-          ))}
+          {audiences.map((item) => {
+            const Icon = item.icon;
+            return (
+              <Link key={item.title} href={item.href} className="fx-audience-card">
+                <Icon aria-hidden="true" />
+                <h3>{item.title}</h3>
+                <p>{item.line}</p>
+                <span>See the receptionist</span>
+              </Link>
+            );
+          })}
         </div>
         <p className="fx-also">
           Also for <Link href="/industries/roofing">roofing</Link>, <Link href="/industries/real-estate">real estate</Link>,{" "}
@@ -171,7 +195,7 @@ export function HowWeWork() {
     },
   ];
   return (
-    <section className="band fx-how tone-a" id="how">
+    <section className="band fx-how tone-b" id="how">
       <div className="wrap">
         <p className="kicker">How it works</p>
         <h2 className="fx-title">Three steps from a missed call to a booked visit.</h2>
@@ -199,6 +223,7 @@ export function OfferingCards() {
         <div className="fx-offer-grid">
           {offerings.map((item) => (
             <Link key={item.href} href={item.href} className="fx-offer">
+              <OfferIcon icon={item.icon} />
               <p className="kicker">{item.index}</p>
               <h3>{item.title}</h3>
               <p className="fx-offer-line">{item.line}</p>
@@ -215,7 +240,7 @@ export function OfferingCards() {
 
 export function Trust() {
   return (
-    <section className="band fx-work tone-b" id="work">
+    <section className="band fx-work tone-a" id="work">
       <div className="wrap">
         <p className="kicker">Selected work</p>
         <h2 className="fx-title">Two builds you can ask about.</h2>
