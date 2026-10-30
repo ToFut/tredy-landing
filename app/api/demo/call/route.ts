@@ -3,6 +3,7 @@ import path from "node:path";
 import { NextResponse } from "next/server";
 import { allowDemo, clientIp } from "@/lib/demo/guard";
 import { asIndustry } from "@/lib/demo/script";
+import { audioDataUrl, speakViaProxy, speechProxyConfigured } from "@/lib/demo/speech-proxy";
 import type { CallLine } from "@/lib/demo/templates";
 
 export const runtime = "nodejs";
@@ -35,11 +36,25 @@ export async function POST(request: Request) {
 
   const key = process.env.ELEVENLABS_API_KEY;
   const industry = asIndustry(String(body.industry || "other"));
+  if (!key && speechProxyConfigured()) {
+    try {
+      const clips: string[] = [];
+      for (const line of lines) {
+        const role = line.speaker === "agent" ? "agent" : "caller";
+        const bytes = await speakViaProxy(role, line.text.slice(0, 280));
+        clips.push(audioDataUrl(bytes));
+      }
+      return NextResponse.json({ mode: "live", sample: null, clips });
+    } catch {
+      console.error("demo/call speech proxy failed");
+      return NextResponse.json({ error: "The call audio did not generate." }, { status: 502 });
+    }
+  }
   if (!key || !body.voiceId) {
     console.error("demo/call missing key or voice");
     return NextResponse.json(
       {
-        error: key ? "No voice is selected for this call." : "Speech is not configured (missing ELEVENLABS_API_KEY).",
+        error: key ? "No voice is selected for this call." : "Speech is not configured on this server.",
         sample: sampleFor(industry),
       },
       { status: key ? 400 : 503 },
