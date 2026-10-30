@@ -7,7 +7,6 @@ import { Contact } from "@/components/sections";
 import { IndustryStory } from "@/components/industries/IndustryStory";
 import { Actions } from "@/components/ui/Actions";
 import { planLabel } from "@/lib/content";
-import { IphoneCall } from "@/components/visuals/Screens";
 import { aboutJsonLd, industryJsonLd, serviceJsonLd } from "@/lib/seo";
 import type { BusinessId } from "@/lib/start";
 import type { TopicPageData } from "@/lib/types";
@@ -45,34 +44,6 @@ const industryPitch: Record<string, string> = {
     "An AI receptionist that answers resident calls while you are between buildings, logs the repair, and texts you a summary.",
   "/industries/insurance":
     "An AI receptionist that answers quote and certificate calls while you are with a client, logs the request, and texts you a summary.",
-};
-
-const industryCall: Record<string, { name: string; caption: string; callerLine: string }> = {
-  "/industries/roofing": {
-    name: "Harbor Roofing",
-    caption: "Hi, thanks for calling Harbor Roofing. How can I help you today?",
-    callerLine: "The roof is leaking after the storm on Oak Street.",
-  },
-  "/industries/home-services": {
-    name: "Northline HVAC",
-    caption: "Hi, thanks for calling Northline HVAC. How can I help you today?",
-    callerLine: "The heat is out on Pine Avenue. Can someone come today?",
-  },
-  "/industries/real-estate": {
-    name: "Harbor Homes",
-    caption: "Hi, thanks for calling Harbor Homes. How can I help you today?",
-    callerLine: "Is the house on Oak still available for a look this week?",
-  },
-  "/industries/property-management": {
-    name: "Harbor Property",
-    caption: "Hi, thanks for calling Harbor Property. How can I help you today?",
-    callerLine: "The sink in unit 4 is dripping under the cabinet.",
-  },
-  "/industries/insurance": {
-    name: "Harbor Agency",
-    caption: "Hi, thanks for calling Harbor Agency. How can I help you today?",
-    callerLine: "Can you send a certificate to the job site by Thursday?",
-  },
 };
 
 function plainLine(page: TopicPageData) {
@@ -230,22 +201,14 @@ export function TopicPage({ page }: { page: TopicPageData }) {
 }
 
 function IndustryHero({ page }: { page: TopicPageData }) {
-  const call = industryCall[page.path];
   return (
-    <header className="band industry-hero fx-hero">
-      <div className="wrap grid-12">
-        <div className="span-7 hero-copy">
-          <Breadcrumbs items={page.crumbs} />
-          <h1 className="hero-title">{page.h1}</h1>
-          <p className="hero-sub">{industryPitch[page.path]}</p>
-          <p className="card-price">From $1,495 setup and $349/mo</p>
-          <Actions demoHref="#try" location="industry-hero" hero />
-        </div>
-        {call ? (
-          <div className="span-5 hero-phone">
-            <IphoneCall name={call.name} caption={call.caption} callerLine={call.callerLine} timer="00:12" />
-          </div>
-        ) : null}
+    <header className="band industry-hero fx-hero tone-a">
+      <div className="wrap hero-copy">
+        <Breadcrumbs items={page.crumbs} />
+        <h1 className="hero-title">{page.h1}</h1>
+        <p className="hero-sub">{industryPitch[page.path]}</p>
+        <p className="card-price">From $1,495 setup and $349/mo</p>
+        <Actions demoHref="#try" location="industry-hero" hero />
       </div>
     </header>
   );

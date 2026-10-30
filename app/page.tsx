@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { DeferredTry } from "@/components/demo/DeferredTry";
-import { DemoLoop } from "@/components/demo/DemoLoop";
 import { AudienceBand, FinalCta, HomeHero, HowWeWork, ModelStrip, OfferingCards, PriceTeaser, Proof, Trust } from "@/components/home/Marketing";
 import { Reveal } from "@/components/home/Reveal";
 import { JsonLd } from "@/components/JsonLd";
@@ -25,7 +24,7 @@ export default function Page() {
       <Proof />
       <HowWeWork />
       <OfferingCards />
-      <section className="band" id="demo">
+      <section className="band tone-b" id="demo">
         <div className="wrap">
           <p className="kicker">Live demo</p>
           <h2 className="fx-title">Hear a live demo</h2>
@@ -33,14 +32,12 @@ export default function Page() {
         </div>
         <DeferredTry anchor="try" heading={false} only={["voice"]} />
         <div className="wrap">
-          <p className="type-small">A sample of that demo.</p>
-          <DemoLoop />
           <Actions demoHref="#try" />
         </div>
       </section>
       <Trust />
       <PriceTeaser />
-      <section id="faq" className="band">
+      <section id="faq" className="band tone-b">
         <div className="wrap">
           <h2 className="type-h2">Questions</h2>
           <div className="faq-list">

@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { LiveHeroPhone } from "@/components/home/LiveHeroPhone";
 import { PlatformMarquee } from "@/components/home/PlatformMarquee";
 import { PricingSection } from "@/components/pricing/PricingSection";
 import { Actions } from "@/components/ui/Actions";
@@ -66,25 +65,20 @@ const offerings = [
 
 export function HomeHero() {
   return (
-    <section className="band home-hero fx-hero">
-      <div className="wrap grid-12">
-        <div className="span-7 hero-copy">
-          <p className="kicker">For local businesses</p>
-          <h1 className="hero-title">AI receptionists that answer every call.</h1>
-          <p className="hero-sub">
-            We pick up the phone, book the appointment, and follow up. Built for dental offices, HVAC and trades, med
-            spas, and law firms. Automations and custom software, when the desk needs more than a voice.
-          </p>
-          <ul className="benefit-chips">
-            <li>Answers every call</li>
-            <li>Books appointments</li>
-            <li>Follows up by text</li>
-          </ul>
-          <Actions demoHref="/#demo" location="hero" hero />
-        </div>
-        <div className="span-5 hero-phone">
-          <LiveHeroPhone />
-        </div>
+    <section className="band home-hero fx-hero tone-a">
+      <div className="wrap hero-copy">
+        <p className="kicker">For local businesses</p>
+        <h1 className="hero-title">AI receptionists that answer every call.</h1>
+        <p className="hero-sub">
+          We pick up the phone, book the appointment, and follow up. Built for dental offices, HVAC and trades, med
+          spas, and law firms. Automations and custom software, when the desk needs more than a voice.
+        </p>
+        <ul className="benefit-chips">
+          <li>Answers every call</li>
+          <li>Books appointments</li>
+          <li>Follows up by text</li>
+        </ul>
+        <Actions demoHref="/#demo" location="hero" hero />
       </div>
     </section>
   );
@@ -92,7 +86,7 @@ export function HomeHero() {
 
 export function AudienceBand() {
   return (
-    <section className="band fx-audience" id="who">
+    <section className="band fx-audience tone-b" id="who">
       <div className="wrap">
         <p className="kicker">Who it is for</p>
         <h2 className="fx-title">Offices that lose jobs when the phone rings out.</h2>
@@ -121,7 +115,7 @@ export function ModelStrip() {
 
 export function Proof() {
   return (
-    <section className="band fx-proof" id="screens">
+    <section className="band fx-proof tone-b" id="screens">
       <div className="wrap">
         <p className="kicker">What your team sees</p>
         <h2 className="fx-title">A call summary, a booking, and a text.</h2>
@@ -177,7 +171,7 @@ export function HowWeWork() {
     },
   ];
   return (
-    <section className="band fx-how" id="how">
+    <section className="band fx-how tone-a" id="how">
       <div className="wrap">
         <p className="kicker">How it works</p>
         <h2 className="fx-title">Three steps from a missed call to a booked visit.</h2>
@@ -198,13 +192,13 @@ export function HowWeWork() {
 
 export function OfferingCards() {
   return (
-    <section className="band fx-offers" id="offerings">
+    <section className="band fx-offers tone-a" id="offerings">
       <div className="wrap">
         <p className="kicker">What we build</p>
         <h2 className="fx-title">Receptionists first. Automations and custom builds when you need them.</h2>
         <div className="fx-offer-grid">
           {offerings.map((item) => (
-            <Link key={item.href} href={item.href} className={item.index === "01" ? "fx-offer is-lead" : "fx-offer"}>
+            <Link key={item.href} href={item.href} className="fx-offer">
               <p className="kicker">{item.index}</p>
               <h3>{item.title}</h3>
               <p className="fx-offer-line">{item.line}</p>
@@ -221,7 +215,7 @@ export function OfferingCards() {
 
 export function Trust() {
   return (
-    <section className="band fx-work" id="work">
+    <section className="band fx-work tone-b" id="work">
       <div className="wrap">
         <p className="kicker">Selected work</p>
         <h2 className="fx-title">Two builds you can ask about.</h2>
@@ -259,7 +253,7 @@ export function PriceTeaser() {
 
 export function FinalCta() {
   return (
-    <section className="band cta-band fx-final">
+    <section className="band cta-band fx-final tone-a">
       <div className="wrap">
         <h2 className="fx-title">Book a free 15-minute live setup.</h2>
         <p className="fx-lede">We will show you the receptionist on a live call and tell you which package fits.</p>

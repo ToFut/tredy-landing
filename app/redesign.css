@@ -1016,3 +1016,189 @@ footer.site-footer .wordmark {
     transform: none;
   }
 }
+
+/* Two tones only: paper and white. Headings stay dark on both. */
+header.band.industry-hero.tone-a,
+header.band.fx-hero.tone-a,
+section.band.home-hero.fx-hero.tone-a,
+section.band.cta-band.tone-a,
+.tone-a,
+section.tone-a,
+header.tone-a,
+section.fx-hero.tone-a,
+header.fx-hero.tone-a,
+header.band.industry-hero.tone-a,
+section.cta-band.tone-a,
+section.fx-pricing.tone-b,
+section.tone-b {
+  background: #f7f4ee;
+  color: #14161c;
+}
+
+section.tone-b,
+header.tone-b,
+.brand-marquee {
+  background: #ffffff;
+  color: #14161c;
+}
+
+section.tone-a h1,
+section.tone-a h2,
+section.tone-a h3,
+section.tone-b h1,
+section.tone-b h2,
+section.tone-b h3,
+header.tone-a h1,
+header.tone-a .hero-title,
+section.fx-hero.tone-a .hero-title,
+header.fx-hero.tone-a .hero-title,
+header.band.industry-hero.tone-a .hero-title,
+header.fx-pricing-hero.tone-a .hero-title,
+section.cta-band.tone-a h2,
+section.fx-pricing .fx-title,
+.fx-offer h3,
+.fx-audience-card h3,
+.fx-studies h3,
+.fx-tier h3,
+.fx-steps h3 {
+  color: #14161c;
+}
+
+section.tone-a p,
+section.tone-b p,
+header.tone-a p,
+header.tone-a .hero-sub,
+section.fx-hero.tone-a .hero-sub,
+header.fx-hero.tone-a .hero-sub,
+header.band.industry-hero.tone-a .hero-sub,
+section.cta-band.tone-a p,
+section.fx-pricing p,
+.fx-offer p,
+.fx-audience-card p,
+.fx-steps p,
+.fx-studies p,
+.fx-proof figcaption {
+  color: #3a403c;
+}
+
+section.tone-a .kicker,
+section.tone-b .kicker,
+header.tone-a .kicker,
+.fx-offer .kicker,
+.fx-audience-card .kicker,
+.fx-studies .kicker,
+.brand-marquee > p:first-child {
+  color: #243028;
+}
+
+section.fx-hero.tone-a .benefit-chips li,
+header.fx-hero.tone-a .benefit-chips li {
+  color: #14161c;
+  background: #ffffff;
+  border-color: rgba(20, 22, 28, 0.22);
+}
+
+section.fx-hero.tone-a .btn-secondary,
+header.fx-hero.tone-a .btn-secondary,
+header.band.industry-hero.tone-a .btn-secondary,
+section.cta-band.tone-a .btn-secondary,
+section.fx-pricing .btn-secondary {
+  color: #14161c;
+  border-color: rgba(20, 22, 28, 0.35);
+  background: #ffffff;
+}
+
+header.tone-a .crumbs,
+header.tone-a .crumbs a,
+header.tone-a .card-price,
+section.tone-a .card-price,
+.fx-offer .card-price {
+  color: #14161c;
+}
+
+.fx-offer-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.fx-offer,
+.fx-offer.is-lead,
+.fx-audience-card,
+.fx-studies article,
+.fx-privacy,
+.fx-addons,
+.fx-tier,
+.fx-tier.is-featured {
+  background: #ffffff;
+  color: #14161c;
+  grid-row: auto;
+  transform: none;
+  outline: 1px solid rgba(20, 22, 28, 0.12);
+}
+
+.fx-offer.is-lead h3,
+.fx-offer.is-lead p,
+.fx-offer.is-lead .kicker,
+.fx-offer.is-lead span,
+.fx-privacy h3,
+.fx-privacy p,
+.fx-privacy a,
+.fx-addons h3,
+.fx-addons li,
+section.fx-pricing .fx-notes p,
+section.fx-pricing .fx-mail,
+section.fx-pricing .fx-mail a {
+  color: #14161c;
+}
+
+.fx-tier.is-featured {
+  outline: 2px solid #14161c;
+}
+
+.fx-offer-line {
+  color: #243028;
+}
+
+.brand-marquee .brand-logo,
+.brand-marquee .brand-logo:hover {
+  color: #14161c;
+}
+
+section.home-hero .hero-copy {
+  max-width: 44rem;
+}
+
+section.home-hero .hero-title {
+  max-width: 14ch;
+}
+
+header.band.industry-hero.tone-a .kicker,
+header.band.fx-hero.tone-a .kicker,
+section.band.fx-hero.tone-a .kicker,
+section.band.tone-a .kicker,
+section.band.tone-b .kicker,
+.fx-offer .kicker,
+.fx-tier .fx-badge-quiet {
+  color: #243028;
+}
+
+.fx-cost span,
+.fx-minutes,
+.fx-when {
+  color: #14161c;
+}
+
+@media (min-width: 981px) {
+  .fx-offer-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 980px) {
+  .fx-offer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  body.sticky-on {
+    padding-bottom: 96px;
+  }
+}
