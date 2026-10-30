@@ -28,7 +28,7 @@ html {
   --ink: #1d1d1f;
   --muted: #6e6e73;
   --line: rgba(0, 0, 0, 0.08);
-  --blue: #0071e3;
+  --blue: #1a5cff;
   --blue-2: #0058b0;
   --paper: #ffffff;
   --mist: #f5f5f7;
@@ -392,13 +392,13 @@ a.btn-secondary {
 .step-bar span {
   display: block;
   height: 100%;
-  background: #0071e3;
+  background: #1a5cff;
 }
 
 .book-card .choice.on {
-  background: #0071e3;
+  background: #1a5cff;
   color: #fff;
-  border-color: #0071e3;
+  border-color: #1a5cff;
 }
 
 .ios-call .ios-name,
@@ -769,7 +769,7 @@ header.product-hero > .wrap .card-price {
 
 .offer-cards .offer-card:hover {
   transform: none;
-  border-color: #0071e3;
+  border-color: #1a5cff;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
 }
 
@@ -862,7 +862,7 @@ header.product-hero > .wrap .card-price {
 
 .mini-board td:first-child {
   font-weight: 650;
-  color: #0071e3;
+  color: #1a5cff;
 }
 
 .mini-check {
@@ -881,7 +881,7 @@ header.product-hero > .wrap .card-price {
 
 .mini-check li::before {
   content: "✓ ";
-  color: #0071e3;
+  color: #1a5cff;
   font-weight: 700;
 }
 
@@ -914,7 +914,7 @@ header.product-hero > .wrap .card-price {
   height: 22px;
   margin-right: 6px;
   border-radius: 99px;
-  background: #0071e3;
+  background: #1a5cff;
   color: #fff;
   font-size: 13px;
 }
@@ -945,7 +945,7 @@ h2,
 a:focus-visible,
 button:focus-visible,
 summary:focus-visible {
-  outline: 2px solid #0071e3;
+  outline: 2px solid #1a5cff;
   outline-offset: 3px;
 }
 
@@ -953,7 +953,7 @@ summary:focus-visible {
 .desktop-nav a[aria-current="page"],
 .nav-menu a[aria-current="page"],
 .mobile-nav a[aria-current="page"] {
-  color: #0071e3;
+  color: #1a5cff;
 }
 
 .hero-stage {
@@ -985,7 +985,7 @@ summary:focus-visible {
   padding: 6px 10px;
   border-radius: 999px;
   background: #fff;
-  color: #0071e3;
+  color: #1a5cff;
   font-size: 13px;
   font-weight: 650;
   text-decoration: none;
@@ -1001,7 +1001,7 @@ summary:focus-visible {
   padding: 0 12px;
   border-radius: 999px;
   background: #f5f5f7;
-  color: #0071e3;
+  color: #1a5cff;
   font-size: 14px;
   font-weight: 650;
 }
@@ -1027,7 +1027,7 @@ summary:focus-visible {
 }
 
 .price-card:hover {
-  border-color: #0071e3;
+  border-color: #1a5cff;
 }
 
 .price-card span {
@@ -1152,9 +1152,9 @@ summary:focus-visible {
 
 .try-live .step-meter .now span,
 .try-live .step-meter .done span {
-  background: #0071e3;
+  background: #1a5cff;
   color: #fff;
-  border-color: #0071e3;
+  border-color: #1a5cff;
 }
 
 .try-live .read-script {
@@ -1223,14 +1223,14 @@ summary:focus-visible {
   height: 32px;
   margin-bottom: 8px;
   border-radius: 99px;
-  background: #0071e3;
+  background: #1a5cff;
   color: #fff;
   font-weight: 650;
 }
 
 .service-list li::before {
   content: "✓ ";
-  color: #0071e3;
+  color: #1a5cff;
   font-weight: 700;
 }
 

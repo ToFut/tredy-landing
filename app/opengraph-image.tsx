@@ -12,8 +12,8 @@ export default function OpenGraphImage() {
         style={{
           width: "100%",
           height: "100%",
-          background: "#07090d",
-          color: "#f6f3ec",
+          background: "#0B1A3A",
+          color: "#ffffff",
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
@@ -26,8 +26,8 @@ export default function OpenGraphImage() {
               width: 48,
               height: 48,
               borderRadius: 12,
-              background: "#dff56a",
-              color: "#12141a",
+              background: "#1A5CFF",
+              color: "#ffffff",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
@@ -41,7 +41,7 @@ export default function OpenGraphImage() {
         <div style={{ fontSize: 60, lineHeight: 1.05, letterSpacing: -2, maxWidth: 980 }}>
           AI receptionists that answer every call.
         </div>
-        <div style={{ fontSize: 24, color: "#dff56a" }}>Book a free 15-minute live setup</div>
+        <div style={{ fontSize: 24, color: "#D9E4FF" }}>Book a free 15-minute live setup</div>
       </div>
     ),
     { ...size },

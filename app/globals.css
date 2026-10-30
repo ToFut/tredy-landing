@@ -6,11 +6,11 @@
   --ink: #1d1d1f;
   --mute: #6e6e73;
   --line: rgba(0, 0, 0, 0.08);
-  --forest: #0071e3;
+  --forest: #1a5cff;
   --forest-2: #0077ed;
   --night: #000000;
-  --gold: #0071e3;
-  --gold-2: #0071e3;
+  --gold: #1a5cff;
+  --gold-2: #1a5cff;
   --pine: #f5f5f7;
   --cream: #f5f5f7;
   --background: #ffffff;
@@ -217,7 +217,7 @@ p {
 }
 
 .btn-solid {
-  background: #0071e3;
+  background: #1a5cff;
   color: #fff;
   border-radius: 980px;
 }
@@ -229,7 +229,7 @@ p {
 .btn-ghost {
   background: transparent;
   border-color: transparent;
-  color: #0071e3;
+  color: #1a5cff;
   border-radius: 980px;
 }
 

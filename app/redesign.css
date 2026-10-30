@@ -1,11 +1,11 @@
 :root {
-  --night: #07090d;
+  --night: #0b1a3a;
   --night-2: #12161c;
   --paper: #f6f3ec;
   --ink: #12141a;
   --mute: #5e6158;
-  --signal: #dff56a;
-  --signal-2: #f4ffb0;
+  --signal: #1a5cff;
+  --signal-2: #1248d6;
   --line: rgba(18, 20, 26, 0.12);
 }
 
@@ -48,7 +48,7 @@ h3,
 }
 
 header.site-header {
-  background: rgba(7, 9, 13, 0.88);
+  background: rgba(11, 26, 58, 0.94);
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   color: #f6f3ec;
   backdrop-filter: blur(18px);
@@ -60,11 +60,8 @@ header.site-header .nav-drop-btn {
   color: #f6f3ec;
 }
 
-header.site-header .logo-mark {
-  background: var(--signal);
-  color: var(--night);
-  border: 0;
-  border-radius: 8px;
+header.site-header .logo-word {
+  color: #ffffff;
 }
 
 header.site-header .nav-toggle {
@@ -83,7 +80,7 @@ header.site-header .nav-menu a {
 }
 
 .mobile-nav {
-  background: #07090d;
+  background: #0b1a3a;
   color: #f6f3ec;
 }
 
@@ -96,7 +93,7 @@ a.btn-primary,
 .btn-primary,
 .btn-solid {
   background: var(--signal);
-  color: #12141a;
+  color: #ffffff;
   border-color: var(--signal);
   transition: transform 160ms ease, background 160ms ease;
 }
@@ -105,7 +102,7 @@ a.btn-primary:hover,
 .btn-primary:hover,
 .btn-solid:hover {
   background: var(--signal-2);
-  color: #12141a;
+  color: #ffffff;
   transform: translateY(-2px);
 }
 
@@ -224,7 +221,7 @@ header.industry-hero .iphone-shell {
 
 .live-badge {
   background: var(--signal);
-  color: #12141a;
+  color: #ffffff;
 }
 
 .fx-audience-grid,
@@ -339,8 +336,8 @@ header.industry-hero .iphone-shell {
   width: 42px;
   height: 42px;
   border-radius: 50%;
-  background: var(--night);
-  color: var(--signal);
+  background: #1a5cff;
+  color: #ffffff;
   font-weight: 700;
 }
 
@@ -427,8 +424,8 @@ section.band-night .fx-tier .fx-when {
   margin: 0;
   padding: 6px 10px;
   border-radius: 999px;
-  background: var(--night);
-  color: var(--signal);
+  background: #1a5cff;
+  color: #ffffff;
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.08em;
@@ -921,7 +918,7 @@ footer.site-footer .wordmark {
   header.site-header .header-bar {
     position: relative;
     z-index: 90;
-    background: #07090d;
+    background: #0b1a3a;
   }
 
   header.site-header .mobile-nav {
@@ -931,7 +928,7 @@ footer.site-footer .wordmark {
     width: 100%;
     height: 100dvh;
     overflow: auto;
-    background: #07090d;
+    background: #0b1a3a;
     color: #f6f3ec;
     padding: 88px 24px 48px;
   }
@@ -1031,7 +1028,7 @@ header.band.industry-hero.tone-a,
 section.cta-band.tone-a,
 section.fx-pricing.tone-b,
 section.tone-b {
-  background: #f7f4ee;
+  background: #f5f2ea;
   color: #14161c;
 }
 
@@ -1093,9 +1090,9 @@ header.tone-a .kicker,
 
 section.fx-hero.tone-a .benefit-chips li,
 header.fx-hero.tone-a .benefit-chips li {
-  color: #14161c;
-  background: #ffffff;
-  border-color: rgba(20, 22, 28, 0.22);
+  color: #111111;
+  background: #d9e4ff;
+  border-color: transparent;
 }
 
 section.fx-hero.tone-a .btn-secondary,
@@ -1151,7 +1148,7 @@ section.fx-pricing .fx-mail a {
 }
 
 .fx-tier.is-featured {
-  outline: 2px solid #14161c;
+  outline: 2px solid #1a5cff;
 }
 
 .fx-offer-line {
@@ -1213,7 +1210,7 @@ section.home-hero .hero-copy {
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  background: #14161c;
+  background: #1a5cff;
   color: #ffffff;
   display: grid;
   place-items: center;
@@ -1270,7 +1267,7 @@ section.home-hero .hero-copy {
   margin: 10px 0;
   padding: 10px 12px;
   border-radius: 14px;
-  background: #f7f4ee;
+  background: #f5f2ea;
 }
 
 .journey-incoming b::before {
@@ -1280,7 +1277,7 @@ section.home-hero .hero-copy {
   height: 8px;
   margin-right: 8px;
   border-radius: 50%;
-  background: #1f8a3b;
+  background: #1a5cff;
 }
 
 .journey-lines {
@@ -1304,13 +1301,13 @@ section.home-hero .hero-copy {
 }
 
 .journey-lines .out {
-  background: #007aff;
+  background: #1a5cff;
   color: #ffffff;
   justify-self: end;
 }
 
 .journey-booked {
-  border-left: 4px solid #0a84ff;
+  border-left: 4px solid #1a5cff;
 }
 
 .journey-sent {
@@ -1322,7 +1319,33 @@ section.home-hero .hero-copy {
 .fx-offer svg {
   width: 28px;
   height: 28px;
-  color: #14161c;
+  color: #1a5cff;
+}
+
+.logo {
+  gap: 8px;
+}
+
+.logo-cloud {
+  width: 36px;
+  height: 36px;
+  display: block;
+}
+
+.logo-word {
+  font-family: var(--font-wordmark), "Space Grotesk", Inter, sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  font-size: 22px;
+  line-height: 1;
+}
+
+.logo-on-dark .logo-word {
+  color: #ffffff;
+}
+
+.logo-on-light .logo-word {
+  color: #111111;
 }
 
 .missed-form {

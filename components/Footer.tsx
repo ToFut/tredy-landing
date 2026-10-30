@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Logo } from "@/components/Logo";
 import { offerings, site } from "@/lib/content";
 import { industryPages } from "@/lib/industries";
 
@@ -19,7 +20,7 @@ export function Footer() {
     <footer className="site-footer">
       <div className="wrap footer-grid">
         <div>
-          <p className="footer-brand">Futurix</p>
+          <Logo />
           <p className="footer-blurb">
             AI voice receptionists for local businesses. We answer every call, book the appointment, and follow up.
             Automations and custom software when the desk needs more than a voice.
@@ -65,7 +66,7 @@ export function Footer() {
         </div>
       </div>
       <div className="wrap">
-        <p className="wordmark">Futurix</p>
+        <Logo />
         <p className="footer-end">Futurix, {site.address}.</p>
       </div>
     </footer>

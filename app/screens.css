@@ -203,7 +203,7 @@
   display: grid;
   place-items: center;
   border-radius: 50%;
-  background: #0071e3;
+  background: #1a5cff;
   color: #fff;
 }
 
@@ -413,7 +413,7 @@ a.sticky-plan {
 }
 
 .work-steps span {
-  color: #0071e3;
+  color: #1a5cff;
   font-weight: 600;
 }
 
@@ -979,8 +979,8 @@ a.sticky-plan {
 
 .rollout li.Yes i,
 .rollout li.Next i {
-  background: #0071e3;
-  border-color: #0071e3;
+  background: #1a5cff;
+  border-color: #1a5cff;
 }
 
 .rollout small {
