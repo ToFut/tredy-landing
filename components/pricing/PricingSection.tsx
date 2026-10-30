@@ -12,7 +12,7 @@ export function PricingSection({
   showAddons?: boolean;
 }) {
   return (
-    <section className="band band-night fx-pricing" id={id}>
+    <section className="band fx-pricing tone-b" id={id}>
       <div className="wrap">
         {showIntro ? (
           <>

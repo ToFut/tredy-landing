@@ -53,7 +53,7 @@ export default function PricingPage() {
   return (
     <>
       <JsonLd data={jsonLd} />
-      <header className="band fx-hero fx-pricing-hero">
+      <header className="band fx-hero fx-pricing-hero tone-a">
         <div className="wrap">
           <Breadcrumbs items={crumbs} />
           <p className="kicker">Pricing</p>

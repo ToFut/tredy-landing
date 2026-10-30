@@ -1016,3 +1016,387 @@ footer.site-footer .wordmark {
     transform: none;
   }
 }
+
+/* Two tones only: paper and white. Headings stay dark on both. */
+header.band.industry-hero.tone-a,
+header.band.fx-hero.tone-a,
+section.band.home-hero.fx-hero.tone-a,
+section.band.cta-band.tone-a,
+.tone-a,
+section.tone-a,
+header.tone-a,
+section.fx-hero.tone-a,
+header.fx-hero.tone-a,
+header.band.industry-hero.tone-a,
+section.cta-band.tone-a,
+section.fx-pricing.tone-b,
+section.tone-b {
+  background: #f7f4ee;
+  color: #14161c;
+}
+
+section.tone-b,
+header.tone-b,
+.brand-marquee {
+  background: #ffffff;
+  color: #14161c;
+}
+
+section.tone-a h1,
+section.tone-a h2,
+section.tone-a h3,
+section.tone-b h1,
+section.tone-b h2,
+section.tone-b h3,
+header.tone-a h1,
+header.tone-a .hero-title,
+section.fx-hero.tone-a .hero-title,
+header.fx-hero.tone-a .hero-title,
+header.band.industry-hero.tone-a .hero-title,
+header.fx-pricing-hero.tone-a .hero-title,
+section.cta-band.tone-a h2,
+section.fx-pricing .fx-title,
+.fx-offer h3,
+.fx-audience-card h3,
+.fx-studies h3,
+.fx-tier h3,
+.fx-steps h3 {
+  color: #14161c;
+}
+
+section.tone-a p,
+section.tone-b p,
+header.tone-a p,
+header.tone-a .hero-sub,
+section.fx-hero.tone-a .hero-sub,
+header.fx-hero.tone-a .hero-sub,
+header.band.industry-hero.tone-a .hero-sub,
+section.cta-band.tone-a p,
+section.fx-pricing p,
+.fx-offer p,
+.fx-audience-card p,
+.fx-steps p,
+.fx-studies p,
+.fx-proof figcaption {
+  color: #3a403c;
+}
+
+section.tone-a .kicker,
+section.tone-b .kicker,
+header.tone-a .kicker,
+.fx-offer .kicker,
+.fx-audience-card .kicker,
+.fx-studies .kicker,
+.brand-marquee > p:first-child {
+  color: #243028;
+}
+
+section.fx-hero.tone-a .benefit-chips li,
+header.fx-hero.tone-a .benefit-chips li {
+  color: #14161c;
+  background: #ffffff;
+  border-color: rgba(20, 22, 28, 0.22);
+}
+
+section.fx-hero.tone-a .btn-secondary,
+header.fx-hero.tone-a .btn-secondary,
+header.band.industry-hero.tone-a .btn-secondary,
+section.cta-band.tone-a .btn-secondary,
+section.fx-pricing .btn-secondary {
+  color: #14161c;
+  border-color: rgba(20, 22, 28, 0.35);
+  background: #ffffff;
+}
+
+header.tone-a .crumbs,
+header.tone-a .crumbs a,
+header.tone-a .card-price,
+section.tone-a .card-price,
+.fx-offer .card-price {
+  color: #14161c;
+}
+
+.fx-offer-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.fx-offer,
+.fx-offer.is-lead,
+.fx-audience-card,
+.fx-studies article,
+.fx-privacy,
+.fx-addons,
+.fx-tier,
+.fx-tier.is-featured {
+  background: #ffffff;
+  color: #14161c;
+  grid-row: auto;
+  transform: none;
+  outline: 1px solid rgba(20, 22, 28, 0.12);
+}
+
+.fx-offer.is-lead h3,
+.fx-offer.is-lead p,
+.fx-offer.is-lead .kicker,
+.fx-offer.is-lead span,
+.fx-privacy h3,
+.fx-privacy p,
+.fx-privacy a,
+.fx-addons h3,
+.fx-addons li,
+section.fx-pricing .fx-notes p,
+section.fx-pricing .fx-mail,
+section.fx-pricing .fx-mail a {
+  color: #14161c;
+}
+
+.fx-tier.is-featured {
+  outline: 2px solid #14161c;
+}
+
+.fx-offer-line {
+  color: #243028;
+}
+
+.brand-marquee .brand-logo,
+.brand-marquee .brand-logo:hover {
+  color: #14161c;
+}
+
+section.home-hero .hero-copy {
+  max-width: 44rem;
+}
+
+section.home-hero .hero-title {
+  max-width: none;
+  font-size: clamp(2.4rem, 3.6vw, 3.6rem);
+}
+
+section.home-hero .hero-copy {
+  max-width: none;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(280px, 0.85fr);
+  gap: 40px;
+  align-items: center;
+}
+
+.hero-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.hero-ctas .actions {
+  margin-top: 0;
+}
+
+.hero-play {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 52px;
+  padding: 0 18px 0 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(20, 22, 28, 0.28);
+  background: #ffffff;
+  color: #14161c;
+  font-weight: 680;
+  cursor: pointer;
+}
+
+.hero-play-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #14161c;
+  color: #ffffff;
+  display: grid;
+  place-items: center;
+}
+
+.hero-play-icon svg {
+  width: 14px;
+  height: 14px;
+}
+
+.hero-play-error {
+  font-weight: 560;
+}
+
+.journey-note {
+  margin: 0 0 8px;
+  color: #243028;
+  font-size: 13px;
+  font-weight: 680;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.journey-card {
+  background: #ffffff;
+  color: #14161c;
+  border-radius: 28px;
+  border: 1px solid rgba(20, 22, 28, 0.12);
+  box-shadow: 0 18px 40px rgba(20, 22, 28, 0.08);
+  padding: 16px;
+  min-height: 360px;
+}
+
+.journey-card header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 12px;
+}
+
+.journey-card header span,
+.journey-incoming span,
+.journey-booked small {
+  color: #3a403c;
+  font-size: 13px;
+}
+
+.journey-incoming,
+.journey-booked,
+.journey-sent {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 10px 0;
+  padding: 10px 12px;
+  border-radius: 14px;
+  background: #f7f4ee;
+}
+
+.journey-incoming b::before {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin-right: 8px;
+  border-radius: 50%;
+  background: #1f8a3b;
+}
+
+.journey-lines {
+  display: grid;
+  gap: 8px;
+  min-height: 132px;
+}
+
+.journey-lines p {
+  margin: 0;
+  max-width: 88%;
+  padding: 8px 12px;
+  border-radius: 16px;
+  line-height: 1.35;
+}
+
+.journey-lines .in {
+  background: #ececef;
+  color: #14161c;
+  justify-self: start;
+}
+
+.journey-lines .out {
+  background: #007aff;
+  color: #ffffff;
+  justify-self: end;
+}
+
+.journey-booked {
+  border-left: 4px solid #0a84ff;
+}
+
+.journey-sent {
+  color: #14532d;
+  font-weight: 680;
+}
+
+.fx-audience-card svg,
+.fx-offer svg {
+  width: 28px;
+  height: 28px;
+  color: #14161c;
+}
+
+.missed-form {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.missed-form label {
+  display: grid;
+  gap: 8px;
+  font-weight: 680;
+  color: #14161c;
+}
+
+.missed-form input {
+  min-height: 48px;
+  padding: 0 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(20, 22, 28, 0.2);
+  background: #ffffff;
+  color: #14161c;
+}
+
+.missed-result {
+  margin-top: 18px;
+  font-size: clamp(1.4rem, 2vw, 1.8rem);
+  font-weight: 720;
+  color: #14161c;
+  letter-spacing: -0.03em;
+}
+
+.missed-fine {
+  max-width: 42rem;
+  margin: 8px 0 16px;
+  color: #3a403c;
+}
+
+@media (max-width: 980px) {
+  .hero-grid,
+  .missed-form {
+    grid-template-columns: 1fr;
+  }
+}
+
+header.band.industry-hero.tone-a .kicker,
+header.band.fx-hero.tone-a .kicker,
+section.band.fx-hero.tone-a .kicker,
+section.band.tone-a .kicker,
+section.band.tone-b .kicker,
+.fx-offer .kicker,
+.fx-tier .fx-badge-quiet {
+  color: #243028;
+}
+
+.fx-cost span,
+.fx-minutes,
+.fx-when {
+  color: #14161c;
+}
+
+@media (min-width: 981px) {
+  .fx-offer-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 980px) {
+  .fx-offer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  body.sticky-on {
+    padding-bottom: 96px;
+  }
+}

@@ -28,22 +28,17 @@ export function ServiceView({ spec }: { spec: ServiceSpec }) {
     <>
       <JsonLd data={serviceJsonLd(page)} />
       <article>
-        <header className="band industry-hero fx-hero">
-          <div className="wrap grid-12">
-            <div className="span-7 hero-copy">
-              <Breadcrumbs items={spec.crumbs} />
-              <p className="kicker">{spec.eyebrow}</p>
-              <h1 className="hero-title">{spec.h1}</h1>
-              <p className="hero-sub">{spec.sentence}</p>
-              <p className="card-price">{spec.price}</p>
-              <Actions demoHref={spec.secondaryHref} demoText={spec.secondary} location="service-hero" hero />
-            </div>
-            <div className="span-5 hero-phone">
-              <ServiceVisual kind={spec.visual} />
-            </div>
+        <header className="band industry-hero fx-hero tone-a">
+          <div className="wrap hero-copy">
+            <Breadcrumbs items={spec.crumbs} />
+            <p className="kicker">{spec.eyebrow}</p>
+            <h1 className="hero-title">{spec.h1}</h1>
+            <p className="hero-sub">{spec.sentence}</p>
+            <p className="card-price">{spec.price}</p>
+            <Actions demoHref={spec.secondaryHref} demoText={spec.secondary} location="service-hero" hero />
           </div>
         </header>
-        <section className="band" id="who">
+        <section className="band tone-b" id="who">
           <div className="wrap">
             <h2 className="fx-title">Who it is for</h2>
             <p className="fx-lede">{spec.audienceLead}</p>
@@ -54,7 +49,7 @@ export function ServiceView({ spec }: { spec: ServiceSpec }) {
             </ul>
           </div>
         </section>
-        <section className="band">
+        <section className="band tone-a">
           <div className="wrap">
             <h2 className="fx-title">How it works</h2>
             <ol className="fx-steps">
@@ -68,9 +63,9 @@ export function ServiceView({ spec }: { spec: ServiceSpec }) {
             </ol>
           </div>
         </section>
-        <section className="band">
+        <section className="band tone-b">
           <div className="wrap">
-            <h2 className="type-h2">What you get</h2>
+            <h2 className="fx-title">What you get</h2>
             <ul className="service-list">
               {spec.gets.map((item) => (
                 <li key={item}>{item}</li>
@@ -78,7 +73,7 @@ export function ServiceView({ spec }: { spec: ServiceSpec }) {
             </ul>
           </div>
         </section>
-        <section className="band" id="example">
+        <section className="band tone-a" id="example">
           <div className="wrap grid-12">
             <div className="span-6">
               <h2 className="type-h2">{spec.exampleTitle}</h2>
@@ -104,9 +99,9 @@ export function ServiceView({ spec }: { spec: ServiceSpec }) {
             </div>
           </div>
         </section>
-        <section className="band">
+        <section className="band tone-b">
           <div className="wrap">
-            <h2 className="type-h2">Tools it can connect to</h2>
+            <h2 className="fx-title">Tools it can connect to</h2>
             <p className="type-body">Connecting is optional. Your current system can stay.</p>
             <ul className="tool-row">
               {spec.tools.map((tool) => (
@@ -115,7 +110,7 @@ export function ServiceView({ spec }: { spec: ServiceSpec }) {
             </ul>
           </div>
         </section>
-        <section className="band">
+        <section className="band tone-a">
           <div className="wrap">
             <h2 className="fx-title">Pricing</h2>
             <div className="price-box">
@@ -135,9 +130,9 @@ export function ServiceView({ spec }: { spec: ServiceSpec }) {
             </div>
           </div>
         </section>
-        <section className="band" id="faq">
+        <section className="band tone-b" id="faq">
           <div className="wrap">
-            <h2 className="type-h2">Questions</h2>
+            <h2 className="fx-title">Questions</h2>
             <div className="faq-list">
               {spec.faqs.map((item) => (
                 <details key={item.question}>
@@ -148,7 +143,7 @@ export function ServiceView({ spec }: { spec: ServiceSpec }) {
             </div>
           </div>
         </section>
-        <section className="band cta-band">
+        <section className="band cta-band tone-a">
           <div className="wrap">
             <h2 className="fx-title">{planLabel}</h2>
             <p className="fx-lede">We will tell you if this is the right first step.</p>
