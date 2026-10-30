@@ -8,8 +8,8 @@ export function GET(request: Request) {
         style={{
           width: "100%",
           height: "100%",
-          background: "#ffffff",
-          color: "#1d1d1f",
+          background: "#07090d",
+          color: "#f6f3ec",
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
@@ -22,8 +22,8 @@ export function GET(request: Request) {
               width: 48,
               height: 48,
               borderRadius: 12,
-              background: "#1d1d1f",
-              color: "#fff",
+              background: "#dff56a",
+              color: "#12141a",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
@@ -34,7 +34,7 @@ export function GET(request: Request) {
           Futurix
         </div>
         <div style={{ fontSize: 60, lineHeight: 1.05, letterSpacing: -2, maxWidth: 980 }}>{title}</div>
-        <div style={{ fontSize: 24, color: "#0071e3" }}>futurixs.com</div>
+        <div style={{ fontSize: 24, color: "#dff56a" }}>futurixs.com</div>
       </div>
     ),
     { width: 1200, height: 630 },

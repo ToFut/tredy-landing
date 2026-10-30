@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { WhatsAppThread } from "@/components/visuals/Screens";
 import { industryStories } from "@/lib/industry-stories";
 
@@ -42,7 +43,9 @@ export function IndustryStory({ path }: { path: string }) {
           <p className="type-body">
             The receptionist can connect to {story.tools.join(", ")}. Connecting is optional. Your current system can stay.
           </p>
-          <p className="card-price">From $1,800</p>
+          <p className="card-price">
+            <Link href="/pricing">From $1,495 setup and $349/mo</Link>
+          </p>
         </div>
       </section>
     </>

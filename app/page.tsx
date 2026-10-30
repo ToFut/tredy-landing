@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { DeferredTry } from "@/components/demo/DeferredTry";
 import { DemoLoop } from "@/components/demo/DemoLoop";
-import { FinalCta, HomeHero, HowWeWork, ModelStrip, OfferingCards, PriceTeaser, Trust } from "@/components/home/Marketing";
+import { AudienceBand, FinalCta, HomeHero, HowWeWork, ModelStrip, OfferingCards, PriceTeaser, Proof, Trust } from "@/components/home/Marketing";
 import { Reveal } from "@/components/home/Reveal";
 import { JsonLd } from "@/components/JsonLd";
 import { Actions } from "@/components/ui/Actions";
@@ -20,14 +20,16 @@ export default function Page() {
       <JsonLd data={homeJsonLd()} />
       <Reveal />
       <HomeHero />
+      <AudienceBand />
       <ModelStrip />
+      <Proof />
       <HowWeWork />
       <OfferingCards />
       <section className="band" id="demo">
         <div className="wrap">
-          <p className="eyebrow">Live demo</p>
-          <h2 className="type-h2">Try it: hear an AI answer your phone</h2>
-          <p className="type-body">Three steps. The voice is deleted after the demo.</p>
+          <p className="kicker">Live demo</p>
+          <h2 className="fx-title">Hear a live demo</h2>
+          <p className="fx-lede">Three steps. You talk to the receptionist. The voice sample is deleted after the demo.</p>
         </div>
         <DeferredTry anchor="try" heading={false} only={["voice"]} />
         <div className="wrap">

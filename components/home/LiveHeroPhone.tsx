@@ -3,10 +3,10 @@
 import { useEffect, useState } from "react";
 
 const script = [
-  { side: "caller", text: "Can someone look at a leak this week?" },
+  { side: "caller", text: "I need a cleaning next week." },
   { side: "agent", text: "Thursday at 10 or Friday at 2. Which works?" },
   { side: "caller", text: "Thursday at 10." },
-  { side: "agent", text: "Booked. I will text you a summary." },
+  { side: "agent", text: "Booked. I will text you a confirmation." },
 ];
 
 export function LiveHeroPhone() {
@@ -48,8 +48,8 @@ export function LiveHeroPhone() {
               <span>9:41</span>
             </div>
             <p className="ios-carrier">mobile</p>
-            <div className="ios-avatar">NR</div>
-            <p className="ios-name">North Roofing</p>
+            <div className="ios-avatar">OD</div>
+            <p className="ios-name">Oak Dental</p>
             <p className="ios-timer">{timer}</p>
             <div className={`ios-wave ${motion ? "on" : ""}`}>
               {Array.from({ length: 9 }).map((_, item) => (

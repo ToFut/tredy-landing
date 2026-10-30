@@ -1,63 +1,84 @@
 import Link from "next/link";
 import { LiveHeroPhone } from "@/components/home/LiveHeroPhone";
 import { PlatformMarquee } from "@/components/home/PlatformMarquee";
+import { PricingSection } from "@/components/pricing/PricingSection";
 import { Actions } from "@/components/ui/Actions";
+import { CalendarDay, IMessageThread } from "@/components/visuals/AppMocks";
+import { WhatsAppThread } from "@/components/visuals/Screens";
+
+const audiences = [
+  {
+    title: "Dental",
+    line: "New patient calls, approved insurance questions, and hygiene visits that should land on the book.",
+    href: "/voice-agents",
+  },
+  {
+    title: "HVAC and trades",
+    line: "Emergency and estimate calls while the crew is on a job, including after hours.",
+    href: "/industries/home-services",
+  },
+  {
+    title: "Med spas",
+    line: "Consults and treatment bookings that still get a time when the front desk is with a guest.",
+    href: "/voice-agents",
+  },
+  {
+    title: "Law firms",
+    line: "Intake that qualifies and books a consult, then hands off anything an attorney should take.",
+    href: "/voice-agents",
+  },
+];
 
 const offerings = [
   {
     href: "/voice-agents",
     index: "01",
-    title: "Voice Agents",
-    line: "Never miss a call",
-    detail: "An AI receptionist answers your phone 24/7.",
-    price: "From $1,800",
-    link: "See voice agents",
+    title: "AI voice receptionists",
+    line: "The core offer",
+    detail: "Answers every call, books the appointment, and follows up by text.",
+    price: "From $1,495 setup",
   },
   {
     href: "/ai-assistants",
     index: "02",
-    title: "AI Assistants",
-    line: "Follow up every lead",
-    detail: "Drafts and routes the replies your team would send.",
-    price: "From $1,200",
-    link: "See assistants",
+    title: "AI automations",
+    line: "The follow-up",
+    detail: "Missed-call text-back, inbox drafts, and routing into the tools you already use.",
+    price: "Quoted with setup",
   },
   {
     href: "/custom-projects",
     index: "03",
-    title: "Custom Projects",
-    line: "Software built for how you work",
-    detail: "A portal or tool shaped to the job you already do.",
+    title: "Custom AI and full-stack",
+    line: "The software",
+    detail: "Booking sites, portals, and internal tools when the desk needs its own product.",
     price: "Custom quote",
-    link: "See projects",
   },
   {
     href: "/ai-enablement",
     index: "04",
-    title: "AI Enablement",
-    line: "Train your team to use AI",
-    detail: "A short plan and training so the team actually uses it.",
+    title: "AI enablement",
+    line: "The rollout",
+    detail: "A short plan and training so the team actually uses what we ship.",
     price: "Custom quote",
-    link: "See training",
   },
 ];
 
 export function HomeHero() {
   return (
-    <section className="band home-hero">
+    <section className="band home-hero fx-hero">
       <div className="wrap grid-12">
         <div className="span-7 hero-copy">
-          <p className="kicker">AI for small and mid-size businesses</p>
-          <h1 className="hero-title">We set up AI for your business, so you never miss a customer.</h1>
+          <p className="kicker">For local businesses</p>
+          <h1 className="hero-title">AI receptionists that answer every call.</h1>
           <p className="hero-sub">
-            AI receptionists that answer your phone 24/7, assistants that follow up on leads, and custom AI tools. Done
-            for you, live in days.
+            We pick up the phone, book the appointment, and follow up. Built for dental offices, HVAC and trades, med
+            spas, and law firms. Automations and custom software, when the desk needs more than a voice.
           </p>
-          <p className="here-line">Don&apos;t have the time or know-how to enable AI? We&apos;re here.</p>
           <ul className="benefit-chips">
             <li>Answers every call</li>
             <li>Books appointments</li>
-            <li>Texts you a summary</li>
+            <li>Follows up by text</li>
           </ul>
           <Actions demoHref="/#demo" location="hero" hero />
         </div>
@@ -69,101 +90,103 @@ export function HomeHero() {
   );
 }
 
-export function ModelStrip() {
-  return <PlatformMarquee />;
-}
-
-export function OfferingCards() {
+export function AudienceBand() {
   return (
-    <section className="band rise" id="offerings">
+    <section className="band fx-audience" id="who">
       <div className="wrap">
-        <p className="kicker">Four offerings</p>
-        <h2 className="section-title offer-heading">What we set up</h2>
-        <div className="offer-cards">
-          {offerings.map((item) => (
-            <Link key={item.href} href={item.href} className="offer-card">
-              <div className="offer-frame" aria-hidden="true">
-                <OfferArt kind={item.index} />
-              </div>
-              <p className="kicker">{item.index}</p>
-              <h3>{item.line}</h3>
-              <p>{item.detail}</p>
-              <p className="card-price">{item.price}</p>
-              <span className="see-how">See how it works &gt;</span>
+        <p className="kicker">Who it is for</p>
+        <h2 className="fx-title">Offices that lose jobs when the phone rings out.</h2>
+        <div className="fx-audience-grid">
+          {audiences.map((item) => (
+            <Link key={item.title} href={item.href} className="fx-audience-card">
+              <h3>{item.title}</h3>
+              <p>{item.line}</p>
+              <span>See the receptionist</span>
             </Link>
           ))}
         </div>
-        <Actions />
+        <p className="fx-also">
+          Also for <Link href="/industries/roofing">roofing</Link>, <Link href="/industries/real-estate">real estate</Link>,{" "}
+          <Link href="/industries/property-management">property management</Link>, and{" "}
+          <Link href="/industries/insurance">insurance agencies</Link>.
+        </p>
       </div>
     </section>
   );
 }
 
-function OfferArt({ kind }: { kind: string }) {
-  if (kind === "01") {
-    return (
-      <div className="mini-phone">
-        <b>Incoming call</b>
-        <span>Answered by AI</span>
-      </div>
-    );
-  }
-  if (kind === "02") {
-    return (
-      <div className="mini-sms">
-        <p>We can come Thursday at 10. Reply YES to book.</p>
-        <small>SMS 9:14</small>
-      </div>
-    );
-  }
-  if (kind === "03") {
-    return (
-      <table className="mini-board">
-        <tbody>
-          <tr>
-            <td>New</td>
-            <td>Leak on Oak</td>
-          </tr>
-          <tr>
-            <td>Set</td>
-            <td>Thu 10:00</td>
-          </tr>
-          <tr>
-            <td>Done</td>
-            <td>Ridge cap</td>
-          </tr>
-        </tbody>
-      </table>
-    );
-  }
+export function ModelStrip() {
+  return <PlatformMarquee />;
+}
+
+export function Proof() {
   return (
-    <ul className="mini-check">
-      <li>Name the workflow</li>
-      <li>A person reviews it</li>
-      <li>Rules are written</li>
-    </ul>
+    <section className="band fx-proof" id="screens">
+      <div className="wrap">
+        <p className="kicker">What your team sees</p>
+        <h2 className="fx-title">A call summary, a booking, and a text.</h2>
+        <p className="fx-lede">Sample screens with fictional callers. Not a customer account.</p>
+        <div className="fx-proof-grid">
+          <figure>
+            <WhatsAppThread
+              name="Oak Dental"
+              messages={[
+                { side: "in", text: "New patient. Cleaning next week. She can do Thursday at 10.", time: "9:14" },
+                { side: "out", text: "Booked Thursday at 10. Confirmation text sent.", time: "9:14" },
+              ]}
+            />
+            <figcaption>WhatsApp call summary to the owner</figcaption>
+          </figure>
+          <figure>
+            <CalendarDay />
+            <figcaption>The visit on the calendar</figcaption>
+          </figure>
+          <figure>
+            <IMessageThread
+              name="Oak Dental"
+              messages={[
+                { side: "out", text: "Hi, this is Oak Dental. We can see you Thursday at 10. Reply YES to book." },
+                { side: "in", text: "YES" },
+                { side: "out", text: "Booked. See you Thursday at 10." },
+              ]}
+            />
+            <figcaption>iMessage follow-up after a missed call</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
   );
 }
 
 export function HowWeWork() {
   const steps = [
-    { title: "A 15 minute call", line: "We look at the calls or leads you miss.", mark: "15 min" },
-    { title: "We build it in days", line: "Your number, your rules, your tools.", mark: "Days" },
-    { title: "It answers and books", line: "Customers get a next step. You get a text.", mark: "Live" },
+    {
+      title: "Book a free 15-minute live setup",
+      line: "We listen to how the phone works today and which calls should book.",
+      mark: "15 min",
+    },
+    {
+      title: "We build it on your line",
+      line: "Your number, your calendar, and the rules you approve.",
+      mark: "Days",
+    },
+    {
+      title: "It answers, books, and texts",
+      line: "You hear it before it takes a live customer call.",
+      mark: "Live",
+    },
   ];
   return (
-    <section className="band rise" id="how">
+    <section className="band fx-how" id="how">
       <div className="wrap">
-        <h2 className="section-title offer-heading">How it works</h2>
-        <ol className="work-steps">
+        <p className="kicker">How it works</p>
+        <h2 className="fx-title">Three steps from a missed call to a booked visit.</h2>
+        <ol className="fx-steps">
           {steps.map((step, index) => (
             <li key={step.title}>
-              <span className="step-visual" aria-hidden="true">
-                {step.mark}
-              </span>
-              <h3>
-                {index + 1}. {step.title}
-              </h3>
+              <span>{index + 1}</span>
+              <small>{step.mark}</small>
+              <h3>{step.title}</h3>
               <p>{step.line}</p>
             </li>
           ))}
@@ -173,29 +196,52 @@ export function HowWeWork() {
   );
 }
 
+export function OfferingCards() {
+  return (
+    <section className="band fx-offers" id="offerings">
+      <div className="wrap">
+        <p className="kicker">What we build</p>
+        <h2 className="fx-title">Receptionists first. Automations and custom builds when you need them.</h2>
+        <div className="fx-offer-grid">
+          {offerings.map((item) => (
+            <Link key={item.href} href={item.href} className={item.index === "01" ? "fx-offer is-lead" : "fx-offer"}>
+              <p className="kicker">{item.index}</p>
+              <h3>{item.title}</h3>
+              <p className="fx-offer-line">{item.line}</p>
+              <p>{item.detail}</p>
+              <p className="card-price">{item.price}</p>
+              <span>See how it works</span>
+            </Link>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export function Trust() {
   return (
-    <section className="band rise" id="work">
+    <section className="band fx-work" id="work">
       <div className="wrap">
-        <p className="kicker">Why Futurix</p>
-        <h2 className="section-title offer-heading">Built by engineers.</h2>
-        <p className="type-body">The team comes from software engineering and the Israeli Air Force.</p>
-        <div className="study-grid">
-          <article className="study-card">
+        <p className="kicker">Selected work</p>
+        <h2 className="fx-title">Two builds you can ask about.</h2>
+        <div className="fx-studies">
+          <article>
+            <p className="kicker">Booking site</p>
             <h3>Line Properties</h3>
-            <p>A guest booking site on Guesty for a short-term rental company.</p>
+            <p>A booking site and a maintenance retainer for a short-term rental company.</p>
             <a href="https://line-properties.com" rel="noreferrer">
-              line-properties.com &gt;
+              line-properties.com
             </a>
-            <Link href="/custom-projects">Custom projects &gt;</Link>
           </article>
-          <article className="study-card">
+          <article>
+            <p className="kicker">Platform</p>
             <h3>Peak Exchange</h3>
-            <p>An operations platform for 1031 exchanges, with client, third-party, and admin portals on one transaction.</p>
-            <Link href="/custom-projects">Custom projects &gt;</Link>
+            <p>A 1031 exchange platform, with client, third party, and admin portals on one transaction.</p>
+            <Link href="/custom-projects">Custom projects</Link>
           </article>
         </div>
-        <article className="privacy-block">
+        <article className="fx-privacy">
           <h3>Your data stays yours</h3>
           <p>
             We use only what a workflow needs. We do not train public models on your calls or files. You own the setup.
@@ -207,74 +253,20 @@ export function Trust() {
   );
 }
 
-const prices = [
-  { href: "/voice-agents", name: "Voice receptionist", price: "From $1,800", line: "Answers, books, and texts you a summary." },
-  { href: "/ai-assistants", name: "AI assistant", price: "From $1,200", line: "Drafts the follow-up and routes what you should see." },
-  { href: "/custom-projects", name: "Custom work", price: "Custom quote", line: "A tool or training plan, scoped on the call." },
-];
-
 export function PriceTeaser() {
-  return (
-    <section className="band rise" id="pricing">
-      <div className="wrap">
-        <h2 className="section-title offer-heading">Simple starting prices</h2>
-        <div className="price-cards">
-          {prices.map((item) => (
-            <Link key={item.href} href={item.href} className="price-card">
-              <h3>{item.name}</h3>
-              <p className="card-price">{item.price}</p>
-              <p>{item.line}</p>
-              <span>See how it works &gt;</span>
-            </Link>
-          ))}
-        </div>
-        <p className="type-body">Every project starts with a free 15-min call.</p>
-        <Actions location="pricing" />
-      </div>
-    </section>
-  );
-}
-
-export function CaseStudies() {
-  return (
-    <section className="band" id="work">
-      <div className="wrap">
-        <p className="kicker">Selected work</p>
-        <h2 className="section-title offer-heading">Built for real operations.</h2>
-        <div className="study-grid">
-          <article className="study-card">
-            <div className="study-face line" aria-hidden="true">
-              Line Properties
-            </div>
-            <h3>Line Properties</h3>
-            <p>Guest booking site on Guesty for a short-term rental company.</p>
-            <a href="https://line-properties.com" rel="noreferrer">
-              line-properties.com &gt;
-            </a>
-            <Link href="/custom-projects">Related: custom projects &gt;</Link>
-          </article>
-          <article className="study-card">
-            <div className="study-face peak" aria-hidden="true">
-              Peak Exchange
-            </div>
-            <h3>Peak Exchange</h3>
-            <p>Operations platform for 1031 exchanges. Client, third-party, and admin portals on one transaction.</p>
-            <Link href="/custom-projects">Related: custom projects &gt;</Link>
-          </article>
-        </div>
-        <Actions />
-      </div>
-    </section>
-  );
+  return <PricingSection />;
 }
 
 export function FinalCta() {
   return (
-    <section className="band cta-band">
+    <section className="band cta-band fx-final">
       <div className="wrap">
-        <h2 className="type-h2">Never miss another customer.</h2>
-        <p className="type-body">Book a free 15 minute call. We will tell you the first thing to set up.</p>
-        <Actions />
+        <h2 className="fx-title">Book a free 15-minute live setup.</h2>
+        <p className="fx-lede">We will show you the receptionist on a live call and tell you which package fits.</p>
+        <Actions demoHref="/#demo" location="final" />
+        <p className="fx-mail">
+          Or email <a href="mailto:segev@futurixs.com">segev@futurixs.com</a>
+        </p>
       </div>
     </section>
   );

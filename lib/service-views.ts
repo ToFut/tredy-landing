@@ -8,7 +8,10 @@ export type ServiceSpec = {
   price: string;
   secondary: string;
   secondaryHref: string;
-  visual: "phone" | "sms" | "board" | "plan";
+  visual: "phone" | "imessage" | "booking" | "notes";
+  exampleVisual: "whatsapp" | "calendar" | "imessage" | "notes";
+  audienceLead: string;
+  audience: string[];
   serviceType: string;
   description: string;
   steps: { title: string; line: string }[];
@@ -22,18 +25,21 @@ export type ServiceSpec = {
   crumbs: { name: string; path: string }[];
 };
 
-const book = "The free 15 minute call is where we scope the first version. There is no charge for that call.";
+const book = "The free 15-minute live setup is where we scope the first version. There is no charge for that call.";
 
 export const serviceViews: ServiceSpec[] = [
   {
     path: "/voice-agents",
-    eyebrow: "Voice agents",
-    h1: "Never miss a call",
-    sentence: "An AI receptionist answers your phone 24/7, books the visit, and texts you a summary.",
-    price: "From $1,800",
-    secondary: "Hear a demo call",
+    eyebrow: "AI voice receptionists",
+    h1: "An AI receptionist that answers every call",
+    sentence: "We pick up the phone, book the appointment, and follow up. Built for dental offices, HVAC and trades, med spas, and law firms.",
+    price: "From $1,495 setup and $349/mo",
+    secondary: "Hear a live demo",
     secondaryHref: "/#demo",
     visual: "phone",
+    exampleVisual: "whatsapp",
+    audienceLead: "Local offices that miss calls during jobs, lunch, and after hours.",
+    audience: ["Dental", "HVAC and trades", "Med spas", "Law firms", "Home services"],
     serviceType: "AI voice agents and AI receptionist",
     description:
       "An AI receptionist that answers your phone, books the visit, and texts you a summary. Built and launched for you.",
@@ -57,14 +63,14 @@ export const serviceViews: ServiceSpec[] = [
       "Agent: Booked. You will get a text confirmation.",
     ],
     tools: ["Google Calendar", "JobNimbus", "ServiceTitan", "Jobber", "Housecall Pro"],
-    includes: ["One call flow", "Booking rules", "A text summary to your phone"],
-    timeline: "First version live in days.",
+    includes: ["One call flow", "Booking rules", "A text or email summary", "A package from the pricing page"],
+    timeline: "Overflow Desk is live in about 5 to 7 business days. Booked Front Desk is about 7 to 10.",
     faqs: [
       { question: "What does the voice receptionist do?", answer: "It answers the phone, asks your questions, and books or logs the next step." },
       { question: "Can I keep my number?", answer: "Yes. The agent can sit on the number you already use." },
       { question: "Will it book without me?", answer: "Only inside rules you approve. Other calls are logged for a person." },
-      { question: "What does it cost?", answer: `A voice receptionist starts at $1,800. ${book}` },
-      { question: "How long until it is live?", answer: "A first version is live in days, after the free call." },
+      { question: "What does it cost?", answer: `Overflow Desk is $1,495 setup and $349/mo. Booked Front Desk, the plan we recommend, is $2,495 setup and $497/mo. ${book}` },
+      { question: "How long until it is live?", answer: "Overflow Desk is about 5 to 7 business days after we get access. Booked Front Desk is about 7 to 10." },
     ],
     crumbs: [
       { name: "Home", path: "/" },
@@ -73,13 +79,16 @@ export const serviceViews: ServiceSpec[] = [
   },
   {
     path: "/ai-assistants",
-    eyebrow: "AI assistants",
-    h1: "Follow up every lead",
-    sentence: "An assistant drafts the reply your team would send, then routes what a person should see.",
-    price: "From $1,200",
-    secondary: "See a sample follow-up",
+    eyebrow: "AI automations",
+    h1: "Automations that follow up the call",
+    sentence: "We draft the text, route the lead, and log the handoff in the tools your team already opens.",
+    price: "Quoted with your setup",
+    secondary: "See a sample text",
     secondaryHref: "#example",
-    visual: "sms",
+    visual: "imessage",
+    exampleVisual: "calendar",
+    audienceLead: "Teams that lose the lead after the first reply, or retype the same details into a job system.",
+    audience: ["Shared inboxes", "Home service coordinators", "Front desks", "Follow-up queues"],
     serviceType: "AI assistants",
     description: "An AI assistant that drafts follow-ups and routes the ones a person should see. Done for you.",
     steps: [
@@ -100,7 +109,7 @@ export const serviceViews: ServiceSpec[] = [
     timeline: "First version live in days.",
     faqs: [
       { question: "Does the assistant send messages on its own?", answer: "Only if you allow it. Many teams review the draft first." },
-      { question: "What does an assistant cost?", answer: `An assistant starts at $1,200. ${book}` },
+      { question: "What does an assistant cost?", answer: `Automations are quoted on the live setup, often beside a receptionist package. ${book}` },
       { question: "Will it invent an answer?", answer: "No. It uses the facts and the tone you approve." },
       { question: "Can it work in text and email?", answer: "Yes. We start with the one channel that loses leads today." },
     ],
@@ -111,13 +120,16 @@ export const serviceViews: ServiceSpec[] = [
   },
   {
     path: "/custom-projects",
-    eyebrow: "Custom projects",
-    h1: "Software built for how you work",
-    sentence: "A portal or tool shaped to the job you already do, connected to the systems you have.",
+    eyebrow: "Custom AI and full-stack",
+    h1: "Custom software for the way you already work",
+    sentence: "We build booking sites, portals, and internal tools, then connect them to the systems you run.",
     price: "Custom quote",
-    secondary: "See a sample app",
+    secondary: "See a sample booking screen",
     secondaryHref: "#example",
-    visual: "board",
+    visual: "booking",
+    exampleVisual: "calendar",
+    audienceLead: "Operators who need a screen or a handoff their current tools do not share.",
+    audience: ["Booking sites", "Client portals", "Internal tools", "Full-stack products"],
     serviceType: "Custom AI software",
     description: "Custom software for the way your team already works. Scoped on a free 15 minute call.",
     steps: [
@@ -131,8 +143,8 @@ export const serviceViews: ServiceSpec[] = [
       "A connection to the system you use now",
       "A first version you can try on live work",
     ],
-    exampleTitle: "A sample job board",
-    example: ["New: Leak on Oak Street, today.", "Set: Estimate, Thursday at 10.", "Done: Ridge cap, yesterday."],
+    exampleTitle: "A sample booking screen",
+    example: ["The guest picks Thursday.", "10:00 is open.", "The visit lands on the calendar the office already uses."],
     tools: ["Google Calendar", "The CRM or job system you already run"],
     includes: ["A scoped first version", "The screens for that one job", "A handoff your team can run"],
     timeline: "Scope on the free call. A first version follows in days when the job is narrow.",
@@ -150,12 +162,15 @@ export const serviceViews: ServiceSpec[] = [
   {
     path: "/ai-enablement",
     eyebrow: "AI enablement",
-    h1: "Train your team to use AI",
-    sentence: "A short plan and hands-on training so the team uses AI on the work you already do.",
+    h1: "Training so the team actually uses it",
+    sentence: "We write the rules for one real workflow and train the people who do that work.",
     price: "Custom quote",
     secondary: "See a sample plan",
     secondaryHref: "#example",
-    visual: "plan",
+    visual: "notes",
+    exampleVisual: "notes",
+    audienceLead: "Owners who want AI on one workflow, with a person still reviewing the result.",
+    audience: ["Office managers", "Coordinators", "Small teams", "Owners without an AI staff"],
     serviceType: "AI enablement and training",
     description: "Training and a short plan so a small team can use AI on one real workflow.",
     steps: [

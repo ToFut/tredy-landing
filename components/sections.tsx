@@ -361,16 +361,18 @@ export function Contact() {
       <div className="wrap contact-grid">
         <div>
           <p className="kicker kicker-gold">Contact</p>
-          <h2>Book a free 15-min call</h2>
+          <h2>{planLabel}</h2>
           <p>
             Tell us which offering you have in mind, and what the work is. If a first version
             is worth building, we will say so.
           </p>
           <BookLink location="contact" />
           <p className="contact-who">
-            Segev Halfon leads Futurix.
+            Futurix
             <br />
-            {site.location}
+            {site.address}
+            <br />
+            <a href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a>
           </p>
         </div>
         <ContactForm />

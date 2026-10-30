@@ -26,7 +26,7 @@ export function ContactForm() {
       "",
       message,
     ];
-    const subject = `15-minute call: ${offering}`;
+    const subject = `15-minute live setup: ${offering}`;
     const href = `mailto:${site.contactEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lines.join("\n"))}`;
     window.location.href = href;
     setSent(true);

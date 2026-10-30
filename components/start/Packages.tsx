@@ -1,4 +1,5 @@
 import { CalendarCheck, GraduationCap, Inbox, Phone } from "lucide-react";
+import Link from "next/link";
 import { BookLink } from "@/components/ui/Actions";
 import { packages } from "@/lib/start";
 
@@ -24,7 +25,13 @@ export function Packages() {
                     <li key={bullet}>{bullet}</li>
                   ))}
                 </ul>
-                <p className="price-note">Pricing on a quick call</p>
+                {item.id === "receptionist" ? (
+                  <p className="price-note">
+                    <Link href="/pricing">From $1,495 setup and $349/mo</Link>
+                  </p>
+                ) : (
+                  <p className="price-note">Quoted on the live setup</p>
+                )}
                 <BookLink location="packages" />
               </article>
             );

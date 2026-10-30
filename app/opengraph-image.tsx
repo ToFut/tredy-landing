@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 
 export const alt =
-  "Futurix builds voice agents, AI assistants, and custom AI projects, and helps companies enable AI.";
+  "Futurix builds AI voice receptionists that answer every call, book appointments, and follow up for local businesses.";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -12,8 +12,8 @@ export default function OpenGraphImage() {
         style={{
           width: "100%",
           height: "100%",
-          background: "#ffffff",
-          color: "#1d1d1f",
+          background: "#07090d",
+          color: "#f6f3ec",
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
@@ -26,8 +26,8 @@ export default function OpenGraphImage() {
               width: 48,
               height: 48,
               borderRadius: 12,
-              background: "#1d1d1f",
-              color: "#fff",
+              background: "#dff56a",
+              color: "#12141a",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
@@ -39,9 +39,9 @@ export default function OpenGraphImage() {
           Futurix
         </div>
         <div style={{ fontSize: 60, lineHeight: 1.05, letterSpacing: -2, maxWidth: 980 }}>
-          We set up AI so you never miss a customer.
+          AI receptionists that answer every call.
         </div>
-        <div style={{ fontSize: 24, color: "#0071e3" }}>Book a free 15 min call · futurixs.com</div>
+        <div style={{ fontSize: 24, color: "#dff56a" }}>Book a free 15-minute live setup</div>
       </div>
     ),
     { ...size },

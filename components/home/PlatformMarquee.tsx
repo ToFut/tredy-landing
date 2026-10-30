@@ -25,6 +25,8 @@ const marks: Mark[] = [
   { name: "Make", path: siMake.path, hex: `#${siMake.hex}` },
   { name: "Zapier", path: siZapier.path, hex: `#${siZapier.hex}` },
   { name: "Twilio", hex: "#f22f46" },
+  { name: "GoHighLevel", hex: "#f6f3ec" },
+  { name: "Google Calendar", hex: "#1a73e8" },
   { name: "Supabase", path: siSupabase.path, hex: `#${siSupabase.hex}` },
   { name: "Vercel", path: siVercel.path, hex: "#1d1d1f" },
   { name: "Copilot", hex: "#0078d4" },

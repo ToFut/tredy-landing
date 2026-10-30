@@ -1,7 +1,7 @@
 /** Point every "Book a call" button here. Swap for a booking URL when one exists. */
 export const bookCallHref = "/book";
-export const planLabel = "Book a free 15-min call";
-export const demoLabel = "Hear a demo call";
+export const planLabel = "Book a free 15-minute live setup";
+export const demoLabel = "Hear a live demo";
 
 /**
  * Drop a public audio file in later, for example "/samples/voice-agent.mp3".
@@ -13,10 +13,11 @@ export const site = {
   name: "Futurix",
   url: "https://futurixs.com",
   location: "Suffern, New York",
+  address: "1 Caroll Dr, Suffern, NY 10901",
   contactEmail: "segev@futurixs.com",
   description:
-    "AI receptionist for small business, AI chatbot for business, custom AI development, and AI consulting. Don't have the time or know-how to enable AI? We're here.",
-  title: "AI Receptionist for Small Business | Futurix",
+    "Futurix builds AI voice receptionists that answer every call, book appointments, and follow up for dental offices, HVAC and trades, med spas, and law firms. We also build AI automations and custom software.",
+  title: "AI Voice Receptionist for Local Businesses | Futurix",
   founder: "Segev Halfon",
   founderLinkedIn: "https://www.linkedin.com/in/segev-halfon-400376123",
   entity:
@@ -198,46 +199,18 @@ export type WorkItem = {
 
 export const work: WorkItem[] = [
   {
-    kicker: "Financial services",
-    title: "Peak Exchange",
-    body: "Operations platform for 1031 exchanges. Client, third party, and admin portals on one transaction, including quoting of work orders.",
-    wide: true,
-    variant: "exchange",
-  },
-  {
-    kicker: "Real estate",
-    title: "Lina Properties",
-    body: "Direct booking website for a short-term rental company, live at linaproperties.com. Futurix maintains the site.",
-    href: "https://linaproperties.com",
+    kicker: "Booking site",
+    title: "Line Properties",
+    body: "A booking site and a maintenance retainer for a short-term rental company.",
+    href: "https://line-properties.com",
     variant: "stay",
   },
   {
-    kicker: "Home services",
-    title: "redfroggroup.net",
-    body: "Website and platform for a roofing company, live at redfroggroup.net.",
-    href: "https://redfroggroup.net",
-    variant: "roof",
-  },
-  {
-    kicker: "Home services",
-    title: "Remodeling company platform",
-    body: "Internal tools for a remodeling company, from the public site through operations.",
-    variant: "shop",
-  },
-  {
-    kicker: "Product",
-    title: "adjetixai.com",
-    body: "Product website, live at adjetixai.com.",
-    href: "https://adjetixai.com",
-    variant: "product",
-  },
-  {
-    kicker: "Product",
-    title: "tredy.ai",
-    body: "Product site and application work, live at tredy.ai.",
-    href: "https://tredy.ai",
+    kicker: "Platform",
+    title: "Peak Exchange",
+    body: "A 1031 exchange platform, with client, third party, and admin portals on one transaction.",
     wide: true,
-    variant: "signal",
+    variant: "exchange",
   },
 ];
 
@@ -268,7 +241,7 @@ export const homeFaqs = [
   {
     question: "What does it cost?",
     answer:
-      "A voice receptionist starts at $1,800. An assistant starts at $1,200. Custom tools and training are scoped on the free 15 minute call. There is no charge for that call.",
+      "Overflow Desk is $1,495 setup and $349 a month. Booked Front Desk, the plan we recommend, is $2,495 setup and $497 a month. Multi-location starts at $4,995 setup and $897 a month. Automations and custom builds are quoted on the free 15-minute live setup. There is no charge for that call.",
   },
   {
     question: "How fast can it go live?",

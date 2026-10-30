@@ -6,6 +6,7 @@ import { JsonLd } from "@/components/JsonLd";
 import { Contact } from "@/components/sections";
 import { IndustryStory } from "@/components/industries/IndustryStory";
 import { Actions } from "@/components/ui/Actions";
+import { planLabel } from "@/lib/content";
 import { IphoneCall } from "@/components/visuals/Screens";
 import { aboutJsonLd, industryJsonLd, serviceJsonLd } from "@/lib/seo";
 import type { BusinessId } from "@/lib/start";
@@ -108,8 +109,8 @@ export function TopicPage({ page }: { page: TopicPageData }) {
               <Breadcrumbs items={page.crumbs} />
               <h1>{page.h1}</h1>
               <p className="hero-sub">{plainLine(page)}</p>
-              {page.path === "/voice-agents" ? <p className="card-price">From $1,800</p> : null}
-              {page.path === "/ai-assistants" ? <p className="card-price">From $1,200</p> : null}
+              {page.path === "/voice-agents" ? <p className="card-price">From $1,495 setup and $349/mo</p> : null}
+              {page.path === "/ai-assistants" ? <p className="card-price">Quoted with your setup</p> : null}
               <Actions demoHref={hasDemo ? "#try" : undefined} />
             </div>
           </header>
@@ -157,15 +158,35 @@ export function TopicPage({ page }: { page: TopicPageData }) {
         </section>
         <section className="section">
           <div className="wrap">
-            <h2 className="section-title">How it works</h2>
-            <ol className="how-steps">
-              {steps.map((section, index) => (
-                <li key={section.heading}>
-                  <span>0{index + 1}</span>
-                  {section.heading}
+            <h2 className="fx-title">How it works</h2>
+            {page.kind === "industry" ? (
+              <ol className="fx-steps">
+                <li>
+                  <span>1</span>
+                  <h3>Tell us the calls you miss</h3>
+                  <p>One line, and the questions the office already asks.</p>
                 </li>
-              ))}
-            </ol>
+                <li>
+                  <span>2</span>
+                  <h3>We connect your number</h3>
+                  <p>Your phone, your calendar, and the rules you approve.</p>
+                </li>
+                <li>
+                  <span>3</span>
+                  <h3>It answers and books</h3>
+                  <p>The caller gets a next step. You get a text.</p>
+                </li>
+              </ol>
+            ) : (
+              <ol className="how-steps">
+                {steps.map((section, index) => (
+                  <li key={section.heading}>
+                    <span>0{index + 1}</span>
+                    {section.heading}
+                  </li>
+                ))}
+              </ol>
+            )}
           </div>
         </section>
         <section className="band" id="faq">
@@ -197,8 +218,8 @@ export function TopicPage({ page }: { page: TopicPageData }) {
         </section>
         <section className="band cta-band">
           <div className="wrap">
-            <h2 className="type-h2">Book a free 15-min call</h2>
-            <p className="type-body">We will tell you if this is the right first step.</p>
+            <h2 className="fx-title">{planLabel}</h2>
+            <p className="fx-lede">We will tell you if this is the right first step.</p>
             <Actions demoHref={hasDemo ? "#try" : undefined} />
           </div>
         </section>
@@ -211,13 +232,13 @@ export function TopicPage({ page }: { page: TopicPageData }) {
 function IndustryHero({ page }: { page: TopicPageData }) {
   const call = industryCall[page.path];
   return (
-    <header className="band industry-hero">
+    <header className="band industry-hero fx-hero">
       <div className="wrap grid-12">
         <div className="span-7 hero-copy">
           <Breadcrumbs items={page.crumbs} />
           <h1 className="hero-title">{page.h1}</h1>
           <p className="hero-sub">{industryPitch[page.path]}</p>
-          <p className="card-price">From $1,800</p>
+          <p className="card-price">From $1,495 setup and $349/mo</p>
           <Actions demoHref="#try" location="industry-hero" hero />
         </div>
         {call ? (

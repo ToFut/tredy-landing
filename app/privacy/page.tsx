@@ -23,7 +23,7 @@ export default function PrivacyPage() {
         <Breadcrumbs items={crumbs} />
         <p className="kicker">Privacy</p>
         <h1>Privacy notice</h1>
-        <p>Futurix, {site.location}. This notice covers futurixs.com.</p>
+        <p>Futurix, {site.address}. This notice covers futurixs.com.</p>
 
         <h2>What you send us</h2>
         <p>

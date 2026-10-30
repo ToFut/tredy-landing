@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
-import { Geist, Newsreader } from "next/font/google";
+import { Bricolage_Grotesque, Geist } from "next/font/google";
 import { Analytics } from "@/components/Analytics";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
@@ -9,6 +9,7 @@ import "./globals.css";
 import "./apple.css";
 import "./screens.css";
 import "./system.css";
+import "./redesign.css";
 import { BookModal, StickyBook } from "@/components/ui/Actions";
 
 const sans = Geist({
@@ -17,11 +18,10 @@ const sans = Geist({
   display: "swap",
 });
 
-const serif = Newsreader({
+const display = Bricolage_Grotesque({
   subsets: ["latin"],
-  variable: "--font-newsreader",
+  variable: "--font-display",
   display: "swap",
-  weight: ["400", "500", "600"],
 });
 
 export const metadata: Metadata = {
@@ -56,7 +56,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#ffffff",
+  themeColor: "#07090d",
   colorScheme: "light",
 };
 
@@ -66,7 +66,7 @@ export default function RootLayout({
   children: ReactNode;
 }) {
   return (
-    <html lang="en" className={`${sans.variable} ${serif.variable}`}>
+    <html lang="en" className={`${sans.variable} ${display.variable}`}>
       <body>
         <a className="skip-link" href="#main">
           Skip to content
